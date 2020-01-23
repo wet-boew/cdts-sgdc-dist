@@ -1,2 +1,2 @@
 # cdts-sgdc-dist
-cdts-sgdc distributed files
+[cdts-sgdc](https://github.com/wet-boew/cdts-sgdc-cdn/) distributed files
