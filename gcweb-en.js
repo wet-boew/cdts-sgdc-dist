@@ -41,7 +41,7 @@ wet.builder.appFooter = function(opt_data, opt_ignored) {
 
 
 wet.builder.environment = function(opt_data, opt_ignored) {
-  return '../../';
+  return (opt_data.cdnEnv == 'esdcqat' || opt_data.cdnEnv == 'esdcprod' || opt_data.cdnEnv == 'esdcnonprod') ? '/cdts/' : (opt_data.cdnPath != null) ? soy.$$escapeHtml(opt_data.cdnPath) : '/etc/designs/canada/cdts/';
 };
 
 
@@ -50,11 +50,11 @@ wet.builder.refTop = function(opt_data, opt_ignored) {
   var output = '<script>dataLayer = [];<\/script><!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\': new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src= \'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);})(window,document,\'script\',\'dataLayer\',\'GTM-5DBPCQJ\');<\/script><!-- End Google Tag Manager -->';
   if (opt_data.webAnalytics != null) {
     output += '<!-- Adobe Analytics --><script src="//assets.adobedtm.com/';
-    var aaList21 = opt_data.webAnalytics;
-    var aaListLen21 = aaList21.length;
-    for (var aaIndex21 = 0; aaIndex21 < aaListLen21; aaIndex21++) {
-      var aaData21 = aaList21[aaIndex21];
-      output += 'caacec67651710193d2331efef325107c23a0145/satelliteLib-' + ((aaData21.version == 1) ? '92fcbbc24eeebb654a3dfbe688ed2dfe10a53e24' : (aaData21.version == 2) ? 'c2082deaf69c358c641c5eb20f94b615dd606662' : '') + ((aaData21.environment == 'staging') ? '-staging' : '');
+    var aaList27 = opt_data.webAnalytics;
+    var aaListLen27 = aaList27.length;
+    for (var aaIndex27 = 0; aaIndex27 < aaListLen27; aaIndex27++) {
+      var aaData27 = aaList27[aaIndex27];
+      output += 'caacec67651710193d2331efef325107c23a0145/satelliteLib-' + ((aaData27.version == 1) ? '92fcbbc24eeebb654a3dfbe688ed2dfe10a53e24' : (aaData27.version == 2) ? 'c2082deaf69c358c641c5eb20f94b615dd606662' : '') + ((aaData27.environment == 'staging') ? '-staging' : '');
     }
     output += '.js"><\/script>';
   }
@@ -68,11 +68,11 @@ wet.builder.top = function(opt_data, opt_ignored) {
   var output = '<!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DBPCQJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) --><nav><ul id="wb-tphp"><li class="wb-slc"><a class="wb-sl" href="#wb-cont">Skip to main content</a></li><li class="wb-slc visible-sm visible-md visible-lg"><a class="wb-sl" href="#wb-info">Skip to "About government"</a></li>' + ((opt_data.topSecMenu == true) ? '<li class="wb-slc visible-md visible-lg"><a class="wb-sl" href="#wb-sec">Skip to section menu</a></li>' : '') + '</ul></nav><header><div id="wb-bnr" class="container">';
   if (opt_data.lngLinks != null) {
     output += '<section id="wb-lng" class="text-right"><h2 class="wb-inv">Language selection</h2><ul class="list-inline margin-bottom-none">';
-    var linkList61 = opt_data.lngLinks;
-    var linkListLen61 = linkList61.length;
-    for (var linkIndex61 = 0; linkIndex61 < linkListLen61; linkIndex61++) {
-      var linkData61 = linkList61[linkIndex61];
-      output += '<li><a hreflang="' + soy.$$escapeHtml(linkData61.lang) + '" lang="' + soy.$$escapeHtml(linkData61.lang) + '" href="' + soy.$$escapeHtml(linkData61.href) + '">' + soy.$$escapeHtml(linkData61.text) + '</a></li>';
+    var linkList67 = opt_data.lngLinks;
+    var linkListLen67 = linkList67.length;
+    for (var linkIndex67 = 0; linkIndex67 < linkListLen67; linkIndex67++) {
+      var linkData67 = linkList67[linkIndex67];
+      output += '<li><a hreflang="' + soy.$$escapeHtml(linkData67.lang) + '" lang="' + soy.$$escapeHtml(linkData67.lang) + '" href="' + soy.$$escapeHtml(linkData67.href) + '">' + soy.$$escapeHtml(linkData67.text) + '</a></li>';
     }
     output += '</ul></section>';
   }
@@ -80,11 +80,11 @@ wet.builder.top = function(opt_data, opt_ignored) {
   if (opt_data.breadcrumbs != false) {
     output += '<nav id="wb-bc" property="breadcrumb"><h2>You are here:</h2><div class="container"><ol class="breadcrumb">';
     if (opt_data.breadcrumbs != null) {
-      var itemList100 = opt_data.breadcrumbs;
-      var itemListLen100 = itemList100.length;
-      for (var itemIndex100 = 0; itemIndex100 < itemListLen100; itemIndex100++) {
-        var itemData100 = itemList100[itemIndex100];
-        output += '<li>' + ((itemData100.acronym != null) ? '<abbr title="' + soy.$$escapeHtml(itemData100.acronym) + '">' : '') + ((itemData100.href != null) ? '<a href="' + soy.$$escapeHtml(itemData100.href) + '">' : '') + soy.$$escapeHtml(itemData100.title) + ((itemData100.href != null) ? '</a>' : '') + ((itemData100.acronym != null) ? '</abbr>' : '') + '</li>';
+      var itemList106 = opt_data.breadcrumbs;
+      var itemListLen106 = itemList106.length;
+      for (var itemIndex106 = 0; itemIndex106 < itemListLen106; itemIndex106++) {
+        var itemData106 = itemList106[itemIndex106];
+        output += '<li>' + ((itemData106.acronym != null) ? '<abbr title="' + soy.$$escapeHtml(itemData106.acronym) + '">' : '') + ((itemData106.href != null) ? '<a href="' + soy.$$escapeHtml(itemData106.href) + '">' : '') + soy.$$escapeHtml(itemData106.title) + ((itemData106.href != null) ? '</a>' : '') + ((itemData106.acronym != null) ? '</abbr>' : '') + '</li>';
       }
     } else {
       output += '<li><a href="https://www.canada.ca/en.html">Home</a></li>';
@@ -106,11 +106,11 @@ wet.builder.preFooter = function(opt_data, opt_ignored) {
       if (opt_data.showShare != false) {
         if (opt_data.showShare != null) {
           output += '<div class="wb-share col-sm-4 col-md-3 col-sm-offset-' + ((opt_data.showFeedback != false) ? '2' : '8') + ' col-md-offset-' + ((opt_data.showFeedback != false) ? '4' : '9') + ((opt_data.showFeedback != false) ? ' col-lg-offset-5' : '') + '" data-wb-share=\'{"filter": [';
-          var itemList170 = opt_data.showShare;
-          var itemListLen170 = itemList170.length;
-          for (var itemIndex170 = 0; itemIndex170 < itemListLen170; itemIndex170++) {
-            var itemData170 = itemList170[itemIndex170];
-            output += '"' + soy.$$escapeHtml(itemData170) + '"' + ((! (itemIndex170 == itemListLen170 - 1)) ? ', ' : '');
+          var itemList176 = opt_data.showShare;
+          var itemListLen176 = itemList176.length;
+          for (var itemIndex176 = 0; itemIndex176 < itemListLen176; itemIndex176++) {
+            var itemData176 = itemList176[itemIndex176];
+            output += '"' + soy.$$escapeHtml(itemData176) + '"' + ((! (itemIndex176 == itemListLen176 - 1)) ? ', ' : '');
           }
           output += '], "lnkClass": "btn btn-default btn-block"}\'></div>';
         } else {
@@ -127,26 +127,26 @@ wet.builder.preFooter = function(opt_data, opt_ignored) {
 
 wet.builder.secmenu = function(opt_data, opt_ignored) {
   var output = '\t\t\t<h2 id="wb-sec-h" class="wb-inv">Section menu</h2>';
-  var sectionList216 = opt_data.sections;
-  var sectionListLen216 = sectionList216.length;
-  for (var sectionIndex216 = 0; sectionIndex216 < sectionListLen216; sectionIndex216++) {
-    var sectionData216 = sectionList216[sectionIndex216];
-    output += '<section class="list-group menu list-unstyled"><h3>' + ((sectionData216.sectionLink != null) ? '<a href="' + soy.$$escapeHtml(sectionData216.sectionLink) + '"' + ((sectionData216.newWindow == true) ? ' target="_blank"  rel="noopener"' : '') + '>' : '') + soy.$$escapeHtml(sectionData216.sectionName) + ((sectionData216.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + ((sectionData216.sectionLink != null) ? '</a>' : '') + '</h3><ul class="list-group menu list-unstyled">';
-    var linkList235 = sectionData216.menuLinks;
-    var linkListLen235 = linkList235.length;
-    for (var linkIndex235 = 0; linkIndex235 < linkListLen235; linkIndex235++) {
-      var linkData235 = linkList235[linkIndex235];
-      if (linkData235.subLinks != null) {
-        output += '<li><a href="' + soy.$$escapeHtml(linkData235.href) + '" class="list-group-item"' + ((linkData235.newWindow == true) ? ' target="_blank"  rel="noopener"' : '') + '>' + soy.$$escapeHtml(linkData235.text) + ((linkData235.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + '</a><ul class="list-group menu list-unstyled">';
-        var sublinkList250 = linkData235.subLinks;
-        var sublinkListLen250 = sublinkList250.length;
-        for (var sublinkIndex250 = 0; sublinkIndex250 < sublinkListLen250; sublinkIndex250++) {
-          var sublinkData250 = sublinkList250[sublinkIndex250];
-          output += '<li><a href="' + soy.$$escapeHtml(sublinkData250.subhref) + '" class="list-group-item"' + ((sublinkData250.newWindow == true) ? ' target="_blank"  rel="noopener"' : '') + '>' + soy.$$escapeHtml(sublinkData250.subtext) + ((sublinkData250.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + '</a></li>';
+  var sectionList222 = opt_data.sections;
+  var sectionListLen222 = sectionList222.length;
+  for (var sectionIndex222 = 0; sectionIndex222 < sectionListLen222; sectionIndex222++) {
+    var sectionData222 = sectionList222[sectionIndex222];
+    output += '<section class="list-group menu list-unstyled"><h3>' + ((sectionData222.sectionLink != null) ? '<a href="' + soy.$$escapeHtml(sectionData222.sectionLink) + '"' + ((sectionData222.newWindow == true) ? ' target="_blank"  rel="noopener"' : '') + '>' : '') + soy.$$escapeHtml(sectionData222.sectionName) + ((sectionData222.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + ((sectionData222.sectionLink != null) ? '</a>' : '') + '</h3><ul class="list-group menu list-unstyled">';
+    var linkList241 = sectionData222.menuLinks;
+    var linkListLen241 = linkList241.length;
+    for (var linkIndex241 = 0; linkIndex241 < linkListLen241; linkIndex241++) {
+      var linkData241 = linkList241[linkIndex241];
+      if (linkData241.subLinks != null) {
+        output += '<li><a href="' + soy.$$escapeHtml(linkData241.href) + '" class="list-group-item"' + ((linkData241.newWindow == true) ? ' target="_blank"  rel="noopener"' : '') + '>' + soy.$$escapeHtml(linkData241.text) + ((linkData241.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + '</a><ul class="list-group menu list-unstyled">';
+        var sublinkList256 = linkData241.subLinks;
+        var sublinkListLen256 = sublinkList256.length;
+        for (var sublinkIndex256 = 0; sublinkIndex256 < sublinkListLen256; sublinkIndex256++) {
+          var sublinkData256 = sublinkList256[sublinkIndex256];
+          output += '<li><a href="' + soy.$$escapeHtml(sublinkData256.subhref) + '" class="list-group-item"' + ((sublinkData256.newWindow == true) ? ' target="_blank"  rel="noopener"' : '') + '>' + soy.$$escapeHtml(sublinkData256.subtext) + ((sublinkData256.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + '</a></li>';
         }
         output += '</ul></li>';
       } else {
-        output += '<li><a href="' + soy.$$escapeHtml(linkData235.href) + '" class="list-group-item"' + ((linkData235.newWindow == true) ? ' target="_blank"  rel="noopener"' : '') + '>' + soy.$$escapeHtml(linkData235.text) + ((linkData235.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + '</a></li>';
+        output += '<li><a href="' + soy.$$escapeHtml(linkData241.href) + '" class="list-group-item"' + ((linkData241.newWindow == true) ? ' target="_blank"  rel="noopener"' : '') + '>' + soy.$$escapeHtml(linkData241.text) + ((linkData241.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + '</a></li>';
       }
     }
     output += '</ul></section>';
@@ -161,11 +161,11 @@ wet.builder.footer = function(opt_data, opt_ignored) {
   if (opt_data.showFooter != false) {
     output += '<div class="landscape"><nav class="container wb-navcurr"><h2 class="wb-inv">About government</h2><ul class="list-unstyled colcount-sm-2 colcount-md-3">';
     if (opt_data.contactLinks != null) {
-      var linkList288 = opt_data.contactLinks;
-      var linkListLen288 = linkList288.length;
-      for (var linkIndex288 = 0; linkIndex288 < linkListLen288; linkIndex288++) {
-        var linkData288 = linkList288[linkIndex288];
-        output += (linkIndex288 == 0) ? '<li><a href="' + soy.$$escapeHtml(linkData288.href) + '">Contact us</a></li>' : '';
+      var linkList294 = opt_data.contactLinks;
+      var linkListLen294 = linkList294.length;
+      for (var linkIndex294 = 0; linkIndex294 < linkListLen294; linkIndex294++) {
+        var linkData294 = linkList294[linkIndex294];
+        output += (linkIndex294 == 0) ? '<li><a href="' + soy.$$escapeHtml(linkData294.href) + '">Contact us</a></li>' : '';
       }
     } else {
       output += '<li><a href="https://www.canada.ca/en/contact.html">Contact us</a></li>';
@@ -174,31 +174,31 @@ wet.builder.footer = function(opt_data, opt_ignored) {
   } else {
     output += '<div id="transactFooter" class="landscape"></div><div class="brand"><div class="container"><div class="row"><nav class="col-md-9 col-lg-10 ftr-urlt-lnk"><h2 class="wb-inv">About this site</h2><ul>';
     if (opt_data.contactLinks != null) {
-      var linkList302 = opt_data.contactLinks;
-      var linkListLen302 = linkList302.length;
-      for (var linkIndex302 = 0; linkIndex302 < linkListLen302; linkIndex302++) {
-        var linkData302 = linkList302[linkIndex302];
-        output += (linkIndex302 == 0) ? '<li><a ' + ((linkData302.href) ? ' href="' + soy.$$escapeHtml(linkData302.href) + '"' : ' href="https://www.canada.ca/en/contact.html"') + ((linkData302.newWindow) ? ' target="_blank"  rel="noopener"' : '') + '>Contact information' + ((linkData302.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + '</a></li>' : '';
+      var linkList308 = opt_data.contactLinks;
+      var linkListLen308 = linkList308.length;
+      for (var linkIndex308 = 0; linkIndex308 < linkListLen308; linkIndex308++) {
+        var linkData308 = linkList308[linkIndex308];
+        output += (linkIndex308 == 0) ? '<li><a ' + ((linkData308.href) ? ' href="' + soy.$$escapeHtml(linkData308.href) + '"' : ' href="https://www.canada.ca/en/contact.html"') + ((linkData308.newWindow) ? ' target="_blank"  rel="noopener"' : '') + '>Contact information' + ((linkData308.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + '</a></li>' : '';
       }
     } else {
       output += '<li><a href="https://www.canada.ca/en/contact.html">Contact information</a></li>';
     }
     if (opt_data.termsLink != null) {
-      var linkList326 = opt_data.termsLink;
-      var linkListLen326 = linkList326.length;
-      for (var linkIndex326 = 0; linkIndex326 < linkListLen326; linkIndex326++) {
-        var linkData326 = linkList326[linkIndex326];
-        output += (linkIndex326 == 0) ? '<li><a ' + ((linkData326.href) ? ' href="' + soy.$$escapeHtml(linkData326.href) + '"' : ' href="https://www.canada.ca/en/transparency/terms.html"') + ((linkData326.newWindow) ? ' target="_blank"  rel="noopener"' : '') + '>Terms and conditions' + ((linkData326.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + '</a></li>' : '';
+      var linkList332 = opt_data.termsLink;
+      var linkListLen332 = linkList332.length;
+      for (var linkIndex332 = 0; linkIndex332 < linkListLen332; linkIndex332++) {
+        var linkData332 = linkList332[linkIndex332];
+        output += (linkIndex332 == 0) ? '<li><a ' + ((linkData332.href) ? ' href="' + soy.$$escapeHtml(linkData332.href) + '"' : ' href="https://www.canada.ca/en/transparency/terms.html"') + ((linkData332.newWindow) ? ' target="_blank"  rel="noopener"' : '') + '>Terms and conditions' + ((linkData332.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + '</a></li>' : '';
       }
     } else {
       output += '<li><a href="https://www.canada.ca/en/transparency/terms.html">Terms and conditions</a></li>';
     }
     if (opt_data.privacyLink != null) {
-      var linkList350 = opt_data.privacyLink;
-      var linkListLen350 = linkList350.length;
-      for (var linkIndex350 = 0; linkIndex350 < linkListLen350; linkIndex350++) {
-        var linkData350 = linkList350[linkIndex350];
-        output += (linkIndex350 == 0) ? '<li><a ' + ((linkData350.href) ? ' href="' + soy.$$escapeHtml(linkData350.href) + '"' : ' href="https://www.canada.ca/en/transparency/privacy.html"') + ((linkData350.newWindow) ? ' target="_blank"  rel="noopener"' : '') + '>Privacy' + ((linkData350.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + '</a></li>' : '';
+      var linkList356 = opt_data.privacyLink;
+      var linkListLen356 = linkList356.length;
+      for (var linkIndex356 = 0; linkIndex356 < linkListLen356; linkIndex356++) {
+        var linkData356 = linkList356[linkIndex356];
+        output += (linkIndex356 == 0) ? '<li><a ' + ((linkData356.href) ? ' href="' + soy.$$escapeHtml(linkData356.href) + '"' : ' href="https://www.canada.ca/en/transparency/privacy.html"') + ((linkData356.newWindow) ? ' target="_blank"  rel="noopener"' : '') + '>Privacy' + ((linkData356.newWindow == true) ? '<span class="wb-inv"> This link will open in a new window</span>' : '') + '</a></li>' : '';
       }
     } else {
       output += '<li><a href="https://www.canada.ca/en/transparency/privacy.html">Privacy</a></li>';
@@ -223,8 +223,8 @@ wet.builder.splashTop = function(opt_data, opt_ignored) {
 
 wet.builder.splash = function(opt_data, opt_ignored) {
   var output = '\t\t<div id="bg"><img src=\'' + wet.builder.environment(opt_data) + 'gcweb/img/splash/sp-bg-2.jpg\' alt=""></div><main><div class="sp-hb"><div class="sp-bx col-xs-12"><h1 property="name" class="wb-inv">Canada.ca</h1><div class="row"><div class="col-xs-11 col-md-8"><img src=\'' + wet.builder.environment(opt_data) + 'gcweb/assets/sig-spl.svg\' alt="Government of Canada / Gouvernement du Canada" /></div></div><div class="row cdts-splash"><section class="col-xs-6 text-right" lang="en">' + ((opt_data.nameEng != null) ? '<h2>' + soy.$$escapeHtml(opt_data.nameEng) + '</h2>' : '<h2 class="wb-inv">Government of Canada</h2>') + '</section><section class="col-xs-6" lang="fr">' + ((opt_data.nameFra != null) ? '<h2>' + soy.$$escapeHtml(opt_data.nameFra) + '</h2>' : '<h2 class="wb-inv">Gouvernement du Canada</h2>') + '</section></div><row class="text-center">';
-  var lang__soy466 = navigator.language;
-  output += '<ul class="list-inline lst-spcd"><li>' + ((lang__soy466 == 'en-CA') ? '<a href="' + soy.$$escapeHtml(opt_data.indexEng) + '" class="btn btn-primary" lang="en">English</a>' : '<a href="' + soy.$$escapeHtml(opt_data.indexEng) + '" class="btn btn-default" lang="en">English</a>') + '</li><li>' + ((lang__soy466 == 'fr-CA') ? '<a href="' + soy.$$escapeHtml(opt_data.indexFra) + '" class="btn btn-primary" lang="fr">Français</a>' : '<a href="' + soy.$$escapeHtml(opt_data.indexFra) + '" class="btn btn-default" lang="fr">Français</a>') + '</li></ul></row></div><div class="sp-bx-bt col-xs-12"><div class="row"><div class="col-xs-7 col-md-8"><a href="' + soy.$$escapeHtml(opt_data.termsEng) + '" class="sp-lk">Terms & conditions</a> <span class="glyphicon glyphicon-asterisk"></span> <a href="' + soy.$$escapeHtml(opt_data.termsFra) + '" class="sp-lk" lang="fr">Avis</a></div><div class="col-xs-5 col-md-4 text-right mrgn-bttm-md"><img src=\'' + wet.builder.environment(opt_data) + 'gcweb/assets/wmms-spl.svg\' width="127" alt="Symbol of the Government of Canada / Symbole du gouvernement du Canada" /></div></div></div></div></main><!--[if gte IE 9 | !IE ]><!--><script src="' + ((opt_data.jqueryEnv == 'external') ? 'https://ajax.googleapis.com/ajax/libs' : wet.builder.environment(opt_data) + 'wet-boew/js/') + 'jquery/2.2.4/jquery.min.js"><\/script><script src=\'' + wet.builder.environment(opt_data) + 'wet-boew/js/wet-boew.min.js\'><\/script><!--<![endif]--><!--[if lt IE 9]><script src=\'' + wet.builder.environment(opt_data) + 'wet-boew/js/ie8-wet-boew2.min.js\'><\/script><![endif]--><script src=\'' + wet.builder.environment(opt_data) + 'gcweb/js/theme.min.js\'><\/script>' + ((opt_data.webAnalytics != null) ? '<script>_satellite.pageBottom();<\/script>' : '') + '<link rel="stylesheet" href=\'' + wet.builder.environment(opt_data) + 'cdts/css/cdtsfixes.css\'>';
+  var lang__soy472 = navigator.language;
+  output += '<ul class="list-inline lst-spcd"><li>' + ((lang__soy472 == 'en-CA') ? '<a href="' + soy.$$escapeHtml(opt_data.indexEng) + '" class="btn btn-primary" lang="en">English</a>' : '<a href="' + soy.$$escapeHtml(opt_data.indexEng) + '" class="btn btn-default" lang="en">English</a>') + '</li><li>' + ((lang__soy472 == 'fr-CA') ? '<a href="' + soy.$$escapeHtml(opt_data.indexFra) + '" class="btn btn-primary" lang="fr">Français</a>' : '<a href="' + soy.$$escapeHtml(opt_data.indexFra) + '" class="btn btn-default" lang="fr">Français</a>') + '</li></ul></row></div><div class="sp-bx-bt col-xs-12"><div class="row"><div class="col-xs-7 col-md-8"><a href="' + soy.$$escapeHtml(opt_data.termsEng) + '" class="sp-lk">Terms & conditions</a> <span class="glyphicon glyphicon-asterisk"></span> <a href="' + soy.$$escapeHtml(opt_data.termsFra) + '" class="sp-lk" lang="fr">Avis</a></div><div class="col-xs-5 col-md-4 text-right mrgn-bttm-md"><img src=\'' + wet.builder.environment(opt_data) + 'gcweb/assets/wmms-spl.svg\' width="127" alt="Symbol of the Government of Canada / Symbole du gouvernement du Canada" /></div></div></div></div></main><!--[if gte IE 9 | !IE ]><!--><script src="' + ((opt_data.jqueryEnv == 'external') ? 'https://ajax.googleapis.com/ajax/libs' : wet.builder.environment(opt_data) + 'wet-boew/js/') + 'jquery/2.2.4/jquery.min.js"><\/script><script src=\'' + wet.builder.environment(opt_data) + 'wet-boew/js/wet-boew.min.js\'><\/script><!--<![endif]--><!--[if lt IE 9]><script src=\'' + wet.builder.environment(opt_data) + 'wet-boew/js/ie8-wet-boew2.min.js\'><\/script><![endif]--><script src=\'' + wet.builder.environment(opt_data) + 'gcweb/js/theme.min.js\'><\/script>' + ((opt_data.webAnalytics != null) ? '<script>_satellite.pageBottom();<\/script>' : '') + '<link rel="stylesheet" href=\'' + wet.builder.environment(opt_data) + 'cdts/css/cdtsfixes.css\'>';
   return output;
 };
 
