@@ -24,7 +24,7 @@ To work with this project you will need node.js and npm installed. This project 
 
 ### Security
 
-Please see [SECURITY.md](/wet-boew/cdts-sgdc/SECURITY.md) for more information.
+Please see [SECURITY.md](https://github.com/wet-boew/cdts-sgdc/blob/master/SECURITY.md) for more information.
 
 #### Install dependencies
 Clone this repository to a local directory. On the command line move to the cloned directory ( this directory should contain the package.json file) and run : `$ npm install`.
@@ -105,6 +105,6 @@ Looking at maybe one of these:
 
 ## License
 
-Unless otherwise noted, the source code of this project is covered under Crown Copyright, Government of Canada, and is distributed under the [MIT License](LICENSE).
+Unless otherwise noted, the source code of this project is covered under Crown Copyright, Government of Canada, and is distributed under the [MIT License](https://github.com/wet-boew/cdts-sgdc/blob/master/LICENSE).
 
 The Canada wordmark and related graphics associated with this distribution are protected under trademark law and copyright law. No permission is granted to use them outside the parameters of the Government of Canada's corporate identity program. For more information, see Federal identity requirements.
