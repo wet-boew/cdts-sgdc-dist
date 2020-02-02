@@ -1,0 +1,43 @@
+{
+  "_args": [
+    [
+      "github:wet-boew/wet-boew-cdn#v4.0-dist",
+      "/home/travis/build/wet-boew/cdts-sgdc"
+    ]
+  ],
+  "_from": "github:wet-boew/wet-boew-cdn#v4.0-dist",
+  "_id": "wet-boew@github:wet-boew/wet-boew-cdn#49775bfddea01dfdfa3a41645a31f95e551047ed",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/wet-boew",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "github:wet-boew/wet-boew-cdn#v4.0-dist",
+    "rawSpec": "github:wet-boew/wet-boew-cdn#v4.0-dist",
+    "saveSpec": "github:wet-boew/wet-boew-cdn#v4.0-dist",
+    "fetchSpec": null,
+    "gitCommittish": "v4.0-dist"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "github:wet-boew/wet-boew-cdn#49775bfddea01dfdfa3a41645a31f95e551047ed",
+  "_spec": "github:wet-boew/wet-boew-cdn#v4.0-dist",
+  "_where": "/home/travis/build/wet-boew/cdts-sgdc",
+  "author": {
+    "name": "wet-boew-bot"
+  },
+  "bugs": {
+    "url": "https://github.com/wet-boew/wet-boew/issues"
+  },
+  "description": "wet-boew theme",
+  "homepage": "https://github.com/wet-boew/wet-boew-cdn#readme",
+  "license": "MIT",
+  "name": "wet-boew",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wet-boew/wet-boew-cdn.git"
+  },
+  "version": "4.0.33"
+}

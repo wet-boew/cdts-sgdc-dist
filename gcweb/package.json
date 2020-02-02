@@ -1,0 +1,43 @@
+{
+  "_args": [
+    [
+      "github:wet-boew/themes-cdn#v6.0-gcweb",
+      "/home/travis/build/wet-boew/cdts-sgdc"
+    ]
+  ],
+  "_from": "github:wet-boew/themes-cdn#v6.0-gcweb",
+  "_id": "gcweb@github:wet-boew/themes-cdn#37afffa83e8b96f1cc50748c042e286a5c36015f",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/gcweb",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "github:wet-boew/themes-cdn#v6.0-gcweb",
+    "rawSpec": "github:wet-boew/themes-cdn#v6.0-gcweb",
+    "saveSpec": "github:wet-boew/themes-cdn#v6.0-gcweb",
+    "fetchSpec": null,
+    "gitCommittish": "v6.0-gcweb"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "github:wet-boew/themes-cdn#37afffa83e8b96f1cc50748c042e286a5c36015f",
+  "_spec": "github:wet-boew/themes-cdn#v6.0-gcweb",
+  "_where": "/home/travis/build/wet-boew/cdts-sgdc",
+  "author": {
+    "name": "wet-boew-bot"
+  },
+  "bugs": {
+    "url": "https://github.com/wet-boew/gcweb/issues"
+  },
+  "description": "gcweb theme",
+  "homepage": "https://github.com/wet-boew/themes-cdn#readme",
+  "license": "MIT",
+  "name": "gcweb",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wet-boew/themes-cdn.git"
+  },
+  "version": "6.0.0"
+}
