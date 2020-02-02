@@ -24,7 +24,7 @@ To work with this project you will need node.js and npm installed. This project 
 
 ### Security
 
-Please see [SECURITY.md](SECURITY.md) for more information.
+Please see [SECURITY.md](/wet-boew/cdts-sgdc/SECURITY.md) for more information.
 
 #### Install dependencies
 Clone this repository to a local directory. On the command line move to the cloned directory ( this directory should contain the package.json file) and run : `$ npm install`.
@@ -102,8 +102,6 @@ Looking at maybe one of these:
 * sgdc-cdts.canada.ca/v1.0.1/cdts/js/gcweb-en.js
 * cdts.canada.ca/v1.0.1/cdts/js/gcweb-en.js
 * sgdc.canada.ca/v1.0.1/cdts/js/gcweb-en.js
-
-[See notes for progress](notes.md)
 
 ## License
 
