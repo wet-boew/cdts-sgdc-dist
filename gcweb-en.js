@@ -1,7 +1,7 @@
 /*!
  * Centrally Deployed Templates Solution (CDTS) / Solution de gabarits à déploiement centralisé (SGDC)
  * github.com/wet-boew/cdts-sgdc/blob/master/LICENSE
- * v1.0.0-development - 2020-02-05
+ * v1.0.0-development - 2020-02-29
  *
  */// This file was automatically generated from gcweb-en.soy.
 // Please don't edit this file by hand.
