@@ -1,7 +1,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.39 - 2020-11-04
+ * v4.0.42.2 - 2021-05-06
  *
  *//*! Modernizr (Custom Build) | MIT & BSD */
 /* Modernizr (Custom Build) | MIT & BSD
@@ -34,7 +34,7 @@ var getUrlParts = function( url ) {
 			host: a.host,
 			hostname: a.hostname,
 			port: a.port,
-			pathname: a.pathname.replace( /^([^\/])/, "/$1" ), // Prefix pathname with a slash in browsers that don't natively do it (i.e. all versions of IE and possibly early versions of Edge). See pull request #8110.
+			pathname: a.pathname.replace( /^([^/])/, "/$1" ), // Prefix pathname with a slash in browsers that don't natively do it (i.e. all versions of IE and possibly early versions of Edge). See pull request #8110.
 			protocol: a.protocol,
 			hash: a.hash,
 			search: a.search,
@@ -80,9 +80,9 @@ var getUrlParts = function( url ) {
 		var paths = {};
 
 		paths.home = ele.prop( "src" )
-				.split( "?" )[ 0 ].split( "/" )
-				.slice( 0, -1 )
-				.join( "/" );
+			.split( "?" )[ 0 ].split( "/" )
+			.slice( 0, -1 )
+			.join( "/" );
 		paths.asset = paths.home + "/../assets";
 		paths.template = paths.home + "/assets/templates";
 		paths.dep = paths.home + "/deps";
@@ -118,7 +118,7 @@ var getUrlParts = function( url ) {
 		while ( (
 			div.innerHTML = "<!--[if gt IE " + ( v += 1 ) + "]><i></i><![endif]-->",
 			all[ 0 ]
-		) ) {};
+		) ) { /* empty */ }
 
 		return v > 4 ? v : undef;
 	}() ),
@@ -139,7 +139,10 @@ var getUrlParts = function( url ) {
 
 		try {
 			disabledSaved = localStorage.getItem( "wbdisable" ) || disabledSaved;
-		} catch ( e ) {}
+		} catch ( e ) {
+
+			/* swallow error */
+		}
 
 		disabled = currentpage.params.wbdisable || disabledSaved;
 		return ( typeof disabled === "string" ) ? ( disabled.toLowerCase() === "true" ) : Boolean( disabled );
@@ -168,7 +171,7 @@ var getUrlParts = function( url ) {
 		initQueue: 0,
 
 		getPath: function( property ) {
-			return this.hasOwnProperty( property ) ? this[ property ] : undef;
+			return Object.prototype.hasOwnProperty.call( this, property ) ? this[ property ] : undef;
 		},
 
 		getMode: function() {
@@ -213,9 +216,9 @@ var getUrlParts = function( url ) {
 				// Trigger any nested elements (excluding nested within nested)
 				$elm
 					.find( wb.allSelectors )
-						.addClass( "wb-init" )
-						.filter( ":not(#" + $elm.attr( "id" ) + " .wb-init .wb-init)" )
-							.trigger( "timerpoke.wb" );
+					.addClass( "wb-init" )
+					.filter( ":not(#" + $elm.attr( "id" ) + " .wb-init .wb-init)" )
+					.trigger( "timerpoke.wb" );
 
 				// Identify that the component is ready
 				$elm.trigger( "wb-ready." + componentName, context );
@@ -581,7 +584,7 @@ Modernizr.load( [
 					// Load the MathML dependency. Since the polyfill is only loaded
 					// when !Modernizr.mathml, we can skip the test here.
 					Modernizr.load( [ {
-						load: "timeout=500!https://cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=Accessible",
+						load: "timeout=500!https://cdn.jsdelivr.net/npm/mathjax@2.7.4/MathJax.js?config=Accessible",
 						complete: function() {
 							Modernizr.load( [ {
 								test: window.MathJax === undefined,
@@ -752,6 +755,41 @@ wb.pickElements = function( $elm, numOfElm ) {
 	} );
 };
 
+/* ---------------------------------
+Adds a link to the Skip links navigation
+@param text: Text to display in the anchor or button
+@param attr: JSO with { attribute: value, ... } to add attributes to the anchor or button. Minimum is { href: "#your-anchor" } for the anchor tag
+@param isBtn: (Optional) Bool if true element is a button, otherwise it is an anchor by default
+@param isLast: (Optional) Bool if true element will be inserted last in the list
+-------------------------------- */
+wb.addSkipLink = function( text, attr, isBtn, isLast ) {
+	var list = document.getElementById( "wb-tphp" ),
+		li = document.createElement( "li" ),
+		elm = document.createElement( ( isBtn ? "button" : "a" ) ),
+		key;
+
+	// Add skip link's proprietary classes to new element
+	li.className = "wb-slc";
+	elm.className = "wb-sl";
+
+	// Add given attributes to element
+	for ( key in attr ) {
+		elm.setAttribute( key, attr[ key ] );
+	}
+
+	// Append text and new element to the skip link list (after main content)
+	elm.appendChild( document.createTextNode( text ) );
+	li.appendChild( elm );
+
+	if ( isLast ) {
+		list.appendChild( li );
+	} else {
+		list.insertBefore( li, list.childNodes[ 2 ] );
+	}
+
+	return true;
+};
+
 } )( jQuery, wb );
 
 ( function( wb ) {
@@ -761,11 +799,11 @@ wb.pickElements = function( $elm, numOfElm ) {
 // Escapes the characters in a string for use in a jQuery selector
 // Based on https://totaldev.com/content/escaping-characters-get-valid-jquery-id
 wb.jqEscape = function( selector ) {
-	return selector.replace( /([;&,\.\+\*\~':"\\\!\^\/#$%@\[\]\(\)=>\|])/g, "\\$1" );
+	return selector.replace( /([;&,.+*~':"\\!^/#$%@[]()=>\|])/g, "\\$1" );
 };
 
 // RegEx used by formattedNumCompare
-wb.formattedNumCompareRegEx = /(<[^>]*>|[^\d\.])/g;
+wb.formattedNumCompareRegEx = /(<[^>]*>|[^\d.])/g;
 
 // Compares two formatted numbers (e.g., 1.2.12 or 1,000,345)
 wb.formattedNumCompare = function( a, b ) {
@@ -1699,7 +1737,7 @@ wb.normalizeDiacritics = function( str ) {
 		i, character;
 	for ( i = 0; i !== len; i += 1 ) {
 		character = chars[ i ];
-		if ( diacritics.hasOwnProperty( character ) ) {
+		if ( Object.prototype.hasOwnProperty.call( diacritics, character ) ) {
 			chars[ i ] = diacritics[ character ];
 			normalized = true;
 		}
@@ -1917,14 +1955,14 @@ function focusable( element, isTabIndexNotNaN, visibility ) {
 	if ( visibility ) {
 		return ( /input|select|textarea|button|object/.test( nodeName ) ? !element.disabled :
 			nodeName === "a" ?
-			element.href || isTabIndexNotNaN :
-			isTabIndexNotNaN ) &&
+				element.href || isTabIndexNotNaN :
+				isTabIndexNotNaN ) &&
 		visible( element ); /* the element and all of its ancestors must be visible */
 	} else {
 		return ( /input|select|textarea|button|object/.test( nodeName ) ? !element.disabled :
 			nodeName === "a" ?
-			element.href || isTabIndexNotNaN :
-			isTabIndexNotNaN );
+				element.href || isTabIndexNotNaN :
+				isTabIndexNotNaN );
 	}
 }
 
@@ -1947,9 +1985,9 @@ $.extend( $.expr[ ":" ], {
 
 	// support: jQuery <1.8
 
-	function( elem, i, match ) {
-		return !!$.data( elem, match[ 3 ] );
-	},
+		function( elem, i, match ) {
+			return !!$.data( elem, match[ 3 ] );
+		},
 	focusable: function( element ) {
 		return focusable( element, !isNaN( $.attr( element, "tabindex" ) ), true );
 	},
@@ -2043,7 +2081,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 				};
 
 				fetchData.pointer = $( "<div id='" + wb.getId() + "' data-type='" + responseType + "' />" )
-										.append( responseType === "string" ? response : "" );
+					.append( responseType === "string" ? response : "" );
 
 				$( "#" + callerId ).trigger( {
 					type: "ajax-fetched.wb",
@@ -2066,10 +2104,10 @@ $document.on( "ajax-fetch.wb", function( event ) {
 } )( jQuery, wb );
 
 /**
- * @title WET-BOEW Set background image sourceset
- * @overview Detects the change in screen width and replace the background image accordingly
+ * @title WET-BOEW Set background image
+ * @overview Apply a background image or detects the change in screen width and replace the background image accordingly
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * @author @namjohn920
+ * @author @namjohn920, @duboisp
  */
 ( function( $, wb ) {
 "use strict";
@@ -2082,13 +2120,17 @@ $document.on( "ajax-fetch.wb", function( event ) {
  */
 var $document = wb.doc,
 	$window = wb.win,
-	componentName = "wb-bgimg-srcset",
-	selector = ".provisional[data-bgimg-srcset]",
-	inputs = {},
-	elm,
+	componentName = "wb-bgimg",
+	selector = "[data-bgimg-srcset], [data-bgimg]",
+	bgViews = {},
 	ids = [],
 
 	init = function( event ) {
+
+		var elm, elmId,
+			bgImg, bgimgSrcset, bgRawViews,
+			i, i_len, i_views,
+			imgSrc, imgSize;
 
 		// Start initialization
 		// returns DOM object = proceed with init
@@ -2096,31 +2138,50 @@ var $document = wb.doc,
 		elm = wb.init( event, componentName, selector );
 
 		if ( elm ) {
-			ids.push( elm.id );
-			var userInputs;
-			if ( elm.dataset.bgimgSrcset ) {
-				userInputs = elm.dataset.bgimgSrcset.split( "," );
-			};
 
-			var i_len = userInputs.length;
-			inputs[ elm.id ] = [];
+			// Ensure the feature have an ID.
+			if ( !elm.id ) {
+				elm.id = wb.getId();
+			}
+			elmId = elm.id;
 
-			for ( var i = 0; i < i_len; i++ ) {
-				userInputs[ i ] = userInputs[ i ].trim();
-				userInputs[ i ] = userInputs[ i ].split( " " );
-				userInputs[ i ][ 1 ] = parseInt( userInputs[ i ][ 1 ].substring( 0, userInputs[ i ][ 1 ].length - 1 ) );
-				inputs[ elm.id ].push( userInputs[ i ] );
+			// Apply default background image
+			bgImg = elm.dataset.bgimg;
+			if ( bgImg ) {
+				elm.style.backgroundImage = "url(" + bgImg + ")";
 			}
 
-			inputs[ elm.id ].sort(
-				function( a, b ) {
-					return a[ 1 ] > b[ 1 ] ? 1 : -1;
+			// Apply background image set if defined
+			bgimgSrcset = elm.dataset.bgimgSrcset;
+			if ( bgimgSrcset ) {
+				ids.push( elm.id );
+				bgRawViews = elm.dataset.bgimgSrcset.split( "," );
+				i_len = bgRawViews.length;
+				bgViews[ elmId ] = [];
+
+				for ( i = 0; i < i_len; i++ ) {
+					i_views = bgRawViews[ i ].trim().split( " " );
+
+					imgSrc = i_views[ 0 ];
+					imgSize =  i_views[ i_views.length - 1 ];
+
+					imgSize = parseInt( imgSize.substring( 0, imgSize.length - 1 ) );
+					bgViews[ elmId ].push( [ imgSrc, imgSize ] );
 				}
-			);
 
-			selectImage();
+				bgViews[ elmId ].sort(
+					function( a, b ) {
+						return a[ 1 ] > b[ 1 ] ? 1 : -1;
+					}
+				);
 
-				// Identify that initialization has completed
+				selectImage();
+
+				// Add the resize listener
+				$window.on( "resize", selectImage );
+			}
+
+			// Identify that initialization has completed
 			wb.ready( $( elm ), componentName );
 		}
 	},
@@ -2128,15 +2189,18 @@ var $document = wb.doc,
 	selectImage = function() {
 		var screenWidth = window.innerWidth,
 			optimizedLink = {},
-			i_len = ids.length;
+			i, i_len = ids.length, j,
+			optimizedSize, currentId, currentId_len,
+			currentInput,
+			link, elm;
 
-		for ( var i = 0; i < i_len; i++ ) {
-			var optimizedSize = Infinity,
-				currentId = inputs[ ids[ i ] ],
-				currentId_len = inputs[ ids[ i ] ].length;
+		for ( i = 0; i < i_len; i++ ) {
+			optimizedSize = Infinity;
+			currentId = bgViews[ ids[ i ] ];
+			currentId_len = currentId.length;
 
-			for ( var j = 0; j < currentId_len; j++ ) {
-				var currentInput = currentId[ j ];
+			for ( j = 0; j < currentId_len; j++ ) {
+				currentInput = currentId[ j ];
 				if ( currentInput[ 1 ] >= screenWidth ) {
 					if ( optimizedSize > currentInput[ 1 ] ) {
 						optimizedSize = currentInput[ 1 ];
@@ -2149,55 +2213,9 @@ var $document = wb.doc,
 			}
 		}
 
-		for ( var link in optimizedLink ) {
-			var elm = document.getElementById( link );
+		for ( link in optimizedLink ) {
+			elm = document.getElementById( link );
 			elm.style.backgroundImage = "url(" + optimizedLink[ link ] + ")";
-		}
-	};
-
-$window.on( "resize", selectImage );
-
-	// Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init." + componentName, selector, init );
-
-	// Add the timer poke to initialize the plugin
-wb.add( selector );
-
-} )( jQuery, wb );
-
-/**
- * @title WET-BOEW Set background image
- * @overview to be replaced by CSS 4: background-image:attr(data-bgimg, url)
- * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * @author @duboisp
- */
-( function( $, wb ) {
-"use strict";
-
-/*
- * Variable and function definitions.
- * These are global to the plugin - meaning that they will be initialized once per page,
- * not once per instance of plugin on the page. So, this is a good place to define
- * variables that are common to all instances of the plugin on a page.
- */
-var $document = wb.doc,
-	componentName = "wb-bgimg",
-	selector = ".provisional[data-bgimg], .provisional [data-bgimg], [data-bgimg]",
-
-	init = function( event ) {
-
-		// Start initialization
-		// returns DOM object = proceed with init
-		// returns undefined = do not proceed with init (e.g., already initialized)
-		var elm = wb.init( event, componentName, selector );
-
-		if ( elm ) {
-
-			//to be replaced by CSS 4: background-image:attr(data-bgimg, url)
-			elm.style.backgroundImage = "url(" + elm.dataset.bgimg + ")";
-
-			// Identify that initialization has completed
-			wb.ready( $( elm ), componentName );
 		}
 	};
 
@@ -2381,7 +2399,7 @@ var componentName = "wb-calevt",
 			},
 			objEventsList = obj.find( "ol > li, ul > li" ),
 			iLen = objEventsList.length,
-			dateTimeRegExp = /datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/,
+			dateTimeRegExp = /datetime\s+\{date:\s*(\d+-\d+-\d+)\}/,
 			i, $event, event, $objTitle, title, link, href, target,
 			linkId, date, tCollection, tCollectionTemp,	strDate1,
 			strDate2, z, zLen, className, dateClass;
@@ -3005,9 +3023,8 @@ $document.on( "keydown", selector, function( event ) {
 		case 33:
 			date.setDate( minDate.getDate() );
 
+			//page down
 			/* falls through */
-
-		//page down
 		case 34:
 			modifier = ( which === 33 ? -1 : 1 );
 
@@ -3161,7 +3178,7 @@ var componentName = "wb-charts",
 			captionHtml = $caption.html() || "",
 			captionText = $caption.text() || "",
 			valuePoint = 0,
-			dataCellUnitRegExp = /[^\+\-\.\, 0-9]+[^\-\+0-9]*/,
+			dataCellUnitRegExp = /[^+\-., 0-9]+[^\-+0-9]*/,
 			lowestFlotDelta, $imgContainer, $placeHolder,
 			$wetChartContainer, htmlPlaceHolder, figurehtml,
 			cellValue, datacolgroupfound, dataGroup, header,
@@ -3358,7 +3375,7 @@ var componentName = "wb-charts",
 				return target;
 			}
 			for ( key in cachedObj ) {
-				if ( !cachedObj.hasOwnProperty( key ) ) {
+				if ( !Object.prototype.hasOwnProperty.call( cachedObj, key ) ) {
 					continue;
 				}
 				target[ scopekey ][ key ] = cachedObj[ key ];
@@ -3445,7 +3462,7 @@ var componentName = "wb-charts",
 
 			// Merge and override the function.
 			for ( key in fn ) {
-				if ( !fn.hasOwnProperty( key ) ) {
+				if ( !Object.prototype.hasOwnProperty.call( fn, key ) ) {
 					continue;
 				}
 				tblFn = key.split( "/" );
@@ -4360,7 +4377,8 @@ var componentName = "wb-collapsible",
 					}
 
 				}
-			} catch ( e ) {}
+			} catch ( e ) {
+				/* swallow error */}
 
 			// Identify that initialization has completed
 			wb.ready( $details, componentName );
@@ -4392,11 +4410,13 @@ if ( Modernizr.details ) {
 			if ( isClosed ) {
 				try {
 					localStorage.setItem( key, "open" );
-				} catch ( e ) {}
+				} catch ( e ) {
+					/* swallow error */}
 			} else {
 				try {
 					localStorage.setItem( key, "closed" );
-				} catch ( e ) {}
+				} catch ( e ) {
+					/* swallow error */}
 			}
 		} else if ( which === 13 || which === 32 ) {
 			event.preventDefault();
@@ -4493,6 +4513,8 @@ var componentName = "wb-ctrycnt",
 						try {
 							localStorage.setItem( "countryCode", countryCode );
 						} catch ( error ) {
+
+							/* swallow error */
 						}
 					}
 
@@ -5192,6 +5214,58 @@ wb.add( selector );
 } )( jQuery, window, wb );
 
 /**
+ * @title eqht
+ * @overview Provide ability to have equal height containers and nested containers inside a WET-BOEW grid
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author @luc-bertrand-hrsdc
+ */
+( function( $, window, wb ) {
+"use strict";
+
+/*
+ * Variable and function definitions.
+ * These are global to the plugin - meaning that they will be initialized once per page,
+ * not once per instance of plugin on the page. So, this is a good place to define
+ * variables that are common to all instances of the plugin on a page.
+ */
+var componentName = "wb-eqht-grd",
+	selector = "." + componentName + " .eqht-trgt",
+	initEvent = "wb-init" + selector,
+	$document = wb.doc,
+
+	/**
+	 * @method init
+	 * @param {jQuery Event} event Event that triggered the function call
+	 */
+	init = function( event ) {
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			$elm,
+			$eqhtParents;
+
+		if ( elm ) {
+			$elm = $( elm );
+			$elm.addClass( "hght-inhrt" );
+			$eqhtParents = $elm.parentsUntil( "[class*='" + componentName + "']" );
+			$eqhtParents.addClass( "hght-inhrt" );
+
+			// Identify that initialization has completed
+			wb.ready( $elm, componentName );
+		}
+	};
+
+// Bind the init event of the plugin
+$document.on( "timerpoke.wb " + initEvent, selector, init );
+
+// Add the timer poke to initialize the plugin
+wb.add( selector );
+
+} )( jQuery, window, wb );
+
+/**
  * @title WET-BOEW Responsive equal height
  * @overview Sets the same height for all elements in a container that are rendered on the same baseline (row). Adapted from https://codepen.io/micahgodbolt/pen/FgqLc.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -5567,12 +5641,12 @@ wb.add( selector );
 ( function( $, window, wb ) {
 "use strict";
 
-	/*
-	* Variable and function definitions.
-	* These are global to the plugin - meaning that they will be initialized once per page,
-	* not once per instance of plugin on the page. So, this is a good place to define
-	* variables that are common to all instances of the plugin on a page.
-	*/
+/*
+* Variable and function definitions.
+* These are global to the plugin - meaning that they will be initialized once per page,
+* not once per instance of plugin on the page. So, this is a good place to define
+* variables that are common to all instances of the plugin on a page.
+*/
 var componentName = "wb-facebook",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
@@ -5938,8 +6012,8 @@ var componentName = "wb-feeds",
 			// Lets bind some variables to the node to ensure safe ajax thread counting
 
 			$content.data( "toProcess", feeds.length )
-					.data( "feedLimit", limit )
-					.data( "entries", [] );
+				.data( "feedLimit", limit )
+				.data( "entries", [] );
 
 			for ( i = last; i !== -1; i -= 1 ) {
 				fElem = feeds.eq( i );
@@ -6017,7 +6091,6 @@ var componentName = "wb-feeds",
 	 */
 	corsEntry = function( xmlDoc, limit ) {
 		var entries = xmlDoc.getElementsByTagName( "entry" ).length,
-			limit = limit,
 			arr_entry = [],
 			corsObj = {},
 			jsonString = JSON.stringify( xmlToJson( xmlDoc ) ),
@@ -6197,10 +6270,10 @@ var componentName = "wb-feeds",
 				$elm.empty().addClass( "waiting" );
 				$details
 					.children( "summary" )
-						.on( "click.wb-feeds", function( event ) {
-							var $summary = $( event.currentTarget ).off( "click.wb-feeds" );
-							activateFeed( $summary.parent().find( feedContSelector ) );
-						} );
+					.on( "click.wb-feeds", function( event ) {
+						var $summary = $( event.currentTarget ).off( "click.wb-feeds" );
+						activateFeed( $summary.parent().find( feedContSelector ) );
+					} );
 			}
 		}
 
@@ -6633,7 +6706,7 @@ var componentName = "wb-fnote",
 					$refLinkDest = $document.find( refId );
 
 					$refLinkDest.find( "p.fn-rtn a" )
-								.attr( "href", "#" + eventTarget.parentNode.id );
+						.attr( "href", "#" + eventTarget.parentNode.id );
 
 					// Assign focus to $refLinkDest
 					$refLinkDest.trigger( setFocusEvent );
@@ -6758,11 +6831,7 @@ var componentName = "wb-frmvld",
 						formDOM = $form.get( 0 ),
 						formId = $form.attr( "id" ),
 						labels = formDOM.getElementsByTagName( "label" ),
-						$formElms = $form.find( "input, select, textarea" ),
-						$inputs = $formElms.filter( "input" ),
-						$pattern = $inputs.filter( "[pattern]" ),
 						submitted = false,
-						$required = $formElms.filter( "[required], [data-rule-required], .required" ),
 						errorFormId = "errors-" + ( !formId ? "default" : formId ),
 						settings = $.extend(
 							true,
@@ -6781,29 +6850,6 @@ var componentName = "wb-frmvld",
 					len = labels.length;
 					for ( i = 0; i !== len; i += 1 ) {
 						labels[ i ].innerHTML += " ";
-					}
-
-					// Remove the pattern attribute until it is safe to use with jQuery Validation
-					len = $pattern.length;
-					for ( i = 0; i !== len; i += 1 ) {
-						$pattern.eq( i ).removeAttr( "pattern" );
-					}
-
-					// Change form attributes and values that interfere with validation in IE7/8
-					// TODO: Need better way of dealing with this rather than browser sniffing
-					if ( wb.ieVersion > 0 && wb.ieVersion < 9 ) {
-						len = $required.length;
-						$required.removeAttr( "required" );
-						for ( i = 0; i !== len; i += 1 ) {
-							$required[ i ].setAttribute( "data-rule-required", "true" );
-						}
-						$inputs.filter( "[type=date]" ).each( function() {
-							var $this = $( this ),
-								$parent = $this.wrap( "<div/>" ).parent(),
-								newElm = $( $parent.html().replace( "type=date", "type=text" ) );
-							$parent.replaceWith( newElm );
-						} );
-						$formElms = $form.find( "input, select, textarea" );
 					}
 
 					// The jQuery validation plug-in in action
@@ -6900,8 +6946,8 @@ var componentName = "wb-frmvld",
 									i18nText.formNotSubmitted + $errors.length +
 									(
 										$errors.length !== 1 ?
-										i18nText.errorsFound :
-										i18nText.errorFound
+											i18nText.errorsFound :
+											i18nText.errorFound
 									) + "</" + summaryHeading + "><ul>";
 								$errorfields
 									.closest( ".form-group" )
@@ -6957,7 +7003,7 @@ var componentName = "wb-frmvld",
 									// Update the aria-live region as necessary
 									i = 0;
 									for ( key in errorMap ) {
-										if ( errorMap.hasOwnProperty( key ) ) {
+										if ( Object.prototype.hasOwnProperty.call( errorMap, key ) ) {
 											i += 1;
 											break;
 										}
@@ -7379,8 +7425,8 @@ var componentName = "wb-lbx",
 
 					$response
 						.find( ".modal-title, h1" )
-							.first()
-								.attr( "id", "lbx-title" );
+						.first()
+						.attr( "id", "lbx-title" );
 
 					mfpResponse.data = $response;
 				},
@@ -7667,11 +7713,11 @@ var componentName = "wb-menu",
 
 			if ( elm && subItemsLength === 0 && elm.nodeName.toLowerCase() === "a" ) {
 				sectionHtml += "<li>" + $item[ 0 ].innerHTML.replace(
-						/(<a\s)/,
-						"$1" + menuitem + itemsLength +
+					/(<a\s)/,
+					"$1" + menuitem + itemsLength +
 							posinset + ( k + 1 ) +
 							"' tabindex='-1' "
-					) + "</li>";
+				) + "</li>";
 			} else {
 				sectionHtml += createCollapsibleSection( elm, k, itemsLength, $subItems, $subItems.length );
 			}
@@ -7848,7 +7894,7 @@ var componentName = "wb-menu",
 				panelDOM.innerHTML = "<header class='modal-header'><div class='modal-title'>" +
 						document.getElementById( "wb-glb-mn" )
 							.getElementsByTagName( "h2" )[ 0 ]
-								.innerHTML +
+							.innerHTML +
 						"</div></header><div class='modal-body'>" + panel + "</div>";
 				panelDOM.className += " wb-overlay modal-content overlay-def wb-panel-r";
 
@@ -7866,14 +7912,14 @@ var componentName = "wb-menu",
 				 */
 				$ajaxed
 					.find( ":discoverable" )
-						.attr( "tabindex", "-1" );
+					.attr( "tabindex", "-1" );
 
 				if ( $menu.length !== 0 ) {
 					$menu[ 0 ].setAttribute( "tabindex", "0" );
 					drizzleAria( $menu );
 					$menu
 						.filter( "[aria-haspopup=true]" )
-							.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
+						.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
 				}
 
 				// Replace elements
@@ -7893,9 +7939,9 @@ var componentName = "wb-menu",
 						// If not at the top level, then add wb-navcurr to the top level
 						if ( !$menuItem.hasClass( ".mb-item" ) ) {
 							$menuItem = $menuItem
-											.closest( "details" )
-												.children( "summary" )
-													.addClass( "wb-navcurr" );
+								.closest( "details" )
+								.children( "summary" )
+								.addClass( "wb-navcurr" );
 						}
 					}
 
@@ -7905,7 +7951,7 @@ var componentName = "wb-menu",
 						$menuItem
 							.trigger( "click" )
 							.parent()
-								.prop( "open", "open" );
+							.prop( "open", "open" );
 					}
 
 					// Identify that initialization has completed
@@ -7972,20 +8018,20 @@ var componentName = "wb-menu",
 		$elm
 			.removeClass( "sm-open" )
 			.children( ".open" )
-				.removeClass( "open" )
-				.attr( {
-					"aria-hidden": "true",
-					"aria-expanded": "false"
-				} )
+			.removeClass( "open" )
+			.attr( {
+				"aria-hidden": "true",
+				"aria-expanded": "false"
+			} )
 
-				// Close nested submenus
-				.find( "details" )
-					.removeAttr( "open" )
-					.children( "ul" )
-						.attr( {
-							"aria-hidden": "true",
-							"aria-expanded": "false"
-						} );
+		// Close nested submenus
+			.find( "details" )
+			.removeAttr( "open" )
+			.children( "ul" )
+			.attr( {
+				"aria-hidden": "true",
+				"aria-expanded": "false"
+			} );
 
 		if ( removeActive ) {
 			$elm.removeClass( "active" );
@@ -8011,11 +8057,11 @@ var componentName = "wb-menu",
 			menu
 				.addClass( "sm-open" )
 				.children( ".sm" )
-					.addClass( "open" )
-					.attr( {
-						"aria-hidden": "false",
-						"aria-expanded": "true"
-					} );
+				.addClass( "open" )
+				.attr( {
+					"aria-hidden": "false",
+					"aria-expanded": "true"
+				} );
 		}
 	},
 
@@ -8130,11 +8176,11 @@ $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function(
 	if ( !isOpen ) {
 		$( parent )
 			.closest( "[role^='menu']" )
-				.find( "[aria-hidden=false]" )
-					.parent()
-						.find( "[aria-haspopup=true]" )
-							.not( menuItem )
-								.trigger( "click" );
+			.find( "[aria-hidden=false]" )
+			.parent()
+			.find( "[aria-haspopup=true]" )
+			.not( menuItem )
+			.trigger( "click" );
 
 		// Ensure the opened menu is in view if in a mobile panel
 		menuContainer = document.getElementById( "mb-pnl" );
@@ -8289,11 +8335,11 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 					if ( !isOpen ) {
 						$( parent )
 							.closest( "[role^='menu']" )
-								.find( "[aria-hidden=false]" )
-									.parent()
-										.find( "[aria-haspopup=true]" )
-											.not( menuItem )
-												.trigger( "click" );
+							.find( "[aria-hidden=false]" )
+							.parent()
+							.find( "[aria-haspopup=true]" )
+							.not( menuItem )
+							.trigger( "click" );
 
 						// Ensure the opened menu is in view if in a mobile panel
 						menuContainer = document.getElementById( "mb-pnl" );
@@ -8316,7 +8362,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 							"aria-hidden": "false"
 						} )
 						.find( "[role=menuitem]:first" )
-							.trigger( "setfocus.wb" );
+						.trigger( "setfocus.wb" );
 				}
 
 			// Escape, left / right arrow without a submenu
@@ -8360,8 +8406,8 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 						event.preventDefault();
 						$menu.closest( "li" )
 							.find( menuitemSelector )
-								.trigger( "click" )
-								.trigger( "setfocus.wb" );
+							.trigger( "click" )
+							.trigger( "setfocus.wb" );
 
 					// No higher-level menu but the current submenu is open
 					} else if ( $menuItem.parent().children( "ul" ).attr( "aria-hidden" ) === "false" ) {
@@ -8511,7 +8557,10 @@ var componentName = "wb-mltmd",
 								}
 							}
 						}
-					} catch ( err ) { }
+					} catch ( err ) {
+
+						/* swallow error */
+					}
 				} );
 
 				//
@@ -9198,10 +9247,10 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 
 		// Create the share widgets if needed
 		if ( data.shareUrl !== undef ) {
-			$( "<div class='wb-share' data-wb-share=\'{\"type\": \"" +
+			$( "<div class='wb-share' data-wb-share='{\"type\": \"" +
 				( type === "audio" ? type : "video" ) + "\", \"title\": \"" +
 				data.title.replace( /'/g, "&apos;" ) + "\", \"url\": \"" + data.shareUrl +
-				"\", \"pnlId\": \"" + data.id + "-shr\"}\'></div>" )
+				"\", \"pnlId\": \"" + data.id + "-shr\"}'></div>" )
 				.insertBefore( $media.parent() )
 				.trigger( "wb-init.wb-share" );
 		}
@@ -9357,9 +9406,9 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 		$button
 			.attr( "title", buttonData )
 			.children( "span" )
-				.toggleClass( "glyphicon-play", !isPlay )
-				.toggleClass( "glyphicon-pause", isPlay )
-				.html( invStart + buttonData + invEnd );
+			.toggleClass( "glyphicon-play", !isPlay )
+			.toggleClass( "glyphicon-pause", isPlay )
+			.html( invStart + buttonData + invEnd );
 		break;
 
 	case "volumechange":
@@ -9373,9 +9422,9 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 				"aria-pressed": isMuted
 			} )
 			.children( "span" )
-				.toggleClass( "glyphicon-volume-up", !isMuted )
-				.toggleClass( "glyphicon-volume-off", isMuted )
-				.html( invStart + buttonData + invEnd );
+			.toggleClass( "glyphicon-volume-up", !isMuted )
+			.toggleClass( "glyphicon-volume-off", isMuted )
+			.html( invStart + buttonData + invEnd );
 		$slider = $this.find( "input[type='range']" );
 		$slider[ 0 ].value = isMuted ? 0 : volume;
 		$slider.trigger( "wb-update.wb-slider" );
@@ -9553,7 +9602,7 @@ var componentName = "wb-navcurr",
 				menuLinksArray = [],
 				menuLinksUrlArray = [],
 				windowLocation = window.location,
-				pageUrl = windowLocation.hostname + windowLocation.pathname.replace( /^([^\/])/, "/$1" ),
+				pageUrl = windowLocation.hostname + windowLocation.pathname.replace( /^([^/])/, "/$1" ),
 				pageUrlQuery = windowLocation.search,
 				match = false,
 				className = classNameOverride ? classNameOverride : componentName,
@@ -9570,7 +9619,7 @@ var componentName = "wb-navcurr",
 					linkHref = link.getAttribute( "href" );
 					if ( linkHref !== null ) {
 						if ( linkHref.length !== 0 && linkHref.charAt( 0 ) !== "#" ) {
-							linkUrl = link.hostname + link.pathname.replace( /^([^\/])/, "/$1" );
+							linkUrl = link.hostname + link.pathname.replace( /^([^/])/, "/$1" );
 							linkQuery = link.search;
 							linkQueryLen = linkQuery.length;
 							if ( pageUrl.slice( -linkUrl.length ) === linkUrl && ( linkQueryLen === 0 || pageUrlQuery.slice( -linkQueryLen ) === linkQuery ) ) {
@@ -9600,7 +9649,7 @@ var componentName = "wb-navcurr",
 							linkHref = ( child && child.nodeName === "A" ) ? child.getAttribute( "href" ) : "";
 							if ( linkHref && linkHref.charAt( 0 ) !== "#" ) {
 								localBreadcrumbLinksArray.push( child );
-								localBreadcrumbLinksUrlArray.push( child.hostname + child.pathname.replace( /^([^\/])/, "/$1" ) );
+								localBreadcrumbLinksUrlArray.push( child.hostname + child.pathname.replace( /^([^/])/, "/$1" ) );
 							}
 						}
 
@@ -10527,7 +10576,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 							body: "<p>" + i18nText.timeoutAlready + "</p>",
 							buttons: $( "<button type='button' class='" + confirmClass +
 								" btn btn-primary popup-modal-dismiss'>" + i18nText.buttonSignin + "</button>" )
-									.data( "logouturl", settings.logouturl )
+								.data( "logouturl", settings.logouturl )
 						} );
 					}
 				}
@@ -10555,11 +10604,11 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 
 		$buttonContinue = $( buttonStart + confirmClass +
 			" btn btn-primary popup-modal-dismiss'>" + i18nText.buttonContinue + buttonEnd )
-				.data( settings )
-				.data( "start", getCurrentTime() );
+			.data( settings )
+			.data( "start", getCurrentTime() );
 		$buttonEnd = $( buttonStart + confirmClass + " btn btn-default'>" +
 			i18nText.buttonEnd + buttonEnd )
-				.data( "logouturl", settings.logouturl );
+			.data( "logouturl", settings.logouturl );
 
 		openModal( {
 			body: "<p>" + timeoutBegin + "<br />" + i18nText.timeoutEnd + "</p>",
@@ -10923,12 +10972,12 @@ var componentName = "wb-share",
 			id = "shr-pg" + ( pnlId.length !== 0 ? "-" + pnlId : panelCount );
 			pageHref = encodeURIComponent( settings.url );
 
-			regex = /\'|&#39;|&apos;/g;
+			regex = /'|&#39;|&apos;/g;
 			pageTitle = encodeURIComponent( settings.title )
-							.replace( regex, "%27" );
+				.replace( regex, "%27" );
 			pageImage = encodeURIComponent( settings.img );
 			pageDescription = encodeURIComponent( settings.desc )
-								.replace( regex, "%27" );
+				.replace( regex, "%27" );
 
 			// Don't create the panel for the second link (class="link-only")
 			if ( elm.className.indexOf( "link-only" ) === -1 ) {
@@ -10941,7 +10990,7 @@ var componentName = "wb-share",
 				if ( !filter || filter.length === 0 ) {
 					keys = [];
 					for ( key in sites ) {
-						if ( sites.hasOwnProperty( key ) ) {
+						if ( Object.prototype.hasOwnProperty.call( sites, key ) ) {
 							keys.push( key );
 						}
 					}
@@ -10960,10 +11009,10 @@ var componentName = "wb-share",
 					key = keys[ i ];
 					siteProperties = sites[ key ];
 					url = siteProperties.url
-							.replace( /\{u\}/, pageHref )
-							.replace( /\{t\}/, pageTitle )
-							.replace( /\{i\}/, pageImage )
-							.replace( /\{d\}/, pageDescription );
+						.replace( /\{u\}/, pageHref )
+						.replace( /\{t\}/, pageTitle )
+						.replace( /\{i\}/, pageImage )
+						.replace( /\{d\}/, pageDescription );
 					panel += "<li><a href='" + url + "' class='" + shareLink +
 						" " + ( siteProperties.isMailto ? "email" : key ) +
 						" btn btn-default' target='_blank' rel='noreferrer noopener'>" +
@@ -11129,6 +11178,7 @@ var componentName = "wb-steps",
 			 */
 			if ( form && hasStepsInitialized ) {
 				$( form ).children( "input" ).hide();
+				wb.ready( $( elm ), componentName );
 			}
 		}
 	},
@@ -11415,12 +11465,12 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 			} )
 
 			.not( ".previous, .next" )
-				.attr( "aria-pressed", "false" )
-				.html( function( index, oldHtml ) {
-					return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + oldHtml;
-				} )
-				.filter( ".current" )
-					.attr( "aria-pressed", "true" );
+			.attr( "aria-pressed", "false" )
+			.html( function( index, oldHtml ) {
+				return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + oldHtml;
+			} )
+			.filter( ".current" )
+			.attr( "aria-pressed", "true" );
 	}
 
 	// Identify that the table has been updated
@@ -11438,50 +11488,135 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 	event.preventDefault();
 
 	var $form = $( this ),
-		$datatable = $( "#" + $form.data( "bind-to" ) ).dataTable( { "retrieve": true } ).api();
+		$datatable = $( "#" + $form.data( "bind-to" ) ).dataTable( { "retrieve": true } ).api(),
+		$toNumber = function stringToNumber( number ) {
+			number = number.replace( /[^0-9\-,.]+/g, "" );
+			if ( /[,]\d{1,2}$/.test( number ) ) {
+				number = number.replace( /(\d{2})$/, ".$1" );
+			}
+			number = number.replace( /,/g, "" );
+			return parseFloat( number );
+		},
+		$isDate = function isDate( date ) {
+			return date instanceof Date && !isNaN( date );
+		};
 
 	// Lets reset the search
 	$datatable.search( "" ).columns().search( "" ).draw();
 
 	// Lets loop throug all options
-	var $lastColumn = -1, $cbVal = "";
+	var $prevCol = -1, $cachedVal = "";
 	$form.find( "[name]" ).each( function() {
 		var $elm = $( this ),
 			$value = "",
 			$regex = "",
+			$column = parseInt( $elm.attr( "data-column" ), 10 ),
 			$isAopts = $elm.data( "aopts" ),
-			$column = parseInt( $elm.attr( "data-column" ), 10 );
+			$aoptsSelector = "[data-aopts*='\"column\": \"" + $column + "\"']:checked",
+			$aopts = $( $aoptsSelector ),
+			$aoType = ( $aopts && $aopts.data( "aopts" ) ) ? $aopts.data( "aopts" ).type.toLowerCase() : "",
+			$fData;
 
 		// Ignore the advanced options fields
 		if ( $isAopts ) {
 			return;
 		}
 
+		// Verifies if filtering the same column
+		if ( $column !== $prevCol || $prevCol === -1 ) {
+			$cachedVal = "";
+		}
+		$prevCol = $column;
+
 		// Filters based on input type
 		if ( $elm.is( "select" ) ) {
 			$value = $elm.find( "option:selected" ).val();
-		} else if ( $elm.is( ":checkbox" ) ) {
+		} else if ( $elm.is( "input[type='number']" ) ) {
+			var $val = $elm.val(), $minNum, $maxNum;
 
-			// Verifies if using same checkbox list
-			if ( $column !== $lastColumn || $lastColumn === -1 ) {
-				$cbVal = "";
+			// Retain minimum number (always the first number input)
+			if ( $cachedVal === "" ) {
+				$cachedVal = parseFloat( $val );
+				$cachedVal = ( $cachedVal ) ? $cachedVal : "-0";
 			}
-			$lastColumn = $column;
+			$minNum = $cachedVal;
+
+			// Maximum number is always the current selected number
+			$maxNum = parseFloat( $val );
+
+			// Generates a list of numbers (within the min and max number)
+			if ( !isNaN( $minNum ) && !isNaN( $maxNum ) ) {
+				$fData = $datatable.column( $column ).data().filter( function( obj ) {
+					var $num = $toNumber( obj.toString() );
+
+					if ( !isNaN( $num ) ) {
+						if ( $aoType === "and" ) {
+							if ( $cachedVal !== $maxNum && $cachedVal !== "-0" && $num >= $minNum && $num <= $maxNum ) {
+								return true;
+							}
+						} else {
+							if ( $cachedVal === $maxNum && $num >= $minNum ) {
+								return true;
+							} else if ( $cachedVal === "-0" && $num <= $maxNum ) {
+								return true;
+							} else if ( $cachedVal !== "-0" && $num >= $minNum && $num <= $maxNum ) {
+								return true;
+							}
+						}
+					}
+					return false;
+				} );
+				$fData = $fData.join( "|" );
+
+				// If no numbers match set as -0, so no results return
+				$value = ( $fData ) ? $fData : "-0";
+				$regex = "(" + $value.replace( /&nbsp;|\s/g, "\\s" ).replace( /\$/g, "\\$" ) + ")";
+			}
+		} else if ( $elm.is( "input[type='date']" ) && $elm.val() ) {
+			var $minDate, $maxDate;
+
+			// Retain minimum date (always the first date input)
+			if ( $cachedVal === "" ) {
+				$cachedVal = new Date( $elm.val() );
+				$cachedVal.setDate( $cachedVal.getDate() + 1 );
+				$cachedVal.setHours( 0, 0, 0, 0 );
+			}
+			$minDate = $cachedVal;
+
+			// Maximum date is always the current selected date
+			$maxDate = new Date( $elm.val() );
+			$maxDate.setDate( $maxDate.getDate() + 1 );
+			$maxDate.setHours( 23, 59, 59, 999 );
+
+			// Generates a list of date strings (within the min and max date)
+			$fData = $datatable.column( $column ).data().filter( function( obj ) {
+				var $date = obj.replace( /[0-9]{2}\s[0-9]{2}:/g, function( e ) {
+					return e.replace( /\s/g, "T" );
+				} );
+				$date = new Date( $date );
+				$date.setHours( 0, 0, 0, 0 );
+
+				if ( !$isDate( $minDate ) || !$isDate( $maxDate ) || !$isDate( $date ) ) {
+					return;
+				}
+				return ( $date >= $minDate && $date <= $maxDate );
+			} );
+			$fData = $fData.join( "|" );
+
+			// If no dates match set as -1, so no results return
+			$value = ( $fData ) ? $fData : "-1";
+		} else if ( $elm.is( ":checkbox" ) ) {
 
 			// Verifies if checkbox is checked before setting value
 			if ( $elm.is( ":checked" ) ) {
-				var $aoptsSelector = "[data-aopts*='\"column\": \"" + $column + "\"']:checked",
-					$aopts = $( $aoptsSelector ),
-					$aoType = ( $aopts && $aopts.data( "aopts" ) ) ? $aopts.data( "aopts" ).type.toLowerCase() : "";
-
 				if ( $aoType === "both" ) {
-					$cbVal += "(?=.*\\b" + $elm.val() + "\\b)";
+					$cachedVal += "(?=.*\\b" + $elm.val() + "\\b)";
 				} else {
-					$cbVal += ( $cbVal.length > 0 ) ? "|" : "";
-					$cbVal += $elm.val();
+					$cachedVal += ( $cachedVal.length > 0 ) ? "|" : "";
+					$cachedVal += $elm.val();
 				}
 
-				$value = $cbVal;
+				$value = $cachedVal;
 				$value = $value.replace( /\s/g, "\\s*" );
 
 				// Adjust regex based on advanced options
@@ -11632,8 +11767,8 @@ var componentName = "wb-tabs",
 				defaults,
 				{
 					interval: $elm.hasClass( "slow" ) ?
-								9 : $elm.hasClass( "fast" ) ?
-									3 : defaults.interval,
+						9 : $elm.hasClass( "fast" ) ?
+							3 : defaults.interval,
 					excludeControls: $elm.hasClass( "exclude-controls" ),
 					excludePlay: $elm.hasClass( "exclude-play" ),
 					updateHash: $elm.hasClass( "update-hash" ),
@@ -11674,10 +11809,14 @@ var componentName = "wb-tabs",
 						try {
 							sessionStorage.setItem( pagePath + elmId + activePanel, activeId );
 						} catch ( error ) {
+
+							/* swallow error */
 						}
 					}
 				}
 			} catch ( error ) {
+
+				/* swallow error */
 			}
 
 			// Determine the current view
@@ -11780,7 +11919,7 @@ var componentName = "wb-tabs",
 				$tablist.find( "a" )
 					.filter( "[href$='" + activeId + "']" )
 					.parent()
-						.addClass( "active" );
+					.addClass( "active" );
 			}
 
 			drizzleAria( $panels, $tablist );
@@ -12026,17 +12165,17 @@ var componentName = "wb-tabs",
 
 		$controls
 			.find( ".active" )
-				.removeClass( "active" )
-				.children( "a" )
-					.attr( {
-						"aria-selected": "false",
-						tabindex: "-1"
-					} );
+			.removeClass( "active" )
+			.children( "a" )
+			.attr( {
+				"aria-selected": "false",
+				tabindex: "-1"
+			} );
 
 		// Update the Item x of n
 		$controls
 			.find( ".curr-index" )
-				.html( newIndex );
+			.html( newIndex );
 
 		$control
 			.attr( {
@@ -12044,7 +12183,7 @@ var componentName = "wb-tabs",
 				tabindex: "0"
 			} )
 			.parent()
-				.addClass( "active" );
+			.addClass( "active" );
 
 		// Update sessionStorage with the current active panel
 		if ( !tabSettings.ignoreSession ) {
@@ -12054,6 +12193,8 @@ var componentName = "wb-tabs",
 					$next.attr( "id" )
 				);
 			} catch ( error ) {
+
+				/* swallow error */
 			}
 		}
 
@@ -12191,10 +12332,10 @@ var componentName = "wb-tabs",
 								if ( !isInit ) {
 									$detailsElm
 										.children( "summary" )
-											.attr( {
-												"aria-expanded": isActive,
-												"aria-selected": isActive
-											} );
+										.attr( {
+											"aria-expanded": isActive,
+											"aria-selected": isActive
+										} );
 								}
 							}
 						} else if ( oldIsSmallView ) {
@@ -12211,11 +12352,11 @@ var componentName = "wb-tabs",
 									open: "open"
 								} )
 								.not( $openDetails )
-									.addClass( "fade out noheight wb-inv" )
-									.attr( {
-										"aria-hidden": "true",
-										"aria-expanded": "false"
-									} );
+								.addClass( "fade out noheight wb-inv" )
+								.attr( {
+									"aria-hidden": "true",
+									"aria-expanded": "false"
+								} );
 
 							$details.children( ".tgl-panel" ).removeAttr( "role" );
 
@@ -12429,8 +12570,8 @@ $document.on( activateEvent, selector + " [role=tabpanel]", function( event ) {
 		} else {
 			$( currentTarget )
 				.closest( selector )
-					.find( "[href$='#" + currentTarget.id + "']" )
-						.trigger( setFocusEvent );
+				.find( "[href$='#" + currentTarget.id + "']" )
+				.trigger( setFocusEvent );
 		}
 
 	// Left mouse button click or escape key
@@ -12490,6 +12631,8 @@ $document.on( activateEvent, selector + " > .tabpanels > details > summary", fun
 					details.id
 				);
 			} catch ( error ) {
+
+				/* swallow error */
 			}
 		}
 
@@ -12561,7 +12704,7 @@ var componentName = "wb-txthl",
 			} else if ( params && params.txthl ) {
 				searchCriteria = decodeURIComponent(
 					wb.pageUrlParts.params.txthl
-						.replace( /^\s+|\s+$|\|+|\"|\(|\)/g, "" ).replace( /\++/g, "|" )
+						.replace( /^\s+|\s+$|\|+|"|\(|\)/g, "" ).replace( /\++/g, "|" )
 				);
 			}
 
@@ -12717,7 +12860,7 @@ var componentName = "wb-toggle",
 					}
 
 					//Details and summary don't support aria roles and some aria attribute that is why they are wrapped in a div
-					if ( elm.nodeName.toLowerCase() === "details" ) {
+					if ( elm.nodeName.toLowerCase() === "details" && elm.parentNode.className.toLowerCase().indexOf( "accordion" ) > -1 ) {
 						wrapper = document.createElement( "div" );
 						wrapper.classList.add( "tgl-tab" );
 						wrapper.setAttribute( "role", "tab" );
@@ -12894,6 +13037,8 @@ var componentName = "wb-toggle",
 				try {
 					data.persist.setItem( data.persistKey, stateTo );
 				} catch ( error ) {
+
+					/* swallow error */
 				}
 			}
 		}
@@ -12991,8 +13136,8 @@ var componentName = "wb-toggle",
 			return anyCollapsed ? data.stateOff : data.stateOn;
 
 		// Get the current on/off state of the elements specified by the selector and parent
-		} else if ( states.hasOwnProperty( selector ) ) {
-			return states[ selector ].hasOwnProperty( parent ) ?
+		} else if ( Object.prototype.hasOwnProperty.call( states, selector ) ) {
+			return Object.prototype.hasOwnProperty.call( states[ selector ], parent ) ?
 				states[ selector ][ parent ] :
 				states[ selector ].all;
 		}
@@ -13028,7 +13173,7 @@ var componentName = "wb-toggle",
 			// links that are restricted by parent.
 			} else {
 				for ( prop in elmsState ) {
-					if ( elmsState.hasOwnProperty( prop ) ) {
+					if ( Object.prototype.hasOwnProperty.call( elmsState, prop ) ) {
 						elmsState[ prop ] = state;
 					}
 				}
@@ -13111,7 +13256,7 @@ $document.on( "keydown", selectorTab, function( event ) {
 
 		$newPanel
 			.children( "summary" )
-				.trigger( setFocusEvent );
+			.trigger( setFocusEvent );
 	}
 } );
 
@@ -13123,7 +13268,7 @@ $document.on( "keydown", selectorPanel, function( event ) {
 		// Move focus to the summary element
 		$( event.currentTarget )
 			.prev()
-				.trigger( setFocusEvent );
+			.trigger( setFocusEvent );
 	}
 } );
 
@@ -13215,19 +13360,17 @@ var componentName = "wb-disable",
 			$html = wb.html,
 			i18n = wb.i18n,
 			pageUrl = wb.pageUrlParts,
-			li, param,
+			param,
 			noticeHeader = i18n( "disable-notice-h" ),
 			noticeBody = i18n( "disable-notice" ),
 			noticehtml = "<section",
 			noticehtmlend = "</a>.</p></section>";
 
 		if ( elm ) {
-			li = document.createElement( "li" );
-			li.className = "wb-slc";
 
 			// Rebuild the query string
 			for ( param in pageUrl.params ) {
-				if ( param && pageUrl.params.hasOwnProperty( param ) && param !== "wbdisable" ) {
+				if ( param && Object.prototype.hasOwnProperty.call( pageUrl.params, param ) && param !== "wbdisable" ) {
 					nQuery += param + "=" + pageUrl.params[ param ] + "&#38;";
 				}
 			}
@@ -13240,7 +13383,10 @@ var componentName = "wb-disable",
 
 						// Store preference for WET plugins and polyfills to be disabled in localStorage
 						localStorage.setItem( "wbdisable", "true" );
-					} catch ( e ) {}
+					} catch ( e ) {
+
+						/* swallow error */
+					}
 
 					// Add notice and link to re-enable WET plugins and polyfills
 					noticehtml = noticehtml + " class='alert alert-warning text-center'><h2>" + noticeHeader + "</h2><p>" + noticeBody + "</p><p><a rel='alternate' property='significantLink' href='" + nQuery + "wbdisable=false'>" + i18n( "wb-enable" ) + noticehtmlend;
@@ -13263,13 +13409,16 @@ var componentName = "wb-disable",
 					window.history.replaceState( "", "", lc );
 				}
 			} catch ( error ) {
+
+				/* swallow error */
 			}
 
 			// Append the Basic HTML version link version
-			li.innerHTML = "<a class='wb-sl' rel='alternate' href='" + nQuery + "wbdisable=true'>" + i18n( "wb-disable" ) + "</a>";
-
 			// Add link to disable WET plugins and polyfills
-			elm.appendChild( li );
+			wb.addSkipLink( i18n( "wb-disable" ), {
+				href: nQuery + "wbdisable=true",
+				rel: "alternate"
+			}, false, true );
 
 			// Identify that initialization has completed
 			wb.ready( $document, componentName );
@@ -13330,14 +13479,14 @@ $document.on( setFocusEvent, function( event ) {
 				$closedPanel = $closedPanels.eq( i );
 				$closedPanel.closest( ".wb-tabs" )
 					.find( "#" + $closedPanel.attr( "aria-labelledby" ) )
-						.trigger( "click" );
+					.trigger( "click" );
 			}
 		}
 
 		// Set the tabindex to -1 (as needed) to ensure the element is focusable
 		$elm
 			.filter( ":not([tabindex], a[href], button, input, textarea, select)" )
-				.attr( "tabindex", "-1" );
+			.attr( "tabindex", "-1" );
 
 		// Assigns focus to an element (delay allows for revealing of hidden content)
 		setTimeout( function() {
@@ -13392,7 +13541,7 @@ $document.on( clickEvents, linkSelector, function( event ) {
 
 var $document = wb.doc,
 	componentName = "wb-postback",
-	selector = ".provisional." + componentName,
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	defaults = {},
 
@@ -13445,21 +13594,21 @@ var $document = wb.doc,
 						url: this.action,
 						data: $.param( data )
 					} )
-					.done( function() {
-						$selectorSuccess.removeClass( classToggle );
-					} )
-					.fail( function() {
-						$selectorFailure.removeClass( classToggle );
-					} )
-					.always( function() {
+						.done( function() {
+							$selectorSuccess.removeClass( classToggle );
+						} )
+						.fail( function() {
+							$selectorFailure.removeClass( classToggle );
+						} )
+						.always( function() {
 
-						// Make the form submittable again if multiple submits are allowed or hide
-						if ( multiple ) {
-							$elm.removeAttr( attrEngaged );
-						} else {
-							$elm.addClass( classToggle );
-						}
-					} );
+							// Make the form submittable again if multiple submits are allowed or hide
+							if ( multiple ) {
+								$elm.removeAttr( attrEngaged );
+							} else {
+								$elm.addClass( classToggle );
+							}
+						} );
 				}
 			} );
 
@@ -13486,7 +13635,7 @@ wb.add( selector );
 
 var $document = wb.doc,
 	componentName = "wb-randomize",
-	selector = ".provisional[data-wb-randomize]",
+	selector = "[data-wb-randomize]",
 	initEvent = "wb-init" + selector,
 	defaults = {},
 
