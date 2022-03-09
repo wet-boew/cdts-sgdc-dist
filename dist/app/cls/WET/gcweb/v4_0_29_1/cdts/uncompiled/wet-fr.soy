@@ -1,0 +1,438 @@
+{namespace wet.builder}
+
+/**
+ * Server message page - Top references
+ */
+{template .serverRefTop}
+{call serverPage.serverRefTop data="all" /}
+{/template}
+
+/**
+ * Server message page - Top section
+ */
+{template .serverTop}
+{call serverPage.serverTop data="all" /}
+{/template}
+
+/**
+ * Server message page - Bottom references
+ */
+{template .serverRefBottom}
+{call serverPage.serverRefBottom data="all" /}
+{/template}
+
+/**
+ * Server message page - Bottom section
+ */
+{template .serverBottom}
+{call serverPage.serverBottom data="all" /}
+{/template}
+
+/**
+ * Application page - Top section
+ */
+{template .appTop}
+{call applicationPage.appTop data="all" /}
+{/template}
+
+/**
+ * Application page - Footer section
+ */
+{template .appFooter}
+{call applicationPage.appFooter data="all" /}
+{/template}
+
+/**
+ * @param cdnEnv Used to switch between esdc envrionments and Akamai implementations.
+ */
+{template .environment}
+{if $cdnEnv=='esdcqat'}https://cdn-canada.services.gc.qat/app/cls/WET{elseif $cdnEnv=='esdcnonprod'}https://s2tst-cdn-canada.sade-edap.prv/app/cls/WET{elseif $cdnEnv=='esdcprod'}https://ssl-templates.services.gc.ca/app/cls/WET{elseif $cdnEnv=='localhost'}../../../..{else}https://www.canada.ca/etc/designs/canada/cdts{/if}/gcweb/v4_0_29_1/
+{/template}
+
+/**
+ * This is all of the references to be made before existing page content.
+ * @param? jqueryEnv Used to determine location of jQuery files (local / external).
+ * @param? webAnalytics Used to determine inclusion of current analytics code.
+ * @param? isApplication Used to determine if this will use the application templates (true/false).
+ */
+{template .refTop}
+
+		<script>
+		dataLayer = [];
+		</script>
+
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){lb}w[l]=w[l]||[];w[l].push({lb}'gtm.start':
+		new Date().getTime(),event:'gtm.js'{rb});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		{rb})(window,document,'script','dataLayer','GTM-5DBPCQJ');</script>
+		<!-- End Google Tag Manager -->
+
+		<!--[if gte IE 9 | !IE ]><!-->
+		<link href='{call .environment data="all" /}assets/favicon.ico' rel="icon" type="image/x-icon">
+		<link rel="stylesheet" href='{call .environment data="all" /}css/theme.min.css'>
+		<link rel="stylesheet" href='{call .environment data="all" /}cdts/cdtsfixes.css'>
+		{if $isApplication == true}
+		<link rel="stylesheet" href='{call .environment data="all" /}cdts/cdtsapps.css'>
+		{/if}
+		<!--<![endif]-->
+		<!--[if lt IE 9]>
+		<link href='{call .environment data="all" /}assets/favicon.ico' rel="shortcut icon" />
+		<link rel="stylesheet" href='{call .environment data="all" /}css/ie8-theme.min.css' />
+		<script src="{if $jqueryEnv=='external'}https://ajax.googleapis.com/ajax/libs{else}{call .environment data="all" /}js/{/if}jquery/1.12.4/jquery.min.js"></script>
+		<script src='{call .environment data="all" /}js/ie8-wet-boew.min.js'></script>
+		<![endif]-->
+		<!--[if lte IE 9]><![endif]-->
+		{if isNonnull($webAnalytics)}{if $webAnalytics=='dev'}<script src="//assets.adobedtm.com/caacec67651710193d2331efef325107c23a0145/satelliteLib-78cf42deb149c9766cbaaa6151e252b9b67c0200-staging.js"></script>{else}<script src="//assets.adobedtm.com/caacec67651710193d2331efef325107c23a0145/satelliteLib-78cf42deb149c9766cbaaa6151e252b9b67c0200.js"></script>{/if}{/if}
+{/template}
+
+/**
+ * This is all of the html to be included before existing page content.
+ * @param? search Used to display search.
+ * @param? siteMenu Used to display site menu.
+ * @param? lngLinks Links to pages in other languages.
+ * @param? showPreContent Used to determine if the precontent space will be displayed.
+ * @param? breadcrumbs Used to set custom breadcrumbs.
+ * @param? topSecMenu Set to true if you want to use the secondary navigation.
+ */
+{template .top}
+
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DBPCQJ"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+
+		<ul id="wb-tphp">
+			<li class="wb-slc"><a class="wb-sl" href="#wb-cont">Passer au contenu principal</a></li>
+			<li class="wb-slc visible-sm visible-md visible-lg"><a class="wb-sl" href="#wb-info">Passer à «&#160;Au sujet du gouvernement&#160;»</a></li>
+			{if $topSecMenu == true}
+			<li class="wb-slc visible-md visible-lg"><a class="wb-sl" href="#wb-sec">Passer au menu de la section</a></li>
+			{/if}
+		</ul>
+		<header role="banner">
+			<div id="wb-bnr" class="container">
+				{if isNonnull($lngLinks)}
+				<section id="wb-lng" class="{if $siteMenu != false}visible-md visible-lg {/if}text-right">
+					<h2 class="wb-inv">Sélection de la langue</h2>
+					<div class="row">
+						<div class="col-md-12">
+							<ul class="list-inline margin-bottom-none">
+								{foreach $link in $lngLinks}
+									//{if isFirst($link)}
+										<li><a lang="{$link.lang}" href="{$link.href}">{$link.text}</a></li>
+									//{/if}
+								{/foreach}
+							</ul>
+						</div>
+					</div>
+				</section>
+				{/if}
+				<div class="row">
+					<div class="brand col-xs-8 col-sm-9 col-md-6">
+						{if $siteMenu != false}<a href="https://www.canada.ca/fr.html">{/if}<img src='{call .environment data="all" /}assets/sig-blk-fr.svg' alt="" /><span class="wb-inv"> Gouvernement du Canada / <span lang="en">Government of Canada</span></span>{if $siteMenu != false}</a>{/if}
+					</div>
+					<section class="wb-mb-links col-xs-4 col-sm-3 {if $siteMenu != false}visible-sm visible-xs{/if}{if $siteMenu == false} hide{/if}" id="wb-glb-mn">
+						<h2>Recherche et menus</h2>
+						<ul class="list-inline text-right chvrn">
+							<li><a href="#mb-pnl" title="Recherche et menus" aria-controls="mb-pnl" class="overlay-lnk" role="button"><span class="glyphicon glyphicon-search"><span class="glyphicon glyphicon-th-list"><span class="wb-inv">Recherche et menus</span></span></span></a></li>
+						</ul>
+						<div id="mb-pnl"></div>
+					</section>
+					{if $search != false}
+					<section id="wb-srch" class="col-xs-6 text-right visible-md visible-lg">
+						<h2>Recherche</h2>
+						<form action="https://www.canada.ca/fr/sr.html" method="get" name="cse-search-box" role="search" class="form-inline">
+							<div class="form-group">
+								<label for="wb-srch-q" class="wb-inv">Recherchez le site Web</label>
+								<input name="cdn" value="canada" type="hidden">
+								<input name="st" value="s" type="hidden">
+								<input name="num" value="10" type="hidden">
+								<input name="langs" value="fr" type="hidden">
+								<input name="st1rt" value="1" type="hidden">
+								<input name="s5bm3ts21rch" value="x" type="hidden">
+								<input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search" value="" size="27" maxlength="150" placeholder="Rechercher dans Canada.ca">
+								<input type="hidden" name="_charset_" value="UTF-8">
+								<datalist id="wb-srch-q-ac">
+									<!--[if lte IE 9]><select><![endif]-->
+									<!--[if lte IE 9]></select><![endif]-->
+								</datalist>
+							</div>
+							<div class="form-group submit">
+								<button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">Recherche</span></button>
+							</div>
+						</form>
+					</section>
+					{/if}
+				</div>
+			</div>
+			{if $siteMenu != false}
+			<nav role="navigation" id="wb-sm" class="wb-menu visible-md visible-lg" data-trgt="mb-pnl" data-ajax-replace="https://cdn.canada.ca/gcweb-cdn-live/sitemenu/sitemenu-fr.html" typeof="SiteNavigationElement">
+				<div class="container nvbar">
+					<h2>Menu des sujets</h2>
+					<div class="row">
+						<ul class="list-inline menu">
+							<li><a href="https://www.canada.ca/fr/services/emplois.html">Emplois</a></li>
+							<li><a href="https://www.canada.ca/fr/services/immigration-citoyennete.html">Immigration</a></li>
+							<li><a href="https://voyage.gc.ca/">Voyage</a></li>
+							<li><a href="https://www.canada.ca/fr/services/entreprises.html">Entreprises</a></li>
+							<li><a href="https://www.canada.ca/fr/services/prestations.html">Prestations</a></li>
+							<li><a href="https://www.canada.ca/fr/services/sante.html">Santé</a></li>
+							<li><a href="https://www.canada.ca/fr/services/impots.html">Impôts</a></li>
+							<li><a href="https://www.canada.ca/fr/services.html">Autres services</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			{else}
+			<div id="wb-sm" class="visible-xs visible-sm visible-md visible-lg"></div>
+			{/if}
+			{if $breadcrumbs != false}
+			<nav role="navigation" id="wb-bc" property="breadcrumb">
+				<h2>Vous êtes ici :</h2>
+				<div class="container">
+					<div class="row">
+						<ol class="breadcrumb">
+							{if isNonnull($breadcrumbs)}
+							{foreach $item in $breadcrumbs}
+							<li>{if isNonnull($item.acronym)}<abbr title="{$item.acronym}">{/if}{if isNonnull($item.href)}<a href="{$item.href}">{/if}{$item.title}{if isNonnull($item.href)}</a>{/if}{if isNonnull($item.acronym)}</acronym>{/if}</li>
+							{/foreach}
+							{else}
+							<li><a href="https://www.canada.ca/fr.html">Accueil</a></li>
+							{/if}
+						</ol>
+					</div>
+				</div>
+			</nav>
+			{/if}
+		</header>
+		{if $showPreContent != false}
+		{/if}
+{/template}
+
+/**
+ * This is all of the html to be included after existing page content.
+ * @param? dateModified The date the content was last modified.
+ * @param? showPostContent Used to determine if the postcontent space will be displayed, off by default.
+ * @param? showShare Used to determine if the share button will be displayed
+ * @param? showFeedback Used to determine if the "Report a problem ..." button will be displayed or customized
+ * @param? versionIdentifier Used instead of dateModified
+ * @param? screenIdentifier Used to identify screens for users that need help
+ * @param? pagedetails Used to determine if the pagedetails div will be displayed
+ */
+{template .preFooter}
+			{if $showPostContent != false}
+			{/if}
+			{if $pagedetails != false}
+			<div class="pagedetails">
+				<dl id="wb-dtmd">
+					{if isNonnull($screenIdentifier)}
+					<dt>Identificateur d'écran&#160;:&#32;</dt>
+					<dd property="identifier">{$screenIdentifier}</dd>
+					{/if}
+					{if isNonnull($dateModified)}
+					<dt>Date de modification&#160;:&#32;</dt>
+					<dd><time property="dateModified">{$dateModified}</time></dd>
+					{/if}
+					{if isNonnull($versionIdentifier)}
+					<dt>Version&#160;:&#32;</dt>
+					<dd property="version">{$versionIdentifier}</dd>
+					{/if}
+				</dl>
+				{if $showFeedback != false or $showShare != false}
+				<div class="row">
+					{if $showFeedback != false}
+						{if isNonnull($showFeedback)}
+					<div class="col-sm-6 col-md-5 col-lg-4">
+						<a href="{$showFeedback}" class="btn btn-default btn-block">Signaler un problème sur cette page</a>
+					</div>
+						{else}
+					<div class="col-sm-6 col-md-5 col-lg-4">
+						<a href="https://www.canada.ca/fr/signaler-probleme.html" class="btn btn-default btn-block">Signaler un problème sur cette page</a>
+					</div>
+						{/if}
+					{/if}
+					{if $showShare != false}
+						{if isNonnull($showShare)}
+					<div class="wb-share col-sm-4 col-md-3 col-sm-offset-{if $showFeedback != false}2{else}8{/if} col-md-offset-{if $showFeedback != false}4{else}9{/if}{if $showFeedback != false} col-lg-offset-5{/if}" data-wb-share='{lb}"filter": [{foreach $item in $showShare}"{$item}"{if not isLast($item)}, {/if}{/foreach}], "lnkClass": "btn btn-default btn-block"{rb}'></div>
+						{else}
+					<div class="wb-share col-sm-4 col-md-3 col-sm-offset-{if $showFeedback != false}2{else}8{/if} col-md-offset-{if $showFeedback != false}4{else}9{/if}{if $showFeedback != false} col-lg-offset-5{/if}" data-wb-share='{lb}"lnkClass": "btn btn-default btn-block"{rb}'></div>
+						{/if}
+					{/if}
+				</div>
+				{/if}
+			</div>
+			{/if}
+{/template}
+
+/**
+ * This is all of the html for the secondary menu.
+ * @param sections Loops of the sections
+ */
+{template .secmenu}
+			<h2 id="wb-sec-h" class="wb-inv">Menu de la section</h2>
+			{foreach $section in $sections}
+			<section class="list-group menu list-unstyled">
+				<h3>{if isNonnull($section.sectionLink)}<a href="{$section.sectionLink}"{if $section.newWindow==true} target="_blank"{/if}>{/if}{$section.sectionName}{if $section.newWindow==true}<span class="wb-inv"> Ce lien ouvrira dans une nouvelle fenêtre</span>{/if}{if isNonnull($section.sectionLink)}</a>{/if}</h3>
+				<ul class="list-group menu list-unstyled">
+					{foreach $link in $section.menuLinks}
+					{if isNonnull($link.subLinks)}
+					<li>
+						<a href="{$link.href}" class="list-group-item"{if $link.newWindow==true} target="_blank"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> Ce lien ouvrira dans une nouvelle fenêtre</span>{/if}</a>
+						<ul class="list-group menu list-unstyled">
+							{foreach $sublink in $link.subLinks}
+							<li><a href="{$sublink.subhref}" class="list-group-item"{if $sublink.newWindow==true} target="_blank"{/if}>{$sublink.subtext}{if $sublink.newWindow==true}<span class="wb-inv"> Ce lien ouvrira dans une nouvelle fenêtre</span>{/if}</a></li>
+							{/foreach}
+						</ul>
+					</li>
+					{else}
+					<li><a href="{$link.href}" class="list-group-item"{if $link.newWindow==true} target="_blank"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> Ce lien ouvrira dans une nouvelle fenêtre</span>{/if}</a></li>
+					{/if}
+					{/foreach}
+				</ul>
+			</section>
+			{/foreach}
+{/template}
+
+/**
+ * This is all of the html to be included after existing page content.
+ * @param? contactLinks Used to override the Contact link in the footer. 
+ * @param? termsLink Used to override the Terms and conditions link in the footer. 
+ * @param? privacyLink Used to override the Privacy link in the footer. 
+ * @param? showFooter Used to determine if the page footer will be displayed.
+ */
+{template .footer}
+		<footer role="contentinfo" id="wb-info">
+			{if $showFooter != false}
+			<nav role="navigation" class="container wb-navcurr">
+				<h2 class="wb-inv">Au sujet du gouvernement</h2>
+				<ul class="list-unstyled colcount-sm-2 colcount-md-3">
+				{if isNonnull($contactLinks)}
+					{foreach $link in $contactLinks}
+						{if isFirst($link)}
+						<li><a href="{$link.href}">Contactez-nous</a></li>
+						{/if}
+					{/foreach}
+				{else}
+					<li><a href="https://www.canada.ca/fr/contact.html">Contactez-nous</a></li>
+				{/if}
+					<li><a href="https://www.canada.ca/fr/gouvernement/min.html">Ministères et organismes</a></li>
+					<li><a href="https://www.canada.ca/fr/gouvernement/fonctionpublique.html">Fonction publique et force militaire</a></li>
+					<li><a href="https://www.canada.ca/fr/nouvelles.html">Nouvelles</a></li>
+					<li><a href="https://www.canada.ca/fr/gouvernement/systeme/lois.html">Traités, lois et règlements</a></li>
+					<li><a href="https://www.canada.ca/fr/transparence/rapports.html">Rapports à l'échelle du gouvernement</a></li>
+					<li><a href="http://pm.gc.ca/fra">Premier ministre</a></li>
+					<li><a href="https://www.canada.ca/fr/gouvernement/systeme.html">Comment le gouvernement fonctionne</a></li>
+					<li><a href="http://ouvert.canada.ca/">Gouvernement ouvert</a></li>
+				</ul>
+			</nav>
+			<div class="brand">
+				<div class="container">
+					<div class="row">
+						<nav class="col-md-10 ftr-urlt-lnk">
+							<h2 class="wb-inv">À propos du site</h2>
+							<ul>
+								<li><a href="https://www.canada.ca/fr/sociaux.html">Médias sociaux</a></li>
+								<li><a href="https://www.canada.ca/fr/mobile.html">Applications mobiles</a></li>
+								<li><a href="https://www1.canada.ca/fr/nouveausite.html">À propos de Canada.ca</a></li>
+								<li><a href="https://www.canada.ca/fr/transparence/avis.html">Avis</a></li>
+								<li><a href="https://www.canada.ca/fr/transparence/confidentialite.html">Confidentialité</a></li>
+			{else}
+			<div id="transactFooter"></div>
+			<div class="brand">
+				<div class="container">
+					<div class="row">
+						<nav class="col-md-10 ftr-urlt-lnk">
+							<h2 class="wb-inv">À propos du site</h2>
+							<ul>
+							{if isNonnull($contactLinks)}
+								{foreach $link in $contactLinks}
+									{if isFirst($link)}
+										<li><a {if $link.href} href="{$link.href}"{else} href="https://www.canada.ca/fr/contact.html"{/if}{if $link.newWindow} target="_blank"{/if}>Coordonnées{if $link.newWindow==true}<span class="wb-inv"> Ce lien ouvrira dans une nouvelle fenêtre</span>{/if}</a></li>
+									{/if}
+								{/foreach}
+							{else}
+								<li><a href="https://www.canada.ca/fr/contact.html">Coordonnées</a></li>
+							{/if}
+
+							{if isNonnull($termsLink)}
+								{foreach $link in $termsLink}
+									{if isFirst($link)}
+										<li><a {if $link.href} href="{$link.href}"{else} href="https://www.canada.ca/fr/transparence/avis.html"{/if}{if $link.newWindow} target="_blank"{/if}>Avis{if $link.newWindow==true}<span class="wb-inv"> Ce lien ouvrira dans une nouvelle fenêtre</span>{/if}</a></li>
+									{/if}
+								{/foreach}
+							{else}
+								<li><a href="https://www.canada.ca/fr/transparence/avis.html">Avis</a></li>
+							{/if}
+
+							{if isNonnull($privacyLink)}
+								{foreach $link in $privacyLink}
+									{if isFirst($link)}
+										<li><a {if $link.href} href="{$link.href}"{else} href="https://www.canada.ca/fr/transparence/confidentialite.html"{/if}{if $link.newWindow} target="_blank"{/if}>Confidentialité{if $link.newWindow==true}<span class="wb-inv"> Ce lien ouvrira dans une nouvelle fenêtre</span>{/if}</a></li>
+									{/if}
+								{/foreach}
+							{else}
+								<li><a href="https://www.canada.ca/fr/transparence/confidentialite.html">Confidentialité</a></li>
+							{/if}
+			{/if}
+							</ul>
+						</nav>
+						<div class="col-xs-6 visible-sm visible-xs tofpg">
+							<a href="#wb-cont">Haut de la page <span class="glyphicon glyphicon-chevron-up"></span></a>
+						</div>
+						<div class="col-xs-6 col-md-2 text-right">
+							<img src='{call .environment data="all" /}assets/wmms-blk.svg' alt="Symbole du gouvernement du Canada" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+{/template}
+
+/**
+ * This is all of the references to be made before existing page content.
+ * @param? exitScript If set to true, loads a script that alerts users they are leaving a secure site.
+ * @param? displayModal If set to true will display modal otherwise skip to exitURL.
+ * @param? exitURL The URL where the users are redirected if they continue.
+ * @param? exitMsg The message to display to the user.
+ * @param? exitDomains Domains to not check for secure exit.
+ * @param? jqueryEnv Used to determine location of jQuery files (local / external).
+ * @param? webAnalytics Used to determine inclusion of current analytics code.
+ * @param? isApplication Used to determine if this will use the application templates (true/false).
+ */
+{template .refFooter}
+		<!--[if gte IE 9 | !IE ]><!-->
+		<script src="{if $jqueryEnv=='external'}https://ajax.googleapis.com/ajax/libs/{else}{call .environment data="all" /}js/{/if}jquery/2.2.4/jquery.min.js"></script>
+		<script src='{call .environment data="all" /}js/wet-boew.min.js'></script>
+		<!--<![endif]-->
+		<!--[if lt IE 9]>
+		<script src='{call .environment data="all" /}js/ie8-wet-boew2.min.js'></script>
+		<![endif]-->
+		<script src='{call .environment data="all" /}js/theme.min.js'></script>
+		{if $exitScript == true and isNonnull($exitURL)}
+		<script data-id="exitScript" data-token="{$exitURL}" {if isNonnull($exitDomains)}data-token-domains="{$exitDomains}" {/if}{if $displayModal == false}data-token-modal="false" {/if}src='{call .environment data="all" /}cdts/exitScript.js'></script>
+		<a id="sExitModalLink" class="wb-lbx lbx-modal wb-inv" title="" href="#sExitModal">Avis de sortie sécurisée</a>
+		<section id="sExitModal" class="mfp-hide modal-dialog modal-content overlay-def">
+			<header class="modal-header">
+				<h2 class="modal-title">Avertissement</h2>
+			</header>
+			<div class="modal-body">
+				<p>
+				{if isNonnull($exitMsg)}
+				{$exitMsg}
+				{else}
+				Vous êtes sur le point de quitter un site sécurisé. Voulez-vous continuer?
+				{/if}
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary popup-modal-dismiss pull-left" id="eCancel"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Annuler</button>
+				<button type="button" class="btn btn-default popup-modal pull-right" id="eOK">Oui&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
+			</div>
+		</section>
+		{/if}
+		{if $isApplication == true}
+		<script src='{call .environment data="all" /}cdts/cdtscustom.js'></script>
+		{/if}
+		{if isNonnull($webAnalytics)}<script>_satellite.pageBottom();</script>{/if}
+{/template}

@@ -1,0 +1,130 @@
+/********** CDTS fixes file **********/
+/********** Follow the correct format and link to Github issue for info **********/
+
+/***** SECONDARY NAVIGATION FIX *****/
+/********** Added as per Shawn Thompson, temporary fix **********/
+	#wb-sec h3 {font-size: 1.1em;padding: 15px; }
+	#wb-sec h3 a {
+	font-size: 1em;
+	margin: -15px; }
+
+/***** SECONDARY NAVIGATION FIX - WHITE HOVER *****/
+#wb-sec .list-group .list-group .list-group .wb-navcurr.list-group-item {
+background-color: #335075;
+}
+
+/********** AJOUTÉ PAR ROCH LE 2016/10/05 **********/
+/********** Screen identifier CSS **********/
+.screenIdent {
+    display:inline;
+	border-color:#335175;
+}
+
+/********** AJOUTÉ PAR ROCH LE 2016/10/12 **********/
+/********** Fixes #7675 (https://github.com/wet-boew/wet-boew/issues/7675) **********/
+/********** Remove for WET v4.0.23 after fix confirmed **********/
+.label-error {
+    white-space: normal;
+	color: #000;
+}
+/********** AJOUTÉ PAR NICK LE 2016/12/22 **********/
+/********** Fixes #1204 (https://github.com/wet-boew/GCWeb/issues/1204) **********/
+/********** Remove for WET v4.0.24 after fix confirmed **********/
+@media print{
+	#wb-sec{
+		display: none !important;
+	}
+}
+
+/***** **** *** ** * | THIS IS THE CSS FOR THE NEW APP TOP 2017-01-27 | * ** *** **** *****/
+/***** **** *** ** * |												  | * ** *** **** *****/			
+/***** **** *** ** * |												  | * ** *** **** *****/
+/***** **** *** ** * |												  | * ** *** **** *****/
+/***** **** *** ** * |						START					  | * ** *** **** *****/
+/* FIP image */
+@media only screen and (min-width : 480px){
+	.gc-app object{
+		width: 65%;
+	}
+	.gc-app .gc-app-br p.h1{
+		font-size: 28px;
+	}
+	.visible-xxs{
+		display: none;!important
+	}
+}
+@media only screen and (max-width : 479px){
+	.hidden-xxs{
+		display: none;!important
+	}
+	.gc-app .btn-signoff{
+		font-size: 12px;
+		min-height: 20px;
+	}
+	.gc-app-name p.h1{
+		margin-top: 5px;
+	}
+}
+@media only screen and (min-width : 768px){
+	.gc-app object{
+		width: 50%;
+	}
+	.gc-app .gc-app-br p.h1{
+		font-size: 34px;
+	}
+}
+/* Application banner - BLUE */
+.gc-app p.h1{
+	color: #335075;
+	font-size: 20px;
+}
+.gc-app p.h1 i.glyphicon{
+	font-size: 80%;
+}
+.gc-app .h1, .gc-app #wb-srch, .gc-app .gc-app-br .btn-signoff{
+	margin-top: 10px;
+}
+/* Sign out button - BLUE */
+.gc-app .btn-signoff.btn-primary, .gc-app-br .btn-primary {
+	background-color: #335075;
+}
+/* Sign out button (hover) - BLUE */
+.gc-app .btn-signoff.btn-primary:hover{
+	background-color: #243850;
+}
+.gc-app #wb-srch{
+	padding-top: 0;
+	margin-bottom: 10px;
+}
+/* Button in menu */
+.gc-app #wb-sm .btn-signoff{
+	top: 9px;
+	position: relative;
+	background-color: #fff;
+}
+.gc-app #wb-sm a.btn-signoff:hover{
+	background-color: #ccc;
+}
+/* Log in / out icon */
+.gc-app .glyphicon-off{
+	margin-right: 10px;
+}
+.gc-app #wb-sm{
+	min-height: 55px;
+}
+/* Search button - BLUE */
+.gc-app #wb-srch button, .gc-app .srchbox button{
+	background-color: #335075;
+	border-color: #335075;
+}
+/* Remove button in print */
+@media print{
+	.gc-app .btn-signoff{
+		display: none !important;
+	}
+}
+/***** **** *** ** * | THIS IS THE CSS FOR THE NEW APP TOP 2017-01-27 | * ** *** **** *****/
+/***** **** *** ** * |												  | * ** *** **** *****/			
+/***** **** *** ** * |												  | * ** *** **** *****/
+/***** **** *** ** * |												  | * ** *** **** *****/
+/***** **** *** ** * |						END 					  | * ** *** **** *****/

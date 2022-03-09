@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en" dir="ltr"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+	<title>Content page - Canada.ca</title>
+	<meta content="width=device-width,initial-scale=1" name="viewport">
+	<!-- Meta data -->
+	<meta name="description" content="Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities">
+	<!-- Meta data-->
+	<!-- Load closure template scripts -->
+	<script type="text/javascript" src="https://ssl-templates.services.gc.ca/app/cls/wet/gcweb/v4_0_18/js/compiled/soyutils.js"></script>
+	<script type="text/javascript" src="https://ssl-templates.services.gc.ca/app/cls/wet/gcweb/v4_0_18/js/compiled/wet-test-en.js"></script>
+	<noscript>
+		<!-- Write closure fall-back static file -->
+		<!-- /ROOT/app/cls/WET/gcweb/v4_0_18/static/refTop.html -->
+		<!--#include virtual="/app/cls/WET/gcweb/v4_0_18/static/refTop.html" -->
+	</noscript>
+	<!-- Write closure template -->
+	<script type="text/javascript">
+		document.write(wet.builder.refTop({
+			cdnEnv: "prod"
+		}));
+	</script>
+</head>
+<body vocab="http://schema.org/" typeof="WebPage">
+	<div id="def-top">
+		<!-- Write closure fall-back static file -->
+		<!-- /ROOT/app/cls/WET/gcweb/v4_0_18/static/top-en.html -->
+		<!--#include virtual="/app/cls/WET/gcweb/v4_0_18/static/top-en.html" -->
+	</div>
+	<!-- Write closure template -->
+	<script type="text/javascript">
+		var defTop = document.getElementById("def-top");
+		defTop.outerHTML = wet.builder.top({
+			cdnEnv: "prod",
+			showPreContent: false,
+			lngLinks: [{
+				lang: "fr",
+				href: "content-fr.shtml",
+				text: "Français"
+			}]
+		});
+	</script>
+	<main role="main" property="mainContentOfPage" class="container">
+	<!--
+		<h1 property="name" id="wb-cont">Rosine's issue</h1>
+		<form method="post" action="#" class="form-horizontal">
+			<div class="form-group">
+				<label for="data1" class="col-sm-3 control-label">Form&#32;<code>input</code></label>
+				<div class="col-sm-9">
+					<input type="text" id="data1" name="data1" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="data2" class="col-sm-3 control-label">Form&#32;<code>textarea</code></label>
+				<div class="col-sm-9">
+					<textarea id="data2" rows="3" cols="15" name="data2" class="form-control"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="data4" class="col-sm-3 control-label">Form&#32;<code>select</code></label>
+				<div class="col-sm-9">
+					<select name="data4" id="data4" class="form-control">
+						<option value="1">Option&#32;1</option>
+						<option value="2">Option&#32;2</option>
+						<option value="3">Option&#32;3</option>
+						<option value="4">Option&#32;4</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</form>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<hr>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>		
+		
+		
+		
+		-->
+		
+		
+		
+		
+		
+		
+		<h1 id="wb-cont" property="name">
+	Publicentre</h1>
+<div class="row">
+	<div class="col-md-8">
+			<section>
+				<p><img src="/sgpe-pmps/maint/file/display/Penguins.jpg" alt="" width="1024" height="768" /></p>
+<p>Le minist&egrave;re publie une gamme de produits d'information.&nbsp;</p>
+<p>Veuillez utiliser les champs de recherche ci-dessous pour obtenir de plus amples renseignements et liens au sujet des publications RHDCC.</p>
+			</section>
+			<section>
+				<form role="form" method="post"
+					action="/sgpe-pmps/servlet/sgpp-pmps-pub">
+<input type="hidden"
+	name="lang"
+	value="fra" />
+<input type="hidden"
+	name="curjsp"
+	value="home.jsp" />
+<input type="hidden"
+	name="jsenbld" value="" />
+<input type="hidden"
+	name="nextjsp"
+	value="/remembersearch.jsp" />
+<script type="text/javascript"> 
+/* <![CDATA[ */
+function iadf_level1ThemeChanged() {
+  document.forms[0].jsenbld.value='1';
+  iadf_setAction('level1themechanged');
+  document.forms[0].jsenbld
+	.value = '';
+	}
+	/* ]]> */
+</script>
+<div class="form-group">
+	<button class="btn btn-primary btn-small" type="submit" name="curactn"
+		id="searchAll" value="Recherche Tout">Recherche Tout</button>
+</div>
+<div class="form-group">
+	<div class="row">
+		<label class="wb-invisible"  for="TITLESEARCHTYPEEN1" >Type de recherche pour un titre (anglais)</label>
+		<label class ="control-label col-md-12"  for="TITLEEN1" >Titre (anglais)</label>
+	</div>
+	<div class="row">
+		<select  class ="form-control col-md-4 mrgn-lft-md" name="ttlsrchtpen" id="TITLESEARCHTYPEEN1"  onkeypress="javascript:  return iadf_selectAsYouType(event);" onblur="iadf_clearKeysPressed(event);"> <option  value="2">Contient</option>
+<option  value="1">Commence par</option>
+</select>
+		<input  class="form-control col-md-8 mrgn-lft-md" name="ttlen" id="TITLEEN1"  maxlength="255"  value=""  />
+	</div>
+</div>
+<div class="form-group">
+	<div class="row">
+		<label class="wb-invisible"  for="TITLESEARCHTYPEFR1" >Type de recherche pour un titre (francais)</label>
+		<label class ="control-label col-md-12"  for="TITLEFR1" >Titre (français)</label>
+	</div>
+	<div class="row">
+		<select  class ="form-control col-md-4 mrgn-lft-md" name="ttlsrchtpfr" id="TITLESEARCHTYPEFR1"  onkeypress="javascript:  return iadf_selectAsYouType(event);" onblur="iadf_clearKeysPressed(event);"> <option  value="2">Contient</option>
+<option  value="1">Commence par</option>
+</select>
+		<input  class="form-control col-md-8 mrgn-lft-md" name="ttlfr" id="TITLEFR1"  maxlength="255"  value=""  />
+	</div>
+</div>
+<div class="form-group">
+	<div class="row">
+		<label class="wb-invisible"  for="DESCRIPTIONSEARCHTYPEEN1" >Type de recherche pour une description (anglais)</label>
+		<label class ="control-label col-md-12"  for="DESCRIPTIONEN1" >Description (anglais)</label>
+	</div>
+	<div class="row">
+		<select  class ="form-control col-md-4 mrgn-lft-md" name="dscrptnsrchtpen" id="DESCRIPTIONSEARCHTYPEEN1"  onkeypress="javascript:  return iadf_selectAsYouType(event);" onblur="iadf_clearKeysPressed(event);"> <option  value="2">Contient</option>
+<option  value="1">Commence par</option>
+</select>
+		<input  class="form-control col-md-8 mrgn-lft-md" name="dscrptnen" id="DESCRIPTIONEN1"  maxlength="255"  value=""  />
+	</div>
+</div>
+<div class="form-group">
+	<div class="row">
+		<label class="wb-invisible"  for="DESCRIPTIONSEARCHTYPEFR1" >Type de recherche pour une description (francais)</label>
+		<label class ="control-label col-md-12"  for="DESCRIPTIONFR1" >Description (français)</label>
+	</div>
+	<div class="row">
+		<select  class ="form-control col-md-4 mrgn-lft-md" name="dscrptnsrchtpfr" id="DESCRIPTIONSEARCHTYPEFR1"  onkeypress="javascript:  return iadf_selectAsYouType(event);" onblur="iadf_clearKeysPressed(event);"> <option  value="2">Contient</option>
+<option  value="1">Commence par</option>
+</select>
+		<input  class="form-control col-md-8 mrgn-lft-md" name="dscrptnfr" id="DESCRIPTIONFR1"  maxlength="255"  value=""  />
+	</div>
+</div>
+<div class="form-group">
+	<div class="row">
+		<label class ="control-label mrgn-lft col-md-12"  for="THEMELEVEL1ID1" >Thème / Taxonomie</label>
+	</div>
+	<div class="row">
+		<select  class ="form-control col-md-4 mrgn-lft-md" name="thmlvl1id" id="THEMELEVEL1ID1"  onkeypress="javascript:  return iadf_selectAsYouType(event);" onblur="iadf_clearKeysPressed(event);"> <option value="" selected="selected" >Choisir un theme ou taxonomie</option>
+<option  value="8">Apprentissage</option>
+<option  value="16">Compétences</option>
+<option  value="5">Emploi</option>
+<option  value="44">Garde d'enfants</option>
+<option  value="12">La condition des personnes handicapées</option>
+<option  value="43">Ministérielle</option>
+<option  value="2">Partenariats communautaires</option>
+<option  value="14">Régime de pensions du Canada / Sécurité de la vieillesse</option>
+<option  value="7">Sans-abri</option>
+<option  value="40">Travail</option>
+</select>
+	</div>
+</div>
+<div class="form-group">
+	<div class="row">
+		<label class ="control-label col-md-12"  for="LANGUAGEID1" >Langue</label>
+	</div>
+	<div class="row">
+		<select  class ="form-control col-md-4 mrgn-lft-md" name="lnggeid" id="LANGUAGEID1"  onkeypress="javascript:  return iadf_selectAsYouType(event);" onblur="iadf_clearKeysPressed(event);"> <option value="" selected="selected" >Choisir une langue</option>
+<option  value="bt">Bilingue (tête-bêche)</option>
+<option  value="bi">Bilingue (séparé)</option>
+<option  value="en">Anglais</option>
+<option  value="fr">Français</option>
+</select>
+	</div>
+</div>
+<div class="form-group">
+	<div class="row">
+		<label class ="control-label col-md-12"  for="CATALOGNUMBER1" >Numéro de catalogue du ministère</label>
+	</div>
+	<div class="row">
+		<input  class="form-control col-md-8 mrgn-lft-md" name="ctlgnmbr" id="CATALOGNUMBER1"  maxlength="255"  value=""  />
+	</div>
+</div>
+<div class="form-group">
+	<div class="row">
+		<label class ="control-label col-md-12"  for="ISBNNUMBER1" >ISBN</label>
+	</div>
+	<div class="row">
+		<input  class="form-control col-md-8 mrgn-lft-md" name="isbnnbr" id="ISBNNUMBER1"  maxlength="255"  value=""  />
+		<div class="row"></div>
+	</div>
+</div>
+<div class="form-group row mrgn-tp-md">
+	<div class="col-md-6">
+		<div class="row mrgn-lft-md">
+			<label   for="PUBLICATIONDATEFROM1" >Date Après<br />  <span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">AAAA&#8209;MM&#8209;JJ</abbr>)</span></label>
+		</div>
+		<div class="row mrgn-lft-md">
+			<input  class="form-control" type="date" name="pblctndatefrm" id="PUBLICATIONDATEFROM1"  value=""  onchange=""  />
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="row mrgn-lft-md">
+			<label   for="PUBLICATIONDATETO1" >Avant<br />  <span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">AAAA&#8209;MM&#8209;JJ</abbr>)</span></label>
+		</div>
+		<div class="row mrgn-lft-md">
+			<input  class="form-control" type="date" name="pblctndateto" id="PUBLICATIONDATETO1"  value=""  onchange=""  />
+		</div>
+	</div>
+</div>
+<div class="form-group">
+	<div class="row mrgn-lft-md">
+		<label class ="control-label"  for="srchlmt1" >Nombre maximal de dossiers à retrouver</label>
+	</div>
+	<div class="row mrgn-lft-md">
+		<select  class ="form-control" name="srchlmt" id="srchlmt1"  onkeypress="javascript:  return iadf_selectAsYouType(event);" onblur="iadf_clearKeysPressed(event);"> <option  value="10">10</option>
+<option  value="25">25</option>
+<option  value="99999">Tout</option>
+</select>
+	</div>
+</div>
+<div class="form-group">
+	<div class="row mrgn-lft-md">
+		<label class ="control-label"  for="orderby1" >Résultat des commandes placées par</label>
+	</div>
+	<div class="row mrgn-lft-md">
+		<select  class ="form-control" name="ordrby" id="orderby1"  onkeypress="javascript:  return iadf_selectAsYouType(event);" onblur="iadf_clearKeysPressed(event);"> <option value="" selected="selected" >Choisir l’ordre des résultats</option>
+<option  value="BRANCH">Direction générale</option>
+<option  value="FORMAT">Format</option>
+<option  value="PUBLICATIONDATE DESC">Plus récent</option>
+<option  value="PUBLICATIONTITLE">Titre (français)</option>
+</select>
+	</div>
+</div>
+<div class="form-group text-center">
+	<button class="btn btn-primary btn-small"
+		name="curactn"
+		value="Rechercher" type="submit">Rechercher</button>
+	<button class="btn btn-default btn-small"
+		name="curactn"
+		value="Recommencer" type="submit">Recommencer</button>
+</div>
+<p>Pour plus d'information concernant le syst&egrave;me de gestion de la recherche (SGR) entrez en contact svp :</p>
+<p>Unit&eacute; de Diffusion de la Recherche<br /><a title="Email" href="mailto:NC-RD-DR-GD@hrdc-drhc.net">NC-RD-DR-GD</a></p>
+<p>Ajout d'une image&nbsp;&nbsp; <img src="/sgpe-pmps/maint/file/display/Kitchen 1 for testing.png" alt="Belle cuisine" width="150" height="100" /></p>
+<div><input type='hidden' name='IADTOKEN' value='-8058576377507656580' /></div></form>
+</section>
+</div>
+<!-- RIGHT SIDE MENU BEGINS | DEBUT DU MENU LATERAL DROIT -->
+<div class="col-md-4">
+	<section>
+		<h2 class="mrgn-tp-0">Dernières parutions</h2>
+		<ul class="lst-spc">
+			<li><a
+				href="p.5bd.2t.1.3ls@-fra.jsp?pid=39121">
+					Publication du 20 novembre</a></li>
+			<li><a
+				href="p.5bd.2t.1.3ls@-fra.jsp?pid=7018">
+					Renseignements sur les normes du travail - 1 - Sommaire</a></li>
+			<li><a
+				href="p.5bd.2t.1.3ls@-fra.jsp?pid=39032">
+					le 18 novembre français</a></li>
+			<li><a
+				href="p.5bd.2t.1.3ls@-fra.jsp?pid=30841">
+					Programme canadien pour l'épargne-études (PCEE)</a></li>
+			<li><a
+				href="p.5bd.2t.1.3ls@-fra.jsp?pid=29276">
+					Rôle des clauses d'IVC pendant les périodes de</a></li>
+		</ul>
+		<h2>Publications et Resources</h2>
+		<ul class="lst-spc">
+			<li><a href=" http://www.edsc.gc.ca/fr/rapports/evaluations/index.page" rel="external"> Rapports ministériels </a></li>
+			<li><a href=" http://www.edsc.gc.ca/fr/rapports/evaluations/index.page" rel="external">  Évaluation </a></li>
+			<li><a href=" http://www.edsc.gc.ca/fr/rapports/verification/index.page" rel="external">  Vérification </a></li>
+		</ul>
+	</section>
+</div>
+<!-- RIGHT SIDE MENU ENDS | FIN DU MENU LATERAL DROIT -->
+</div>
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		<div id="def-preFooter">
+			<!-- Write closure fall-back static file -->
+			<!-- /ROOT/app/cls/WET/gcweb/v4_0_18/static/preFooter-en.html -->
+			<!--#include virtual="/app/cls/WET/gcweb/v4_0_18/static/preFooter-en.html" -->
+		</div>
+		<!-- Write closure template -->
+		<script type="text/javascript">
+			var defPreFooter = document.getElementById("def-preFooter");
+			defPreFooter.outerHTML = wet.builder.preFooter({
+				cdnEnv: "prod",
+				dateModified: "2015-10-06",
+				showPostContent: true
+			});
+		</script>
+	</main>
+    <div id="def-footer">
+		<!-- Write closure fall-back static file -->
+		<!-- /ROOT/app/cls/WET/gcweb/v4_0_18/static/footer-en.html -->
+		<!--#include virtual="/app/cls/WET/gcweb/v4_0_18/static/footer-en.html" -->
+	</div>
+	<!-- Write closure template -->
+	<script type="text/javascript">
+		var defFooter = document.getElementById("def-footer");
+		defFooter.outerHTML = wet.builder.footer({
+			cdnEnv: "prod"
+		});
+	</script>
+	<!-- Write closure template -->
+	<script type="text/javascript">
+		document.write(wet.builder.refFooter({
+			cdnEnv: "prod",
+		}));
+	</script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+/***** **** *** ** * | THIS IS THE CSS FOR THE NEW APP TOP 2017-07-28 | * ** *** **** *****/
+/***** **** *** ** * |												  | * ** *** **** *****/			
+/***** **** *** ** * |												  | * ** *** **** *****/
+/***** **** *** ** * |												  | * ** *** **** *****/
+/***** **** *** ** * |						START					  | * ** *** **** *****/
+
+/*All views*/
+.app-name {
+	font-weight: bold;
+	line-height: 1.1;
+	font-size: 34px;
+}
+
+/*Screen only*/
+@media screen {
+	/*Prevent an overly large space from appearing above the first list in the mobile menu's overlay.*/
+	#mb-pnl .sm-pnl {
+		padding-top: 0;
+	}
+
+	/*Prevent the mega menu from displaying as a table. This prevents its top-level menu items from scaling to take up the bar's full width.*/
+	#wb-sm .menu {
+		display: block;
+	}
+
+	/*Mega menu bar - background colour and top/bottom borders*/
+	#wb-sm {
+		background: #E1E4E7;
+		border-top: 1px solid #D3D4D8;
+		border-bottom: 1px solid #D3D4D8;
+	}
+
+	/*Mega menu bar - disable text shadows*/
+	#wb-sm .menu {
+		text-shadow: none;
+	}
+
+	/*Mega menu bar - text colour/bolding (new selector - not an override of a pre-existing selector)*/
+	#wb-sm .menu > li > a {
+		padding-top: calc(1em - 1px);
+		padding-bottom: calc(1em - 1px);
+		color: #335075;
+		font-weight: bold;
+	}
+
+	/*Mega menu bar - list item border colour*/
+	#wb-sm .menu > li,
+	#wb-sm .menu > li:last-child {
+		border-color: #D3D4D8;
+	}
+
+	/*Mega menu dropdown - background colour*/
+	#wb-sm .sm.open {
+		background: #C9CFD4;
+	}
+
+	/*Mega menu dropdown - "More" link background colour*/
+	#wb-sm .sm.open .slflnk a {
+		background: #B1B9C0;
+	}
+
+	/*Mega menu bar - text NavCurrent colour*/
+	#wb-sm .menu > li > .active, #wb-sm .menu > li > .selected, #wb-sm .menu > li > .wb-navcurr	{
+		color: #335075 !important;
+	}
+
+	/*Mega menu bar + dropdown - background highlight colour*/
+	#wb-sm .menu > li a:focus, #wb-sm .menu > li a:hover,
+	#wb-sm .menu .active, #wb-sm .menu .selected, #wb-sm .menu .wb-navcurr,
+	#wb-sm .sm.open li a:hover, #wb-sm .sm.open li a:focus, #wb-sm .sm.open li a:active, #wb-sm .sm.open li summary:hover, #wb-sm .sm.open li summary:focus, #wb-sm .sm.open li summary:active {
+		background: #EEEFF1 !important;
+	}
+
+	/*Mega menu dropdown - text highlight colour*/
+	#wb-sm .sm.open li a:active, #wb-sm .sm.open li a:focus, #wb-sm .sm.open li a:hover, #wb-sm .sm.open li summary:active, #wb-sm .sm.open li summary:focus, #wb-sm .sm.open li summary:hover, #wb-sm .sm.open .active, #wb-sm .sm.open .selected, #wb-sm .sm.open .wb-navcurr {
+		color: #444 !important;
+	}
+	
+	.app-bar {
+		background: #335075;
+	}
+	
+	.app-bar a.app-name {
+		color: #FFF;
+		display: inline-block;
+		text-decoration: none;
+	}
+	
+	.app-bar a.app-name:active, .app-bar a.app-name:focus, .app-bar a.app-name:hover {
+		text-decoration: underline;
+	}
+
+	.app-list-account .btn, .app-list-account .btn:visited {
+		color: #335075;
+		background-color: #FFF;
+	}
+
+	.app-list-account a.btn:not([href]), .app-list-account .btn.active, .app-list-account .btn.focus, .app-list-account .btn:active, .app-list-account .btn:focus, .app-list-account .btn:hover {
+		color: #FFF;
+		background-color: #243850;
+	}
+
+	.app-list-account a.btn:not([href]) {
+		-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+		box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+		cursor: not-allowed;
+	}
+}
+
+/*Extra-small view and under (screen only)*/
+@media screen and (max-width: 767px) {
+	header .brand > img, header .brand > object {
+		margin-top: 10px;
+	}
+	
+	.app-bar a.app-name {
+		font-size: 18px;
+		margin: 5px 0 6px;
+		padding: 5px;
+	}
+	
+	.app-bar-mb {
+		background: #E1E4E7;
+		padding-top: 5px;
+	}
+	
+	.wb-disable .app-list-main, .wb-disable #app-srch-mb {
+		display: none !important;
+	}
+
+	.app-list-main,
+	.app-list-account {
+		margin: 0;
+	}
+
+	.app-list-main li,
+	.app-list-account li {
+		margin-bottom: 5px;
+	}
+
+	.app-list-main li {
+		margin-right: 5px;
+	}
+
+	.app-list-main li {
+		float: left;
+	}
+	
+	.app-list-main .btn,
+	.app-list-account .btn {
+		min-height: 30px;
+		padding: 3px 6px 2px;
+	}
+	
+	.app-list-main .btn, .app-list-main .btn:visited {
+		color: #FFF;
+		background-color: #335075;
+	}
+
+	.app-list-main [aria-pressed="true"], .app-list-main [aria-pressed="true"]:visited, .app-list-main .btn:active, .app-list-main .btn:focus, .app-list-main .btn:hover {
+		color: #FFF;
+		background-color: #243850;
+	}
+	
+	/*Float the account list to allow it to initially collapse with both of its items on the same line if the viewport width gets too limited.*/
+	.app-list-account {
+		float: left;
+	}
+	
+	.app-list-account li {
+		float: left;
+		margin-right: 5px;
+	}
+
+	.app-list-account li:last-child {
+		margin-right: 0;
+	}
+	
+	#wb-glb-mn {
+		float: left !important;
+		margin-top: 0px;
+	}
+	
+	.app-list-main h2 {
+		display: none;
+	}
+	
+	.srch-pnl, .lng-ofr {
+		display: none;
+	}
+	
+	/*Prevent the mobile menu's search button and background colour from becoming entirely white.*/
+	/*TODO: Fix in WET/GCWeb.*/
+	#mb-pnl .modal-footer {
+		background: transparent;
+	}
+	
+	#app-srch-mb {
+		background: transparent;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		margin-top: calc(1.4375em + 7px);
+		padding-top: 5px;
+		position: absolute;
+		top: auto;
+	}
+	
+	#app-srch-mb .modal-header {
+		background: transparent;
+		color: #FFF;
+		border-bottom: 0;
+		padding: 0;
+	}
+	
+	#app-srch-mb .modal-header::before {
+		content: "";
+		border-bottom: 5px solid #243850;
+		border-left: 4px solid transparent;
+		border-right: 4px solid transparent;
+		position: absolute;
+		left: calc(46px + 2.6em);
+		top: 0;
+	}
+	
+	#app-srch-mb .modal-title, #app-srch-mb .modal-body {
+		background: #243850;
+	}
+	
+	#app-srch-mb .modal-title {
+		padding: 15px 15px 0;
+	}
+	
+	#app-srch-mb .modal-body {
+		padding-top: 5px;
+	}
+	
+	#app-srch-mb #wb-srch-sub {
+		border: 0;
+		margin-left: 0;
+	}
+	
+	#app-srch-mb .mfp-close {
+		padding-right: 15px;
+		top: 5px;
+		width: 59px;
+	}
+}
+
+/*Small view and over (screen only)*/
+@media screen and (min-width: 768px) {
+	.app-bar .row {
+		display: table;
+		table-layout: fixed;
+		width: calc(100% + 30px);
+	}
+	
+	.app-bar  .row > section, .app-bar .row > nav {
+		display: table-cell;
+		float: none;
+		vertical-align: middle;
+	}
+	
+	.app-bar a.app-name {
+		font-size: 28px;
+		margin-top: 8px;
+		margin-bottom: 6px;
+		padding: 5px;
+	}
+	
+	.app-list-account {
+		margin-top: 9px;
+		margin-bottom: 0;
+	}
+	
+	.app-list-account li {
+		margin-bottom: 9px;
+		margin-left: calc(9px - 0.2815em);
+	}
+	
+	.app-list-account li:first-child {
+		margin-left: 0;
+	}
+	
+	header .brand {
+		padding-top: calc(20px + 1.4375em);
+	}
+}
+
+/*Small view (screen-only)*/
+@media screen and (min-width: 768px) and (max-width: 991px) {
+	#wb-srch,
+	#wb-sm {
+		display: block !important;
+	}
+	
+	#wb-srch input, .srchbox input {
+		min-width: 0;
+		width: 177px;
+	}
+	
+	#wb-srch {
+		width: 33.3333333333%;
+	}
+}
+
+/*Medium view and under (screen only)*/
+@media screen and (max-width: 1199px) {
+	
+	/*Mega menu bar - Restore the last list item's right border.*/
+	#wb-sm .menu > li:last-child {
+		border-right: 1px solid #D3D4D8;
+	}
+	
+	/*Mega menu bar - disable right border on the far right edge of the bar*/
+	#wb-sm .menu {
+		border-right: 0;
+	}
+}
+
+/*Extra-small view and over (screen only)*/
+@media screen and (min-width: 480px) {
+	.app-list-account {
+		text-align: right;
+	}
+	
+	.app-list-account li {
+		display: inline-block;
+	}
+}
+
+/*Extra-extra-small view (screen only)*/
+@media screen and (max-width: 479px) {
+	#wb-bnr {
+		margin-top: 15px;
+	}
+	
+	header .brand {
+		float: left !important;
+		min-width: 165px;
+		padding-right: 0;
+		padding-top: 0;
+		width: calc(100% - 92px) !important;
+	}
+	
+	header .brand > img, header .brand > object {
+		margin-top: 5px;
+	}
+	
+	#wb-lng {
+		margin-top: 0;
+		margin-bottom: 10px;
+		padding-top: 0;
+		width: auto;
+	}
+	
+	/*In noscript/wbdisable modes, lessen the space between the language toggle link and search box.*/
+	#wb-srch {
+		padding-top: 0;
+	}
+	
+	/*Maximise the mobile menu's width to prevent its width from shifting when opening/closing details elements.*/
+	/*TODO: Port this to WET/GCWeb.*/
+	#mb-pnl {
+		min-width: 90%;
+	}
+}
+
+/***** **** *** ** * | END OF THE CSS FOR THE NEW APP TOP 2017-07-28 | * ** *** **** *****/

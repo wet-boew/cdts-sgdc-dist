@@ -1,0 +1,25 @@
+<body>
+<div id="def-top">
+<!-- Write closure fall-back static file -->
+<!-- /ROOT/etc/designs/canada/cdts/gcweb/v4_0_32/cdts/static/top-en.html -->
+<!-- #include virtual="/app/cls/WET/gcweb/v4_0_32/cdts/static/top-en.html" -->
+</div>
+<script>
+var defTop = document.getElementById("def-top");
+defTop.outerHTML = wet.builder.appTop({
+"appName": [{
+"text": "Canada Emergency Response Benefit",
+"href": "/CE/cerb"
+}],
+"lngLinks": [{
+"lang": "en",
+"href": "?lang=en",
+"text": "English",
+},
+{
+"lang": "fr",
+"href": "?lang=fr",
+"text": "Français",
+}],
+});
+</script>

@@ -1,0 +1,74 @@
+{namespace wet.plugins}
+
+/**
+ * This is all of the html for the calendar widget.
+ * @param events Loops of all the events
+ */
+{template .calendar1}
+<div id="calendar1"></div>
+<div class="wb-calevt" data-calevt-src="calendar1">
+	<ol>
+		{foreach $event in $events}
+		<li>
+			<section>
+				<h4><a href="{$event.href}" rel="external">{$event.title}</a></h4>
+				<p><time datetime="{$event.date}">{$event.date}</time></p>
+				<p>{$event.description}</p>
+			</section>
+		</li>
+		{/foreach}
+	</ol>
+</div>
+{/template}
+
+/**
+ * This is all of the html for the calendar widget.
+ * @param title Title of the feed.
+ * @param feeds Path(s) to the feed(s).
+ * @param limit Controls the amount of items the Web feeds widget will display.
+ */
+{template .feeds}
+<section class="wb-feeds limit-{$limit}">
+	<h3>{$title}</h3>
+	<ul class="feeds-cont">
+		{foreach $feed in $feeds}
+		<li><a href="{$feed.href}" rel="external">{$feed.text}</a></li>
+		{/foreach}
+	</ul>
+</section>
+{/template}
+
+/**
+ * @param title Gallery title
+ * @param images Loop all the images in the gallery
+ */
+{template .gallery}
+<section class="wb-lbx lbx-gal">
+	<h4>{$title}</h4>
+	<ul class="list-inline">
+		{foreach $image in $images}
+		<li>
+			<a href="{$image.href}" title="{$image.alt}">
+				<img src="{$image.src}" alt="{$image.alt}" {if isNonnull($image.longdesc)}aria-describedby="{$image.longdesc}" longdesc="#{$image.longdesc}" {/if}/>
+			</a>
+		</li>
+		{/foreach}
+	</ul>
+</section>
+{/template}
+
+/**
+ * @param title Video title
+ * @param url URL to the video
+ * @param? transcript Optional link to the transcript of the video
+*/
+{template .youtube}
+<figure class="wb-mltmd" data-wb-mltmd='{lb}"shareUrl": "{$url}"{rb}'>
+	<video title="{$title}">
+		<source type="video/youtube" src="{$url}" />
+	</video>
+	<figcaption>
+		<p>{$title}{if isNonnull($transcript)} (<a href="{$transcript}">Transcription</a>){/if}</p>
+	</figcaption>
+</figure>
+{/template}
