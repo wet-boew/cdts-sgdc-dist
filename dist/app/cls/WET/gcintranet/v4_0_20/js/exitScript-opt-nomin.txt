@@ -1,0 +1,111 @@
+// Function to get domain name
+function getHost(url) {
+    var a = document.createElement('a');
+    a.href = url;
+    return a.hostname;
+}
+
+$(document).ready(function () {
+    $(document.body).on('click', 'a', function (event) {
+        // Get page language
+        // Get URL that was clicked and grab domain
+        // Get URL of current page and grab domain
+        // Get JS script injected by GCT
+        // Get exitURL & exitDomains from JS script injected by GCT & Check if GCT has inserted script
+        var pageLang = $("html").attr('lang'),
+            targetUrl = $(this).attr('href'),
+            targetUrlDomain = getHost(targetUrl),
+            currentUrl = document.URL,
+            currentUrlDomain = getHost(currentUrl),
+            scriptGCT = document.querySelector('script[data-id="exitScript"]'),
+            exitURL = null,
+            exitDomains = null;
+        if (scriptGCT) {
+            exitURL = scriptGCT.getAttribute('data-token');
+            exitDomains = scriptGCT.getAttribute('data-token-domains');
+        }
+        // Testing
+        //alert('exitDomains is ' + exitDomains + ' and ' + targetUrlDomain + ' is the targetUrlDomain and this is currentUrlDomain ' + currentUrlDomain);					
+        // Now let's check if it's a relative link
+        if (/^(?:[a-z]+:)?\/\//i.test(targetUrl)) {
+            // This isn't a relative URL so let's check exceptions first
+            // Before we continue let's check if exitDomains is not null
+            if (exitDomains !== null) {
+                // It isn't so now let's see if this is an exception
+                var exitArrayCheck = exitDomains.replace(/ /g, '').split(",").indexOf(targetUrlDomain) > -1 ? true : false;
+                // Testing
+                //alert('targetUrlDomain ' + targetUrlDomain + ' , currentUrlDomain ' + currentUrlDomain + ', exitArray is ' + exitDomains.replace(/ /g, '').split(",") + ', exitArrayCheck is ' + exitArrayCheck);
+                if (exitArrayCheck) {
+                    // Found the domain, so let's forward to the targetUrl right away					
+                    self.location = targetUrl;
+                    return false;
+                }
+            }
+            // Either exitDomains is empty or targetUrlDomain is not in the list
+            // Compare target url and current url to see if a redirect is required
+            if (targetUrlDomain !== currentUrlDomain) {
+                // Prevent navigation
+                event.preventDefault();
+                // Testing
+                //alert(exitURL + '?exitdomain='+ getHost(exitURL) +'&targetUrl=' + targetUrl + '&targetdomain='+ getHost(targetUrl) +'&pageLang=' + pageLang);
+                // Before redirecting confirm user wants to leave site
+                $("#sExitModalLink").trigger("open.wb-lbx", [
+                    [
+                        {
+                            src: "#sExitModal",
+                            type: "inline"
+                        }
+                    ],
+                    true
+                ]);
+                // Intercept the button click
+                $("#sExitModal").on("click", "#eOK", function () {
+                    // Redirect to exitURL variable with parameters
+                    self.location = exitURL + '?targetUrl=' + targetUrl + '&pageLang=' + pageLang;
+                    return false;
+                });
+            }
+        }
+    });
+
+    // Let's also check if this was a form submission
+    $(document).on("submit", "#wb-srch, #mb-pnl", function (event) {
+        //$(document).on("submit", "#wb-srch", function(event) {
+        // Search was attempted so prevent default event
+        event.preventDefault();
+        // Get JS script injected by GCT
+        // Check if GCT has inserted script & Get exitURL from JS script injected by GCT
+        // Get page languageTes
+        // Get keyword that was entered
+        var scriptGCT = document.querySelector('script[data-id="exitScript"]'),
+        exitURL = scriptGCT ? scriptGCT.getAttribute('data-token') : null,
+        pageLang = $("html").attr('lang'),
+        searchString = $('#wb-srch-q').val();
+        if (!searchString) {
+            searchString = $('#wb-srch-q-imprt').val();
+        }
+        // Before redirecting confirm user wants to leave site
+        $("#sExitModalLink").trigger("open.wb-lbx", [
+			[
+				{
+				    src: "#sExitModal",
+				    type: "inline"
+				}
+			],
+			true
+        ]);
+        // Intercept the button click
+        $("#sExitModal").on("click", "#eOK", function () {
+            // First create the targetURL variable
+            // We need to encode the URL
+            var sTargetUrl = {
+                "en": "http://recherche-search.gc.ca" + encodeURIComponent("/rGs/s_r?cdn=canada&st=s&num=10&langs=eng&st1rt=0&s5bm3ts21rch=x&q="),
+                "fr": "http://recherche-search.gc.ca" + encodeURIComponent("/rGs/s_r?cdn=canada&st=s&num=10&langs=fra&st1rt=0&s5bm3ts21rch=x&q=")
+                },
+                targetUrlencoded = sTargetUrl[pageLang] + encodeURIComponent(searchString + '&wb-srch-sub=#wb-land');
+            // Redirect to exitURL variable with parameters
+            self.location = exitURL + '?targetUrl=' + targetUrlencoded;
+            return false;
+        });
+    });
+});

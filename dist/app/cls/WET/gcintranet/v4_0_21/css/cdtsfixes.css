@@ -1,0 +1,28 @@
+/********** CDTS fixes file **********/
+/********** Follow the correct format and link to Github issue for info **********/
+
+/***** SECONDARY NAVIGATION FIX *****/
+/********** Added as per Shawn Thompson, temporary fix **********/
+	#wb-sec h3 {font-size: 1.1em;padding: 15px; }
+	#wb-sec h3 a {
+	font-size: 1em;
+	margin: -15px; }
+
+/***** SECONDARY NAVIGATION FIX - WHITE HOVER *****/
+#wb-sec .list-group .list-group .list-group .wb-navcurr.list-group-item {
+background-color: #335075;
+}
+
+/********** WHAT IS THIS FOR ??? **********/
+::-webkit-input-placeholder {
+ font-style: italic;
+}
+	:-moz-placeholder {
+ font-style: italic;
+}
+	::-moz-placeholder {
+ font-style: italic;
+}
+	:-ms-input-placeholder {
+ font-style: italic;
+}

@@ -1,0 +1,197 @@
+
+#wb-sm {
+  background: #606060; }
+    #wb-sm .menu .active,
+    #wb-sm .menu .selected,
+    #wb-sm .menu .wb-navcurr {
+      background: #484848 !important;
+      color: #fff !important; }
+        #wb-sm .menu > li a:hover,
+        #wb-sm .menu > li a:focus {
+          background: #484848 !important;
+          text-shadow: none; }
+  #wb-sm .sm.open {
+    background: #ccc;
+    border-bottom: 5px solid #484848; }
+    #wb-sm .sm.open li a,
+    #wb-sm .sm.open li summary {
+      color: #444;
+      padding: 5px 10px;
+      text-shadow: none; }
+      #wb-sm .sm.open li a:hover,
+      #wb-sm .sm.open li a:focus,
+      #wb-sm .sm.open li a:active,
+      #wb-sm .sm.open li summary:hover,
+      #wb-sm .sm.open li summary:focus,
+      #wb-sm .sm.open li summary:active {
+        background: #484848;
+        color: #fff; }
+
+  #wb-srch button,
+  .srchbox button {
+    background-color: #335075;
+    border-color: #335075;}
+    #wb-srch button:hover,
+    #wb-srch button:focus,
+    #wb-srch button:active,
+    .srchbox button:hover,
+    .srchbox button:focus,
+    .srchbox button:active {
+      background: #243851; }
+
+ .navbar-brand {
+  float: left;
+  padding: 13.5px 15px;
+  font-size: 18px;
+  line-height: 23px;
+  height: 50px; }
+  .navbar-brand:hover,
+  .navbar-brand:focus {
+    text-decoration: none; }
+  .navbar-brand > img {
+    display: block; }
+  @media (min-width: 768px) {
+    .navbar > .container .navbar-brand,
+    .navbar > .container-fluid .navbar-brand {
+      margin-left: -15px; } }
+	  
+ #wb-info .brand {
+    border-top: 4px solid #335075; }
+	  
+#app-brand{
+    background-color: #335075; 
+    color: #fff;
+    min-height: 45px;
+    /*padding-top: 5px;*/
+}
+
+#app-brand a{
+   text-decoration: none;
+   color: #fff;
+}
+
+#app-brand li a{
+   text-decoration: none;
+   color: black;
+   padding: 30px 35px;
+}
+.app-name{
+    font-size: 1.6em;
+    padding-top:5px;
+    padding-left: 20px;
+    background-color: #243851;
+    min-height: 45px;
+    max-width: 205px;
+    margin-left:-15px; /* was -5px; */
+}
+
+.app-name-lg{
+    max-width: 450px;
+}
+
+.app-name:before{
+       content: '';
+    display: block;
+    position: absolute;
+    left: 205px;
+    top: 0;
+    width: 0;
+    height: 0;
+	border-top: 22.5px solid transparent;
+	border-bottom: 22.5px solid transparent;
+	
+	border-left: 20px solid #243851;
+    clear: both;     
+}
+
+.app-name-lg:before{
+    left: 450px;
+}
+
+.tool-link{
+    padding:11px 0 0 30px;
+}
+
+.tool-link:hover{
+    text-decoration: underline;
+}
+
+.tool-link-icon{
+    width: 25px;
+    margin:0 5px 3px 0;
+
+}
+
+.bold-gc{
+    font-weight: 800;   
+}
+
+
+#wb-glb-mn ul.chvrn {
+      background: #335075;}
+
+	  
+#mb-pnl {
+    background:transparent;}	  
+
+  #mb-pnl .modal-header {
+    background: #243851;
+    border-bottom: 1px solid #243851; }
+    #mb-pnl .modal-header:before {
+      border-bottom: 1.45em solid #243851;
+      border-top: 1.45em solid #243851; }
+  #mb-pnl .modal-body {
+    background: #335075; }
+  #mb-pnl .srch-pnl form button {
+    background-color: #243851;
+    border-color: #243851; }
+    #mb-pnl .srch-pnl form button:hover,
+    #mb-pnl .srch-pnl form button:focus,
+    #mb-pnl .srch-pnl form button:active {
+      background: #335075; }
+  #mb-pnl .srch-pnl form input {
+    background-color: #e0e0e0;
+    border-color: #e0e0e0;
+    color: #555; }
+  #mb-pnl .sm-pnl {
+    background: #335075;}
+  #mb-pnl .info-pnl {
+    background: #335075;
+    border-top: 2px solid #061e38;
+    color: #325375 !important;
+    padding-left: 15px; }
+
+  #mb-pnl .sec-pnl {
+    background: #cdd4da !important;
+    padding-left: 15px; }
+    #mb-pnl .sec-pnl a,
+    #mb-pnl .sec-pnl summary {
+      color: #2e5576 !important; }
+
+[dir=rtl] #wb-sm .menu > li {
+  border-right: 1px solid #999; }
+
+.wb-tabs.carousel-s2 figcaption {
+	background-color: #606060;
+}
+
+.followus .GCConnex{background-image:url(http://authoring.gcintranet.tbs-sct.gc.ca/images/GCconnex.png); width:30px;height:30px; background-repeat:no-repeat;}
+.followus .GCdirectory{background-image:url(http://authoring.gcintranet.tbs-sct.gc.ca/images/GCdirectory.png); width:30px;height:30px; background-repeat:no-repeat;}
+.followus .GCpedia{background-image:url(http://authoring.gcintranet.tbs-sct.gc.ca/images/GCpedia.png); width:30px;height:30px; background-repeat:no-repeat;}
+.followus .GCTools{background-image:url(http://authoring.gcintranet.tbs-sct.gc.ca/images/GCTools.png); width:30px;height:30px; background-repeat:no-repeat;}
+.followus .GCConnex, .followus .GCdirectory, .followus .GCpedia, .followus .GCTools{background-position:center center;background-repeat:no-repeat;display:inline;min-height:27px;min-width:40px;position:relative;vertical-align:middle;vertical-align:text-bottom}
+
+
+/********** AJOUTÉ PAR NICK LE 2016/05/26 **********/
+  details summary {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+    padding: 5px 15px; }
+	
+/********** AJOUTÉ PAR ROCH LE 2016/10/05 **********/
+/********** Screen identifier CSS for ESDC subtheme **********/
+.screenIdent {
+    display:inline;
+	border-color:#335175;
+}

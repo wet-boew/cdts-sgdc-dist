@@ -1,0 +1,155 @@
+
+
+<!DOCTYPE html><!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]--><!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" dir="ltr">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<!--AA Changes: Metadata. Confirm dcterms:service with AA team-->
+<meta name="dcterms.accessRights" content="3"/> 
+<meta property="dcterms:service" content="ESDC-EDSC_Intranet"/>
+
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html --><title>my test file</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="dcterms.creator" content="Employment and Social Development Canada">
+<meta name="dcterms.subject" content="Testing ">
+<meta name="dcterms.title" content="my test file">
+<meta name="dcterms.issued" title="W3CDTF" content="2020-10-29">
+<meta name="dcterms.modified" title="W3CDTF" content="2020-11-26">
+<meta name="dcterms.language" title="ISO639-2" content="en">
+<script type="text/javascript" src="/js/bc.js"></script>
+<script type="text/javascript" src="/js/banners.js"></script>
+<script type="text/javascript">
+			var cdnPageProps = {breadcrumbs: breadcrumbs, lngLinks: [{
+				lang: "fr",
+				href: "/fr/qin.shtml",
+				text: "Français",
+			}],dateModified: "2020-11-26"};
+		</script>
+<!--AA Changes: Script. Staging version implemented for testing-->
+<!--<script src="//assets.adobedtm.com/launch-EN11c0261481f74c56b7656937bbd995e9-staging.min.js"></script>    -->
+<!-- Load closure template scripts -->
+    <script type="text/javascript" src="https://templates.service.gc.ca/rn/cls/wet/gcintranet/cdts/compiled/soyutils.js"></script>
+    <script type="text/javascript" src="https://templates.service.gc.ca/rn/cls/wet/gcintranet/cdts/compiled/wet-en.js"></script>
+    
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!-- Write closure template -->
+    <script type="text/javascript">
+        document.write(wet.builder.refTop({
+            cdnEnv: "esdcprod",
+			subTheme: "esdc"
+        }));
+    </script>
+	<link rel="stylesheet" href="/includes/edsc-esdc_prv/wet4/css/custom.css" />
+    
+</head>
+<body class="home" vocab="http://schema.org/" typeof="WebPage">
+    <div id="def-top">
+    </div>
+    <!-- Write closure template -->
+    <script type="text/javascript">
+	var site = window.location.href;
+
+	var subTheme="esdc";
+	var href="subtheme-fr.shtml";		
+	var boldText = "ESDC/SC";
+	var acronym = "Employment and Social Development Canada / Service Canada";
+		
+	if(site.indexOf("labour") >=0){		
+		subTheme="labour";
+		href="subtheme-labour-fr.shtml";		 
+		boldText = "Labour Program";
+			
+	}
+	
+		if(intranetTitle == null){
+		intranetTitle= [{
+		"href": "http://esdc.prv/en/index.shtml",
+		"text": " IntraWeb",
+		"boldText" : boldText,
+		"acronym": acronym
+	}];
+	}
+	
+var defTop = document.getElementById("def-top");
+defTop.outerHTML = wet.builder.top({
+	"cdnEnv": "esdcprod",
+	"subTheme": subTheme,
+	"GCToolsModal": true,
+	"menuPath": "http://esdc.prv/includes/edsc-esdc_prv/wet4/en/mega_menu/esdcmenu-eng.html",
+	"intranetTitle": intranetTitle,
+
+	"customSearch": [{
+		"action" : "http://esdc.prv/cgi-bin/rhdcc-hrsdc/recherche-search.aspx",
+		"placeholder" : "Search the IntraWeb",
+		"method" : "get",
+		"hiddenInput" : [{
+			"name" : "k",
+			"value" : "en"
+		}, {
+			"name" : "l",
+			"value" : "eng"
+		}, {
+			"name" : "chk2",
+			"value" : "True"
+		}]
+	}],
+
+		breadcrumbs: cdnPageProps.breadcrumbs,
+		lngLinks: cdnPageProps.lngLinks
+		
+        });
+    </script> 
+<main property="mainContentOfPage" typeof="WebPageElement" class="container">
+<h1 property="name" id="wb-cont">my test file</h1><section class="wb-lbx lbx-gal">
+<h4>AJAX gallery</h4>
+<ul>
+<li><a href="ajax1-en.html" title="AJAX - Example 1 of AJAX content">AJAX - Example 1</a></li>
+<li><a href="ajax2-en.html" title="AJAX - Example 2 of AJAX content">AJAX - Example 2</a></li>
+<li><a href="ajax3-en.html" title="AJAX - Example 3 of AJAX content">AJAX - Example 3</a></li>
+</ul>
+</section>
+        <div id="def-preFooter">
+        </div>
+		<!-- Write closure template -->
+        <script type="text/javascript">
+            var defPreFooter = document.getElementById("def-preFooter");
+            defPreFooter.outerHTML = wet.builder.preFooter({
+                "cdnEnv": "esdcprod",
+                "showPostContent": false,
+                "dateModified": cdnPageProps.dateModified,
+
+            });
+        </script>
+</main>
+    <div id="def-footer">
+	</div>
+    <!-- Write closure template -->
+	<script type="text/javascript">
+		var defFooter = document.getElementById("def-footer");
+		defFooter.outerHTML = wet.builder.appFooter({
+			"cdnEnv": "esdcprod",
+			"subTheme": "esdc",
+            "footerPath": "http://esdc.prv/includes/edsc-esdc_prv/wet4/en/footer/esdcfooter-eng.html",
+            "showFeatures": false
+        });
+    </script>
+    <!-- Write closure template -->
+    <script type="text/javascript">
+        document.write(wet.builder.refFooter({
+            "cdnEnv": "esdcprod"
+        }));
+    </script>
+	<script src="/js/commun.js"></script>
+<!--AA Changes: Page bottom-->
+<script type="text/javascript">
+if(typeof _satellite === "object" && typeof _satellite.pageBottom === "function"){
+_satellite.pageBottom();
+}
+
+</script>
+</body>
+</html>
