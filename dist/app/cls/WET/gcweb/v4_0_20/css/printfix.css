@@ -1,0 +1,36 @@
+@media print{
+   a[href]:after { content: "" !important;}
+	abbr:after { content: "" !important;}
+	aside.gc-nttvs { display: none !important;}
+
+	/* fix IE - print xs version in print view */
+  	body {
+    margin: 0;
+	 padding: 0 !important;
+    min-width: 768px;
+  	}
+  	.container {
+    width: auto;
+    min-width: 750px;
+  	}
+	/* Chrome bug : city page prints as XS verion */
+	@media print {
+		@page { 	margin-left:0.3cm;
+					margin-right:0.3cm;
+ 		}
+	}
+	/* force chrome to print on landscape */
+	@media print and (-webkit-min-device-pixel-ratio:0) { 
+		@page { size:landscape;}
+	}
+
+	/*  removed double header if it has been at xs before printing  */
+	details[open] > summary.wxo-summ {
+		display:none !important;
+	}	
+
+	/* IE 9 bug - table disappears if table spans to more than one page */
+	section#wxo-cityforecast {  float:none; }
+	
+
+} /* MEDIA PRINT */

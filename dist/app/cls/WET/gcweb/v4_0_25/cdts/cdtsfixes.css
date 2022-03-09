@@ -1,0 +1,14 @@
+/********** CDTS fixes file **********/
+/********** Follow the correct format and link to Github issue for info **********/
+
+/********** MODIFIÉ PAR NICK LE 2017/06/14 **********/
+/********** Screen identifier CSS **********/
+.screenIdent {
+    display:inline;
+	border-color:#335175;
+}
+.screenIdent dd, .screenIdent dt{
+	display: inline;
+	font-weight: 400;
+	margin-right: 0;
+}

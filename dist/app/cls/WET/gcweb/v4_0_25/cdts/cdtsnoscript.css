@@ -1,0 +1,9 @@
+/********** CDTS noscript file **********/
+/********** Follow the correct format and link to Github issue for info **********/
+
+/********** MODIFIÉ PAR ROCH LE 2017/08/01 **********/
+/*Secure application templates: Custom CSS (noscript)*/
+
+.app-list-main, #app-srch-mb {
+	display: none !important;
+}

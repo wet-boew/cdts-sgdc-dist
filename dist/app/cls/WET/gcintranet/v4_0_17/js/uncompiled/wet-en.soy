@@ -1,0 +1,379 @@
+{namespace wet.builder}
+
+// IF statement for CDN environment is:
+// {if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}
+// IF statement for Canada.ca CDN is:
+// {if $cdnEnv=='prod'}live{else}dev{/if}
+
+/**
+ * This is all of the references to be made before existing page content.
+ * @param? templateDomain The domain from which to get WET files. 
+ * @param? cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
+ */
+{template .refTop}
+<!--[if gte IE 9 | !IE ]><!-->
+<link href="{if isNonnull($templateDomain)}{$templateDomain}{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcweb/v4_0_17/GCWeb/assets/favicon.ico" rel="icon" type="image/x-icon">
+<link rel="stylesheet" href="{if isNonnull($templateDomain)}{$templateDomain}{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcweb/v4_0_17/GCWeb/css/theme.min.css">
+<!--<![endif]-->
+<!--[if lt IE 9]>
+<link href="{if isNonnull($templateDomain)}{$templateDomain}{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcweb/v4_0_17/GCWeb/assets/favicon.ico" rel="shortcut icon" />
+<link rel="stylesheet" href="{if isNonnull($templateDomain)}{$templateDomain}{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcweb/v4_0_17/GCWeb/css/ie8-theme.min.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{if isNonnull($templateDomain)}{$templateDomain}{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcweb/v4_0_17/wet-boew/js/ie8-wet-boew.min.js"></script>
+<![endif]-->
+<!--[if lte IE 9]
+<![endif]-->
+{/template}
+
+/**
+ * This is all of the html to be included before existing page content.
+ * @param? templateDomain The domain from which to get WET files. 
+ * @param? cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
+ * @param? search Used to display search.
+ * @param? siteMenu Used to display site menu.
+ * @param? lngLinks Links to pages in other languages.
+ * @param? showPreContent Used to determine if the precontent space will be displayed.
+ * @param? breadcrumbs Used to set custom breadcrumbs.
+ * @param? showJumbotron Used to determine if the jumbotron will be displayed.
+ */
+{template .top}
+<ul id="wb-tphp">
+<li class="wb-slc">
+<a class="wb-sl" href="#wb-cont">Skip to main content</a>
+</li>
+<li class="wb-slc visible-sm visible-md visible-lg">
+<a class="wb-sl" href="#wb-info">Skip to "About this site"</a>
+</li>
+</ul>
+<header role="banner">
+<div id="wb-bnr" class="container">
+{if isNonnull($lngLinks)}
+<section id="wb-lng" class="visible-md visible-lg text-right">
+<h2 class="wb-inv">Language selection</h2>
+<div class="row">
+<div class="col-md-12">
+<ul class="list-inline margin-bottom-none">
+{foreach $link in $lngLinks}
+<li><a lang="{$link.lang}" href="{$link.href}">{$link.text}</a></li>
+{/foreach}
+</ul>
+</div>
+</div>
+</section>
+{/if}
+<div class="row">
+<div class="brand col-xs-8 col-sm-9 col-md-6">
+<a href="http://www.canada.ca/en/index.html"><object type="image/svg+xml" tabindex="-1" data="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/assets/sig-blk-en.svg"></object><span class="wb-inv"> Government of Canada</span></a>
+</div>
+<section class="wb-mb-links col-xs-4 col-sm-3 visible-sm visible-xs" id="wb-glb-mn">
+<h2>Search and menus</h2>
+<ul class="list-inline text-right chvrn">
+<li><a href="#mb-pnl" title="Search and menus" aria-controls="mb-pnl" class="overlay-lnk" role="button"><span class="glyphicon glyphicon-search"><span class="glyphicon glyphicon-th-list"><span class="wb-inv">Search and menus</span></span></span></a></li>
+</ul>
+<div id="mb-pnl"></div>
+</section>
+{if $search != false}
+<section id="wb-srch" class="col-xs-6 text-right visible-md visible-lg">
+<h2 class="wb-inv">Search</h2>
+<form action="http://recherche-search.gc.ca/rGs/s_r?#wb-land" method="get" name="cse-search-box" role="search" class="form-inline">
+<div class="form-group">
+<label for="wb-srch-q" class="wb-inv">Search website</label>
+<input name="cdn" value="canada" type="hidden">
+<input name="st" value="s" type="hidden">
+<input name="num" value="10" type="hidden">
+<input name="langs" value="eng" type="hidden">
+<input name="st1rt" value="0" type="hidden">
+<input name="s5bm3ts21rch" value="x" type="hidden">
+<input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search" value="" size="27" maxlength="150" placeholder="Search Canada.ca">
+<datalist id="wb-srch-q-ac">
+<!--[if lte IE 9]><select><![endif]-->
+<!--[if lte IE 9]></select><![endif]-->
+</datalist>
+</div>
+<div class="form-group submit">
+<button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">Search</span></button>
+</div>
+</form>
+</section>
+{/if}
+</div>
+</div>
+{if $siteMenu != false}
+<nav role="navigation" id="wb-sm" data-ajax-fetch="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/ajax/sitemenu-eng.html" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+<h2 class="wb-inv">Topics menu</h2>
+<div class="container nvbar">
+<div class="row">
+<ul class="list-inline menu">
+<li><a href="http://gcintranet.canada.ca/hgw-cgf/index-eng.asp">How government works</a></li>
+<li><a href="http://gcintranet.canada.ca/wg-tg/index-eng.asp">Working at GC</a></li>
+<li><a href="http://gcintranet.canada.ca/cdl-dca/index-eng.asp">Career development and learning</a></li>
+<li><a href="http://gcintranet.canada.ca/tr-or/index-eng.asp">Tools and resources</a></li>			
+</ul>
+</div>
+</div> 
+</nav>
+{/if}
+{if $breadcrumbs != false}
+<nav role="navigation" id="wb-bc" class="" property="breadcrumb">
+<h2 class="wb-inv">You are here:</h2>
+<div class="container">
+<div class="row">
+<ol class="breadcrumb">
+{if isNonnull($breadcrumbs)}
+{foreach $item in $breadcrumbs}
+<li>{if isNonnull($item.acronym)}<abbr title="{$item.acronym}">{/if}{if isNonnull($item.href)}<a href="{$item.href}">{/if}{$item.title}{if isNonnull($item.href)}</a>{/if}{if isNonnull($item.acronym)}</abbr>{/if}</li>
+{/foreach}
+{else}
+<li><a href="http://www.canada.ca/en/index.html">Home</a></li>
+{/if}
+</ol>
+</div>
+</div>
+</nav>
+{/if}
+</header>
+{if isNonnull($showJumbotron)}
+<aside class="prm-flpr">
+<div class="container">
+<div class="row">
+<h2 class="wb-inv">Promotions</h2>
+<div class="wb-tabs carousel-s2 show-thumbs playing slow">
+<ul role="tablist">
+<li class="active">
+{if $showJumbotron != 'default'}
+{foreach $item in $showJumbotron}
+{if index($item) > 0}
+<li>
+{/if}
+<a href="#tab{index($item)}" title="Tab {index($item)}: {$item.title}"><img src="{$item.img}" alt=""></a></li>
+{/foreach}
+</ul>
+<div class="tabpanels"> 
+{foreach $item in $showJumbotron}
+<div role="tabpanel" id="tab{index($item)}" class="{if index($item) > 0 }out fade{else}in fade{/if}">
+<a href="{$item.href}" class="learnmore">
+<figure>
+<img src="{$item.img}" alt="">
+<figcaption><p>{$item.p}</p></figcaption></figure>
+</a>
+</div>
+{/foreach}
+{else}
+<a href="#panel1"><img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/img/promos/vets.jpg" alt="Female soldier morphing into a civilian employee"></a></li>
+<li><a href="#panel2"><img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/img/promos/ClerkAnnualReport-eng.jpg" alt="Twenty-Second Annual Report to the Prime Minister on the Public Service of Canada - Video"></a></li>
+<li><a href="#panel3"><img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/img/promos/app-challenge-defi.jpg" alt="App icon on a smart phone with a question mark"></a></li>
+<li><a href="#panel4"><img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/img/promos/award-prix-eng.jpg" alt="Public Service Award of Excellence"></a></li>
+</ul>
+<div class="tabpanels">
+<div role="tabpanel" id="panel1" class="in fade">
+<figure><img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/img/promos/vets.jpg" alt="Female soldier morphing into a civilian employee">
+<figcaption>
+<p><a href="http://www.veterans.gc.ca/eng/services/transition/ps-hiring?campaign=2015-vet_jobs-sitecdncarrousel">Improved access to federal public service jobs for CAF Veterans</a></p>
+</figcaption>
+</figure>
+</div>
+<div role="tabpanel" id="panel2" class="out fade">
+<figure><img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/img/promos/ClerkAnnualReport-eng.jpg" alt="Twenty-Second Annual Report to the Prime Minister on the Public Service of Canada - Video">
+<figcaption>
+<p><a href="http://clerk.gc.ca/eng/feature.asp?pageId=413">Clerk's Report on the Public Service of Canada Video</a></p>
+</figcaption>
+</figure>
+</div>
+<div role="tabpanel" id="panel3" class="out fade">
+<figure><img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/img/promos/app-challenge-defi.jpg" alt="App icon on a smart phone with a question mark"> 
+<figcaption>
+<p><a href="http://gcconnex.gc.ca/groups/profile/12266349/the-public-service-app-challenge-le-defi-dapplications-de-la-fonction-publique">Participate in the Public Service App Challenge</a></p>
+</figcaption>
+</figure>
+</div>
+<div role="tabpanel" id="panel4" class="out fade">
+<figure> <img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/img/promos/award-prix-eng.jpg" alt="Public Service Awards of Excellence">
+<figcaption>
+<p><a href="http://www.tbs-sct.gc.ca/arp/aepe15-eng.asp">Congratulations to the recipients of the Public Service Awards of Excellence</a></p>
+</figcaption>
+</figure>
+</div>
+{/if}
+</div>
+</div>
+</div>
+</div>
+</aside>
+{/if}
+{if $showPreContent != false}
+<aside class="prm-sngl">
+<div class="container">
+<div class="row">
+<h2 class="wb-inv">Promotions</h2>
+<!--<img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}" class="img-responsive" alt="Place holder image." />-->
+</div>
+</div>
+</aside>
+{/if}
+{/template}
+
+/**
+ * This is all of the html to be included after existing page content.
+ * @param? templateDomain The domain from which to get WET files. 
+ * @param? cdnEnv Used to switch between qat, nonprod, and prod CDN implementations. 
+ * @param dateModified The date the content was last modified.
+ * @param? showPostContent Used to determine if the postcontent space will be displayed, off by default.
+ * @param? showFeedback Used to determine if the feedback button will be displayed
+ * @param? showShare Used to determine if the share button will be displayed
+ */
+{template .preFooter}
+{if $showPostContent != false}
+<aside class="prm-sngl">
+<div class="container">
+<div class="row">
+<h2 class="wb-inv">Promotions</h2>
+<!--<img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}" class="img-responsive" alt="Place holder image." />-->
+</div>
+</div>
+</aside>
+{/if}
+<div class="row pagedetails">
+<div class="col-sm-5 col-xs-12 datemod">
+<dl id="wb-dtmd">
+<dt>Date modified:&#32;</dt>
+<dd><time property="dateModified">{$dateModified}</time></dd>
+</dl>
+</div>
+{if $showFeedback != false}
+<div class="clear visible-xs"></div>
+<div class="col-sm-4 col-xs-6">
+{if isNonnull($showFeedback)}
+<a href="{$showFeedback}" class="btn btn-default"><span class="glyphicon glyphicon-comment mrgn-rght-sm"></span>Feedback<span class="wb-inv"> about this web site</span></a>
+{else}
+<a href="http://www.canada.ca/en/contact/feedback.html" class="btn btn-default"><span class="glyphicon glyphicon-comment mrgn-rght-sm"></span>Feedback<span class="wb-inv"> about this web site</span></a>
+{/if}
+</div>
+{/if}
+{if $showShare != false}
+<div class="col-sm-3 col-xs-6 text-right">
+{if isNonnull($showShare)}
+<div class="wb-share" data-wb-share='{lb}"filter": [{foreach $item in $showShare}"{$item}"{if not isLast($item)}, {/if}{/foreach}], "lnkClass": "btn btn-default"{rb}'></div>
+{else}
+<div class="wb-share" data-wb-share='{lb}"lnkClass": "btn btn-default"{rb}'></div>
+{/if}
+</div>
+<div class="clear visible-xs"></div>
+{/if}
+</div>
+{/template}
+
+/**
+ * This is all of the html to be included after existing page content.
+ * @param? templateDomain The domain from which to get WET files. 
+ * @param? cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
+ * @param? showFeatures Used to determine if the "Government of Canada activities and initiatives" section will be displayed.
+ * @param? showFooter Used to determine if the page footer will be displayed.
+ */
+{template .footer}
+{if $showFeatures == true}
+<aside class="gc-nttvs container">
+<h2>Activities and initiatives</h2>
+<p>Information on current GC activities and initiatives being led by departments and agencies. </p>
+<div class="wb-eqht row">
+<section class="col-lg-4 col-md-6"> <a href="http://travel.gc.ca/returning/customs/what-you-can-bring-home-to-canada">
+<h3>What you can bring back to Canada</h3>
+<img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/img/promos/initiative1-3.jpg" alt="Rolling luggage in a terminal" class="img-responsive mrgn-bttm-md"> </a>
+<p>General guidelines on what you can and cannot bring into Canada when you return from abroad.</p>
+</section>       
+<section class="col-lg-4 col-md-6"> <a href="http://healthycanadians.gc.ca/diseases-conditions-maladies-affections/disease-maladie/lyme/index-eng.php?src=lyme_disease_1516&medium=banner_en&campaign=topic_footer">
+<h3>Lyme disease</h3>
+<img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/img/promos/initiative2-1.jpg" alt="Enlarged view of a tick on a person's leg" class="img-responsive mrgn-bttm-md"> </a>
+<p>Lyme disease is a serious illness caused by the bite of an infected blacklegged tick.</p>
+</section>
+<section class="col-lg-4 col-md-6"> <a href="http://www.pc.gc.ca/eng/culture/franklin/franklin2015.aspx">
+<h3>Breaking the ice: HMS Erebus revealed</h3>
+<img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/img/promos/initiative3-1.jpg" alt="Crew of the HMS Erebus" class="img-responsive mrgn-bttm-md"> </a>
+<p>Join the divers as they unravel the mysteries surrounding the Franklin Expedition lost under the Arctic Ocean for more than 150 years</p>
+</section>
+</div>   
+</aside>
+{/if}
+<footer role="contentinfo" id="wb-info">
+<nav role="navigation" class="container visible-sm visible-md visible-lg wb-navcurr">
+<h2 class="wb-inv">About this site</h2>
+<div class="row">
+{if $showFooter != false}
+<section class="col-sm-3"><h3>About us</h3>
+<ul class="list-unstyled">
+<li><a href="http://news.gc.ca/web/index-en.do">News</a></li>
+<li><a href="http://www.gcpedia.gc.ca/wiki/gcintranet">About this site</a></li>
+<li><a href="/contact/contactgc-eng.aspx">Contact us</a></li>
+</ul>
+</section>
+<section class="col-sm-3"><h3>Communities</h3>
+<ul class="list-unstyled">
+<li><a href="http://gcconnex.gc.ca/">GCconnex</a></li>
+<li><a href="http://www.gcpedia.gc.ca/wiki/?setlang=en">GCpedia</a></li>
+</ul>
+</section>
+<section class="col-sm-3"><h3>Transparency</h3>
+<ul class="list-unstyled">
+<li><a href="../gwr-erg-eng.asp">Government-wide reporting</a></li>
+<li><a href="http://open.canada.ca/en">Open government</a></li>
+<li><a href="http://www.canada.ca/en/transparency/disclosure.html">Proactive disclosure</a></li>
+<li><a href="/terms-avis-eng.asp">Terms and conditions</a></li>
+</ul>
+</section>
+<div class="col-sm-3 col-lg-3 brdr-lft">
+<section>
+<h3>Social media</h3>
+<p><a href="http://www.canada.ca/en/social"><img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/assets/social.png" width="123" height="47" alt="Social media" /></a></p>
+</section>
+<section>
+<h3>Mobile centre</h3>
+<p><a href="http://www.canada.ca/en/mobile"><img src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/assets/mobile.png" width="123" height="47" alt="Mobile centre" /></a></p>
+</section>
+</div>
+{else}
+<section class="col-sm-2 col-lg-offset-3">
+<ul class="list-unstyled">
+<li><a class="gl-footer" href="http://www.canada.ca/en/contact/index.html">Contact information</a></li>
+</ul>
+</section>
+<section class="col-sm-3 col-lg-2">
+<ul class="list-unstyled">
+<li><a href="http://www.canada.ca/en/transparency/terms.html">Terms & conditions</a></li>
+</ul>
+</section>
+<section class="col-sm-3 col-lg-3">
+<ul class="list-unstyled">
+<li><a href="http://www.canada.ca/en/transparency/privacy.html">Privacy</a></li>
+</ul>
+</section>
+{/if}
+</div> </nav>
+<div class="brand">
+<div class="container">
+<div class="row">
+<div class="col-xs-6 visible-sm visible-xs tofpg">
+<a href="#wb-cont">Top of Page <span class="glyphicon glyphicon-chevron-up"></span></a>
+</div>
+<div class="col-xs-6 col-md-12 text-right">
+<object type="image/svg+xml" tabindex="-1" role="img" data="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/assets/wmms-blk.svg" aria-label="Symbol of the Government of Canada"></object>
+</div>
+</div>
+</div>
+</div>
+</footer> 
+{/template}
+
+/**
+ * This is all of the references to be made before existing page content.
+ * @param? templateDomain The domain from which to get WET files. 
+ * @param? cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
+ */
+{template .refFooter}
+<!--[if gte IE 9 | !IE ]><!--> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+<script src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/js/wet-boew.min.js"></script> 
+<!--<![endif]--> 
+<!--[if lt IE 9]>
+	<script src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/js/ie8-wet-boew2.min.js"></script>
+<![endif]--> 
+<script src="{if isNonnull($templateDomain)}$templateDomain{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_16/js/theme.min.js"></script>
+{/template}

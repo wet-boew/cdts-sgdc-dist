@@ -1,0 +1,21 @@
+/********** CDTS fixes file **********/
+/********** Follow the correct format and link to Github issue for info **********/
+
+/********** AJOUTÉ PAR ROCH LE 2016/10/28 **********/
+/********** Fixes #7675 (https://github.com/wet-boew/wet-boew/issues/4229) **********/
+/********** Remove for WET v4.0.23 after fix confirmed **********/
+@media print{
+	a[href]:after { content: "" !important;}
+}
+
+/***** SECONDARY NAVIGATION FIX *****/
+/********** Added as per Shawn Thompson, temporary fix **********/
+	#wb-sec h3 {font-size: 1.1em;padding: 15px; }
+	#wb-sec h3 a {
+	font-size: 1em;
+	margin: -15px; }
+
+/***** SECONDARY NAVIGATION FIX - WHITE HOVER *****/
+#wb-sec .list-group .list-group .list-group .wb-navcurr.list-group-item {
+background-color: #335075;
+}

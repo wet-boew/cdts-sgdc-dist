@@ -1,0 +1,200 @@
+#jb-menu-group {
+	display: block;
+	margin: 0;
+}
+.jbservices {
+	padding: 5px 15px 4px 15px;
+	width: 100%;
+}
+.jbservices i.fa {
+	/* text-shadow: 1px 1px 1px #222; */
+	font-size: 1.9em;
+	width: 28px;
+}
+.jbservices span.nowrap,
+.home-command span.nowrap {
+	font-family: "Arial Narrow", Helvetica, Arial, sans-serif !important;
+    font-stretch: condensed;
+    font-weight: 700;
+    font-size: 1.3em;
+    line-height: 1.5em;
+    /*text-transform: uppercase;*/ /* ---> MODIFIED BY NICK SO WE CAN SEE "iService" */
+    /* text-shadow: 1px 1px 1px #222; */
+}
+#jb-menu-list {
+	display: none;
+    position: absolute;
+    z-index: 99;
+    padding: 0 30px 0 0;
+    -webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+} 
+
+#jb-menu-list > ul.list-group {
+	margin: 0;
+	text-align: left;
+	width: 100%;
+    padding: 0;
+   	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+#jb-menu-list > ul.list-group h3.wb-navcurr {
+    margin: 0;
+    font-size: 1em;
+   	padding: 0;
+   	line-height: normal;
+    font-weight: normal;
+    background-color: #335075 !important;
+    color: #fff;
+    text-align: left;
+    text-shadow: 1px 1px 1px #222;
+}
+#jb-menu-list > ul.list-group h3.wb-navcurr a {
+    color: #fff;
+    text-decoration: none;
+    padding: 20px;
+    display: block;
+}
+#jb-menu-list > ul.list-group h3.wb-navcurr a i {
+   	float: right;
+   	margin-left: 20px;
+}
+#jb-menu-list > ul.list-group h3.wb-navcurr a:hover,
+#jb-menu-list > ul.list-group h3.wb-navcurr a:focus {
+	background: #243850 !important;
+}
+#jb-menu-list > ul.list-group > li {
+	display: block;
+	float: none;
+	padding: 0;
+}
+#jb-menu-list > ul.list-group > li:not(:last-child) > h3.wb-navcurr {
+    
+}
+#jb-menu-list  > ul.list-group > li > ul.jb-cat {
+	padding:0;
+    margin: 0;
+    display: none;
+}
+#jb-menu-list > ul.list-group > li:not(:last-child) > ul {
+	margin: 0 1px 0 0;
+}
+#jb-menu-list > ul.list-group > li > ul > li {
+	font-size: 1em;
+    line-height: 1.5em;
+}
+#jb-menu-list > ul.list-group > li > ul > li > a.list-group-item {
+	border: none;
+    background-color: #e6e6e6;
+    color: #000;
+    padding: 14px 20px;
+    text-decoration: none;
+    -webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;   
+}
+
+#jb-menu-list > ul.list-group > li > ul > li > a.list-group-item[href]:hover,
+#jb-menu-list > ul.list-group > li > ul > li > a.list-group-item[href]:focus {
+	background-color: #666;
+    color: #fff;
+
+}
+#jb-menu-list > ul.list-group > li > ul > li:last-child > a.list-group-item {
+	border-bottom: none;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+
+
+
+
+
+
+@media (min-width: 992px) {
+	#jb-menu-group {
+		display: inline-block;
+		margin-left: -15px;
+	}
+	.jbservices {
+		width: auto;
+	}
+	.jbservices i.fa {
+		/* text-shadow: 1px 1px 1px #222; */
+		font-size: 1.9em;
+		width: 28px;
+	}
+	.jbservices span.nowrap {
+		font-family: "Arial Narrow", Helvetica, Arial, sans-serif !important;
+	    font-stretch: condensed;
+	    font-weight: 700;
+	    font-size: 1.3em;
+	    line-height: 1.5em;
+	    /*text-transform: uppercase;*/ /* ---> MODIFIED BY NICK SO WE CAN SEE "iService" */
+	    /* text-shadow: 1px 1px 1px #222; */
+	}
+	#jb-menu-list {
+	    /* left: 15px; */
+	    width: auto;
+		padding: 0;
+    	background-color: #e6e6e6;   	    
+	    border-left: 1px solid #ccc;
+	    border-right: 1px solid #ccc;
+	    border-bottom: 1px solid #ccc;
+		background-clip: padding-box;	    
+	}
+	#jb-menu-list > ul.list-group {
+
+	}
+	#jb-menu-list > ul.list-group h3.wb-navcurr {
+	    font-size: 0.95em;
+    	text-align: center;
+	}
+	#jb-menu-list > ul.list-group h3.wb-navcurr a {
+    	padding: 10px;
+	}
+	#jb-menu-list > ul.list-group h3.wb-navcurr a i {
+    	display: none;
+	}
+	#jb-menu-list > ul.list-group h3.wb-navcurr a:hover,
+	#jb-menu-list > ul.list-group h3.wb-navcurr a:focus {
+
+	}
+	#jb-menu-list > ul.list-group > li {
+		display: inline-block;
+		float: left;
+	    margin: 0;
+	    padding: 0;
+	}
+	#jb-menu-list > ul.list-group > li:not(:last-child) > h3.wb-navcurr {
+		border-right: 1px solid #ccc;
+	}
+	#jb-menu-list  > ul.list-group > li > ul.jb-cat {
+	    font-size: 0.85em;
+    	display: block;
+	}
+	#jb-menu-list > ul.list-group > li:not(:last-child) > ul {
+
+	}
+	#jb-menu-list > ul.list-group > li > ul > li {
+
+	}
+	#jb-menu-list > ul.list-group > li > ul > li > a.list-group-item {
+		padding: 7px 10px;
+	}
+	
+	#jb-menu-list > ul.list-group > li > ul > li > a.list-group-item[href]:hover,
+	#jb-menu-list > ul.list-group > li > ul > li > a.list-group-item[href]:focus {
+
+	}
+	#jb-menu-list > ul.list-group > li > ul > li:last-child > a.list-group-item {
+
+	}	
+}

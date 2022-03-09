@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="fr" dir="ltr"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="fr" dir="ltr"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+	<title>Plugiciel de fils de syndication de la BOEW - Canada.ca</title>
+	<meta content="width=device-width,initial-scale=1" name="viewport">
+	<!-- Meta data -->
+	<meta name="description" content="La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.">
+	<!-- Meta data-->
+	<!-- Load closure template scripts -->
+	<script type="text/javascript" src="https://ssl-templates.services.gc.ca/app/cls/wet/gcweb/v4_0_20/js/compiled/soyutils.js"></script>
+	<script type="text/javascript" src="https://ssl-templates.services.gc.ca/app/cls/wet/gcweb/v4_0_20/js/compiled/wet-fr.js"></script>
+	<script type="text/javascript" src="https://ssl-templates.services.gc.ca/app/cls/wet/gcweb/v4_0_20/js/compiled/plugins-fr.js"></script>
+	<noscript>
+		<!-- Write closure fall-back static file -->
+		<!-- /ROOT/app/cls/WET/gcweb/v4_0_20/static/refTop.html -->
+		<!--#include virtual="/app/cls/WET/gcweb/v4_0_20/static/refTop.html" -->
+	</noscript>
+	<!-- Write closure template -->
+	<script type="text/javascript">
+		document.write(wet.builder.refTop({
+			cdnEnv: "prod"
+		}));
+	</script>
+</head>
+<body vocab="http://schema.org/" typeof="WebPage">
+	<div id="def-top">
+		<!-- Write closure fall-back static file -->
+		<!-- /ROOT/app/cls/WET/gcweb/v4_0_20/static/top-fr.html -->
+		<!--#include virtual="/app/cls/WET/gcweb/v4_0_20/static/top-fr.html" -->
+	</div>
+	<!-- Write closure template -->
+	<script type="text/javascript">
+		var defTop = document.getElementById("def-top");
+		defTop.outerHTML = wet.builder.top({
+			cdnEnv: "prod",
+			showPreContent: false,
+			lngLinks: [{
+				lang: "en",
+				href: "feeds-en.shtml",
+				text: "English"
+			}]
+		});
+	</script>
+	<main role="main" property="mainContentOfPage" class="container">
+		<h1 property="name" id="wb-cont">Plugiciel de fils de syndication de la <abbr title="Boîte à outils de l'expérience Web">BOEW</abbr></h1>
+		<h2>Exemple</h2>
+		<div id="cdn-feeds">
+		</div>
+		<!-- Write closure template -->
+		<script type="text/javascript">
+			var feeds = document.getElementById("cdn-feeds");
+			feeds.outerHTML = wet.plugins.feeds({
+				title: "Communiqués de presse et rappels de la sécurité routière",
+				limit: 5,
+				feeds: [{
+					href: "http://www.tc.gc.ca/mediaroom/rss/road.xml",
+					text: "Road News Releases (All)"
+				},{
+					href: "http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/search-recherche/rss.aspx?lang=eng",
+					text: "Road Safety Recalls",
+				}]
+			});
+		</script>
+		<h2>Code</h2>
+		<pre><code>&lt;div id="cdn-feeds"&gt;
+&lt;/div>
+&lt;!-- Write closure template --><&gt;
+&lt;script type="text/javascript"&gt;
+	var feeds = document.getElementById("cdn-feeds");
+	feeds.outerHTML = wet.plugins.feeds({
+		title: "Communiqués de presse et rappels de la sécurité routière",
+		limit: 5,
+		feeds: [{
+			href: "http://www.tc.gc.ca/medias/rss/routier.xml",
+			text: "Communiqués de presse routière (Tous)"
+		},{
+			href: "http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/search-recherche/rss.aspx?lang=fra",
+			text: "Rappels de la Sécurité Routière",
+		}]
+	});
+&lt;/script&gt;</code></pre>
+		<h2>Paramètres</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Paramètre</th>
+					<th scope="col">Rôle</th>
+					<th scope="col">Obligatoire</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>title</code></td>
+					<td>Titre du fil de syndication</td>
+					<td>Oui</td>
+				</tr>
+				<tr>
+					<td><code>limit</code></td>
+					<td>Contrôle la quantité d'articles que le gadget des fils de syndication affichera</td>
+					<td>Oui</td>
+				</tr>
+				<tr>
+					<td><code>href</code></td>
+					<td>Lien vers le fil de syndication</td>
+					<td>Oui</td>
+				</tr>
+				<tr>
+					<td><code>text</code></td>
+					<td>Description du fil de syndication</td>
+					<td>Oui</td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="def-preFooter">
+			<!-- Write closure fall-back static file -->
+			<!-- /ROOT/app/cls/WET/gcweb/v4_0_20/static/preFooter-fr.html -->
+			<!--#include virtual="/app/cls/WET/gcweb/v4_0_20/static/preFooter-fr.html" -->
+		</div>
+		<!-- Write closure template -->
+		<script type="text/javascript">
+			var defPreFooter = document.getElementById("def-preFooter");
+			defPreFooter.outerHTML = wet.builder.preFooter({
+				cdnEnv: "prod",
+				dateModified: "2016-03-10",
+				showPostContent: true
+			});
+		</script>
+	</main>
+	<div id="def-footer">
+		<!-- Write closure fall-back static file -->
+		<!-- /ROOT/app/cls/WET/gcweb/v4_0_20/static/footer-fr.html -->
+		<!--#include virtual="/app/cls/WET/gcweb/v4_0_20/static/footer-fr.html" -->
+	</div>
+	<!-- Write closure template -->
+	<script type="text/javascript">
+		var defFooter = document.getElementById("def-footer");
+		defFooter.outerHTML = wet.builder.footer({
+			cdnEnv: "prod"
+		});
+	</script>
+	<!-- Write closure template -->
+	<script type="text/javascript">
+		document.write(wet.builder.refFooter({
+			cdnEnv: "prod"
+		}));
+	</script>
+</body>
+</html>

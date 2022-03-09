@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="fr" dir="ltr"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="fr" dir="ltr"><!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+		<title>Page de contenu - Canada.ca</title>
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<!-- Meta data -->
+		<meta name="description" content="La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.">
+		<!-- Meta data-->
+		<!-- Load closure template scripts -->
+		<script type="text/javascript" src="https://ssl-templates.services.gc.ca/app/cls/wet/gcweb/v4_0_24/cdts/compiled/soyutils.js"></script>
+		<script type="text/javascript" src="https://ssl-templates.services.gc.ca/app/cls/wet/gcweb/v4_0_24/cdts/compiled/wet-fr.js"></script>
+		<script type="text/javascript">
+			function getURLParameter(e){return decodeURIComponent((new RegExp("[?|&]"+e+"=([^&;]+?)(&|#|;|$)").exec(location.search)||[null,""])[1].replace(/\+/g,"%20"))||null}cdnEnvVar=getURLParameter("cdnEnv"),cdnEnvVar||(cdnEnvVar="esdcprod");
+		</script>
+		<noscript>
+			<!-- Write closure fall-back static file -->
+			<!-- /ROOT/app/cls/WET/gcweb/v4_0_24/cdts/static/refTop.html -->
+			<!--#include virtual="/app/cls/WET/gcweb/v4_0_24/cdts/static/refTop.html" -->
+		</noscript>
+		<!-- Write closure template -->
+		<script type="text/javascript">
+			document.write(wet.builder.refTop({
+				cdnEnv: cdnEnvVar
+			}));
+		</script>
+	</head>
+	<body vocab="http://schema.org/" typeof="WebPage">
+		<div id="def-top">
+			<!-- Write closure fall-back static file -->
+			<!-- /ROOT/app/cls/WET/gcweb/v4_0_24/cdts/static/top-fr.html -->
+			<!--#include virtual="/app/cls/WET/gcweb/v4_0_24/cdts/static/top-fr.html" -->
+		</div>
+		<!-- Write closure template -->
+		<script type="text/javascript">
+			var defTop = document.getElementById("def-top");
+			defTop.outerHTML = wet.builder.appTop({
+				cdnEnv: cdnEnvVar,
+				appName: "Nom de l'application",
+				lngLinks: [{
+					lang: "en",
+					href: "apptop_nomenu-en.shtml",
+					text: "English"
+				}],
+				siteMenu: false
+			});
+		</script>
+		<main role="main" property="mainContentOfPage" class="container">
+			<!--#include virtual="/app/cls/WET/gcweb/v4_0_25/cdts/ajax/securesamples-fr.html" -->
+			<div id="def-preFooter">
+				<!-- Write closure fall-back static file -->
+				<!-- /ROOT/app/cls/WET/gcweb/v4_0_24/cdts/static/preFooter-fr.html -->
+				<!--#include virtual="/app/cls/WET/gcweb/v4_0_24/cdts/static/preFooter-fr.html" -->
+			</div>
+			<!-- Write closure template -->
+			<script type="text/javascript">
+				var defPreFooter = document.getElementById("def-preFooter");
+				defPreFooter.outerHTML = wet.builder.preFooter({
+					cdnEnv: cdnEnvVar,
+					dateModified: "2017-02-16"
+				});
+			</script>
+		</main>
+		<div id="def-footer">
+			<!-- Write closure fall-back static file -->
+			<!-- /ROOT/app/cls/WET/gcweb/v4_0_24/cdts/static/footer-fr.html -->
+			<!--#include virtual="/app/cls/WET/gcweb/v4_0_24/cdts/static/footer-fr.html" -->
+		</div>
+		<!-- Write closure template -->
+		<script type="text/javascript">
+			var defFooter = document.getElementById("def-footer");
+			defFooter.outerHTML = wet.builder.appFooter({
+				cdnEnv: cdnEnvVar,
+				showFeatures: false
+			});
+		</script>
+		<!-- Write closure template -->
+		<script type="text/javascript">
+			document.write(wet.builder.refFooter({
+				cdnEnv: cdnEnvVar
+			}));
+		</script>
+	</body>
+</html>

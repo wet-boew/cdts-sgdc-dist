@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" dir="ltr">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+		wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+    <title>Content page - Canada.ca</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <!-- Meta data -->
+    <meta name="description" content="Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities">
+    <!-- Meta data-->
+    <!-- Load closure template scripts -->
+    <script type="text/javascript" src="https://ssl-templates.services.gc.ca/app/cls/wet/gcintranet/v4_0_17/js/compiled/soyutils.js"></script>
+    <script type="text/javascript" src="https://ssl-templates.services.gc.ca/app/cls/wet/gcintranet/v4_0_17/js/compiled/wet-dev-en.js"></script>
+    <noscript>
+		<!-- Write closure fall-back static file -->
+		<!-- /ROOT/app/cls/WET/gcintranet/v4_0_17/static/refTop.html -->
+		<!--#include virtual="/app/cls/WET/gcintranet/v4_0_17/static/refTop.html" -->
+    </noscript>
+    <!-- Write closure template -->
+    <script type="text/javascript">
+        document.write(wet.builder.refTop({
+            cdnEnv: "prod"
+        }));
+    </script>
+</head>
+
+<body vocab="http://schema.org/" typeof="WebPage">
+	<!-- Google Tag Manager DO NOT REMOVE OR MODIFY - NE PAS SUPPRIMER OU MODIFIER -->
+	<noscript><iframe title="Google Tag Manager" src="//www.googletagmanager.com/ns.html?id=GTM-TLGQ9K" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager -->
+
+    <div id="def-top">
+    </div>
+    <!-- Write closure template -->
+    <script type="text/javascript">
+        var defTop = document.getElementById("def-top");
+        defTop.outerHTML = wet.builder.top({
+            cdnEnv: "prod",
+            showPreContent: false,
+			lngLinks: [{
+                lang: "fr",
+                href: "content-fr.shtml",
+                text: "Français"
+            }]
+        });
+    </script>
+    <main role="main" property="mainContentOfPage" class="container">
+        <!-- the main content -->
+		<div class="wb-share" data-wb-share='{lb}"lnkClass": "btn btn-default"{rb}'></div>
+		<div class="wb-share" data-wb-share='{lb}"filter": ["email", "facebook", "linkedin", "twitter"], "pnlId": "pnl5"{rb}'></div>
+        <!-- end main content -->
+        <div id="def-preFooter">
+        </div>
+		<!-- Write closure template -->
+        <script type="text/javascript">
+            var defPreFooter = document.getElementById("def-preFooter");
+            defPreFooter.outerHTML = wet.builder.preFooter({
+                cdnEnv: "prod",
+                dateModified: "2015-05-22",
+                showPostContent: false,
+				showShare: ["email", "facebook", "linkedin", "twitter"]
+            });
+        </script>
+    </main>
+
+    <div id="def-footer">
+    </div>
+    <!-- Write closure template -->
+    <script type="text/javascript">
+        var defFooter = document.getElementById("def-footer");
+        defFooter.outerHTML = wet.builder.footer({
+            cdnEnv: "prod"
+        });
+    </script>
+    <!-- Write closure template -->
+    <script type="text/javascript">
+        document.write(wet.builder.refFooter({
+            cdnEnv: "prod"
+        }));
+    </script>
+</body>
+</html>
