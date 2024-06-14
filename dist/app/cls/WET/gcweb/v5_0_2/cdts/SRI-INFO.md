@@ -1,0 +1,8 @@
+# Subresource Integrity (SRI)
+
+Hash values for gcweb/v5_0_2/cdts/:
+- compiled/wet-en.js: `sha512-jCO8i5j18oF+nGAK5XFUJVC9LS0YNH1g2VCKq9IS3c0kFFF9oIhldBljObRXgBE/afL00HTS0wl7DdJesbuT6Q==`
+- compiled/wet-fr.js: `sha512-NUCR4pFXBrj9UD+YSIKGQnTSTX2iqClTiDlazZ//WWTkOnPqp/fPV+0IIofIpxfGwj+0XldZxVaRjePI6H23Sw==`
+- cdts-styles.css: `sha512-9XjF3MCbcyrmE5Xxp3JaLAQsYbSdIrwd8aJGafX6V7T8d7SrkAIrd6HFwsev0eAQrOMtDQ4pO65La3CrVHXo8w==`
+- cdts-app-styles.css: `sha512-LdDduYGImuTiQIQCuQgOEttk+oe7wg5+rauqTbA/Qi1qTeZuvBcWcoqr5Nn1mHepDsboEadVW9HnHuMAOqJefA==`
+- cdts-splash-styles.css: `sha512-Ux0hmX3uXA6WcF0i6+JHf0J3Z4HzzxDNyWdV+5mo1qakQwUBeDKMY+xcCcrWHySqStFvndhaJ5OqbIiqaADb9g==`
