@@ -1,0 +1,279 @@
+/********** CDTS fixes file **********/
+/********** Follow the correct format and link to Github issue for info **********/
+
+
+/********** AJOUTÉ PAR Stéphane Ducharme le 2019-08-014 **********/
+/********** fix issue 101 GCWeb: Transactional: Error menu bar  **********/
+.transactBar {
+	border-top: 3px solid #38414d;
+	margin-top: 5px;
+}
+/********** AJOUTÉ PAR Stéphane Ducharme LE 2019/08/13 **********/
+/********** Date modified/Screen identifier/Version **********/
+/* Pour ajuster le splashpage */
+
+.cdts-hidden {
+    display: none;
+}
+.cdts-splash {
+	font-size: .5em;
+}
+
+@media (min-width: 768px) {
+	.cdts-splash {
+		font-size: .6em;
+	}
+}
+
+@media (min-width: 992px) {
+	.cdts-splash {
+		font-size: .7em;
+	}
+}
+
+@media (min-width: 1200px) {
+	.cdts-splash {
+		font-size: .8em;
+	}
+}
+
+/********** AJOUTÉ PAR NICK LE 2017/08/31 **********/
+/********** Date modified/Screen identifier/Version **********/
+#wb-dtmd dt, #wb-dtmd dd {
+	float: left
+}
+
+#wb-dtmd dt {
+	clear: both
+}
+
+#wb-dtmd dd {
+	margin-left: 5px
+}
+
+/********** AJOUTÉ PAR NICK LE 2017/08/25 **********/
+/********** Barre bleue qui remplace le menu en transactional et espace gris avant le footer **********/
+#wb-sm {
+	min-height: 55px;
+}
+
+/* Fix to secondary nav to clear date modified */
+
+@media (max-width: 991px) {
+	#wb-sec {
+		clear: both;
+	}
+}
+
+/********** Only applicable for the top info banner **********/
+#cdts-banner-container-div{
+    display: flex;
+    align-items: baseline;
+}
+
+.cdts-banner-text {
+    margin-top: 16px;
+    margin-bottom: 28px;
+    color: #000000;
+    font-family: "Noto Sans";
+    font-size: 20px;
+    line-height: 33px;
+}
+
+.cdts-banner-link-icon-span{
+    flex-grow: 1;
+}
+
+.cdts-banner-link {
+    color: #284162;
+    font-size: 20px;
+    line-height: 33px;
+    margin-right: 12px;
+}
+
+.cdts-banner-margin-bottom{
+    margin-bottom: 16px;
+}
+
+.cdts-banner-button{
+    height: 45px;
+    border-radius: 4px;
+    color: #FFF;
+    font-family: Noto Sans;
+    font-size: 20px;
+    line-height: 33px;
+    padding: 6px 14px;
+    margin-bottom: 16px;
+}
+
+.cdts-banner-external-icon{
+    font-size: 18px;
+    color: #284162;
+}
+
+@media (max-width: 768px) {
+    .cdts-banner-text {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    .cdts-banner-button{
+        width: 100%;
+        margin-top: 32px;
+    }
+
+    #cdts-banner-container-div{
+        display: block;
+    }
+}
+/********** End of CSS classes used specifically for the top info banner **********/
+
+/********** Only applicable for the header menu **********/
+.cdts-menu-rectangle{
+    background: #EBF2FC;
+    width: 260px;
+}
+
+.cdts-menu-icon{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background: #38414d;
+    color: #EBF2FC;
+    text-align: center;
+    padding-top: 6px;
+    font-size: 23px;
+    margin-left: 20px;
+    margin-right: 15px;
+    vertical-align: sub;
+}
+
+.cdts-menu-label{
+    display: inline-block !important;
+    width: 260px;
+    text-align: initial !important;
+    font-size: 18px;
+    line-height: 20px;
+    color: #26374A;
+    font-weight: bold;
+    padding: 0 !important;
+    margin: 8px 0 8px 0;
+}
+.cdts-menu-label:hover, .cdts-menu-label:visited{
+    color: #26374A;
+}
+
+.cdts-menu-chevron{
+    float: right;
+    margin-top: 12px;
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+.cdts-menu-chevron-up{
+    display: none;
+}
+
+.cdts-menu-list{
+    display: block !important;
+    font-size: 16px;
+    line-height: 22px;
+    color: #26374A;
+    background: white;
+    width: 260px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0 0 5px 5px;
+}
+
+.cdts-menu-list a:visited{
+    color: #26374A;
+}
+
+.cdts-menu-list > li a{
+    padding-left: 20px !important;
+}
+
+.cdts-menu-list > li:not(:first-child){
+    border: solid;
+    border-color: #BBBFC5;
+    border-width: 1px 0;
+}
+
+.cdts-menu-list > li a:hover, .cdts-menu-list > li a:hover span{
+    color: #FFF;
+}
+
+.cdts-menu-list > li:first-child{
+    border: solid;
+    border-width: 1px 0px;
+    border-bottom-color: #BBBFC5;
+    border-top-color: #EBF2FC;
+}
+
+.cdts-menu-list > li:hover{
+    background-color:#26374a;
+}
+
+.wb-menu .sm-open .cdts-menu-chevron-up{
+    display: inline;
+    float: right;
+    margin-top: 12px;
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+.wb-menu .sm-open .cdts-menu-chevron{
+    display: none;
+}
+
+.cdts-sign-out{
+    padding-right: 12px;
+    color: #26374A;
+}
+
+#cdts-header-menu .expicon{
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .cdts-menu-rectangle{
+        display: flow-root;
+        width: 100%;
+    }
+
+    .cdts-menu-list{
+        width: 100%;
+        position: static !important;
+    }
+
+    .cdts-menu-chevron-up{
+        float: right;
+        margin-right: 20px;
+    }
+
+    .cdts-menu-chevron{
+        float: right;
+        margin-right: 20px;
+    }
+
+    .cdts-menu-list-width{
+        width: 100%;
+    }
+
+    .cdts-menu-label{
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .cdts-menu-label{
+        width: 100%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .cdts-app-title-menu {
+        padding-left: 0;
+    }
+}
+/********** End of CSS classes used specifically for the header menu **********/
