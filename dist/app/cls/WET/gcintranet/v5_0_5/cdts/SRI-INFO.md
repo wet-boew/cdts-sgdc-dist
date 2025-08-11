@@ -1,8 +1,8 @@
 # Subresource Integrity (SRI)
 
 Hash values for gcintranet/v5_0_5/cdts/:
-- compiled/wet-en.js: `sha512-GPl1Db/+GRZJ2wkVb5bl5/FeE1vMSyzxhfhO4agwnQg4FPyEyeQ5J+pg5NNIkXbrNJnQt1wrMfny32B//U1HCw==`
-- compiled/wet-fr.js: `sha512-uhD1wWj4yc7d/fCyAsyrv6PGsl0DYF30jmXU4ly7vi8g1enJr1ErCLqTw9SiIUNQoQwYGTd9G0O7mpn88q0D+A==`
+- compiled/wet-en.js: `sha512-DOR11ssnLAUPH7W/KNlTrgwi8IduFTR6eyP7snjDUGWMMRQHsIQw28SZXymQyeBQ8rjuxCfJH83OIuR5grjMiQ==`
+- compiled/wet-fr.js: `sha512-MkmPtUHAIqE4q/rtsw+cmQhZwM/kera05Ep9/tkdm2YHQ1fX7yV3HUlwghpLBMux2fyDaEeMMA2rGNGHRkhNGA==`
 - cdts-styles.css: `sha512-dqrBeYZXK6RYeYmF7LSMsQ7efhL3Lalpi1P09QpwGXVBbuEB2lnqzhhVN1yPXTYN/5/4UeRlCf3SDtiXnk6sOQ==`
 - cdts-splash-styles.css: `sha512-Ux0hmX3uXA6WcF0i6+JHf0J3Z4HzzxDNyWdV+5mo1qakQwUBeDKMY+xcCcrWHySqStFvndhaJ5OqbIiqaADb9g==`
 - cdts-eccc-styles.css: `sha512-VjD7joqLvOMRsDY0x+9zCkn/H9RQGHTbiYLGZtLJ+AU3KF9CysP9vI9igQgNxeVgkqagyTCHVBP2y0jDZnEozg==`
